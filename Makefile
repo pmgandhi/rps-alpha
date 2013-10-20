@@ -1,6 +1,13 @@
 # Makefile for Sphinx documentation
 #
 
+# added so it will open on a mac
+.PHONY: open
+
+open:
+	open _build/html/index.html
+
+
 # You can set these variables from the command line.
 SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
@@ -46,6 +53,9 @@ help:
 	@echo "  pseudoxml  to make pseudoxml-XML files for display purposes"
 	@echo "  linkcheck  to check all external links for integrity"
 	@echo "  doctest    to run all doctests embedded in the documentation (if enabled)"
+
+
+
 
 clean:
 	rm -rf $(BUILDDIR)/*
