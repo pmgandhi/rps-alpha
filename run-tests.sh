@@ -38,7 +38,7 @@ nosetests -v --with-xunit --with-coverage --cover-package=claim  -e "^$WORKON_HO
 display_result $? 1 "Unit tests"
 
 # run feature tests
-behave --stop --tags=~@wip --tags=~@file_upload_test
+behave --stop --tags=~@wip
 display_result $? 2 "Feature tests"
 
 # run style checks

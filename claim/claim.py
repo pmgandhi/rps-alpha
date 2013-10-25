@@ -10,8 +10,6 @@ import database
 
 app = Flask(__name__)
 
-feature_flags = FeatureFlag(app)
-
 # Configuration
 app.config.from_object(
     "claim.config.%s" % getenv("CLAIM_ENV", "development")
@@ -27,10 +25,9 @@ db = database.Database(
 @app.route('/_status', methods=['GET'])
 def health_check():
     if db.alive():
-        return jsonify(status='ok', message='database seems fine')
+        return "OK"
     else:
-        return jsonify(status='error',
-                       message='cannot connect to database'), 500
+        return abort(500, "Database is not alive")
 
 
 @app.route('/claim')
