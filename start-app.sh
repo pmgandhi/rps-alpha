@@ -10,7 +10,7 @@ if [ -z "$VIRTUAL_ENV" -a -n "$WORKON_HOME" ]; then
   fi
 
   source "$venvdir/bin/activate"
-else
+elif [ -z "$VIRTUAL_ENV" ]; then
   echo "You must have WORKON_HOME set, say to venv or ~/virtualenvs"
   exit 1
 fi
