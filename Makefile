@@ -1,16 +1,22 @@
 # Makefile for this bootstrappy spike
 #
-.PHONY: help librarian clean tests
+.PHONY: help clean tests puppet
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
-	@echo "  omnibus_deb     build deb omni-puppet deb file for precise64"
+	@echo "  box             bring the vagrant box up"
+	@echo "  tests           run the frontend tests"
+	@echo "  puppet          collect puppet dependancies"
 	@echo "  clean           start from a clean download/vm"
 
 clean:
+	cd puppet; make clean
 	vagrant destroy -f
 
-box:
+puppet:
+	cd puppet; make librarian
+
+box: puppet
 	vagrant up
 
 tests:
