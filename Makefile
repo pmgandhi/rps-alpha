@@ -19,6 +19,6 @@ puppet:
 box: puppet
 	vagrant up
 
-tests:
+tests: box
 	vagrant ssh --c "/vagrant/frontend/run-tests.sh"
 
