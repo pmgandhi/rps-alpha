@@ -5,3 +5,6 @@
 # .lock files for gem and puppet-librarian
 *.lock
 
+# need to make libarian less destructive, but until then
+modules/
+
