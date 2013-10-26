@@ -6,5 +6,9 @@ class { 'baseconfig':
     stage => 'init'
 }
 
-include baseconfig, git, vim, python_tools
+class { 'mongodb':
+      enable_10gen => true,
+}
+
+include baseconfig, git, vim, python_tools, mongodb
 
