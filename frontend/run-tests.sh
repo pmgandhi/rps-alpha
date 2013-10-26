@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# always run with cwd of script
+cd ${0%/*}
+
 set -o pipefail
 
 function display_result {

@@ -40,4 +40,4 @@ coverage.xml
 pep8.out
 
 # App specific logs
-log/
+# log/

@@ -1,6 +1,6 @@
 # Makefile for this bootstrappy spike
 #
-.PHONY: help librarian
+.PHONY: help librarian clean tests
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
@@ -8,8 +8,11 @@ help:
 	@echo "  clean           start from a clean download/vm"
 
 clean:
-	bundle exec librarian-puppet clean
-	rm Puppetfile.lock
+	vagrant destroy -f
 
-librarian:
-	bundle exec librarian-puppet install
+box:
+	vagrant up
+
+tests:
+	vagrant ssh --c "/vagrant/frontend/run-tests.sh"
+
