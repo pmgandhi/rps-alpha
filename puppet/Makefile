@@ -9,6 +9,7 @@ help:
 
 clean:
 	bundle exec librarian-puppet clean
+	rm Puppetfile.lock
 
 librarian:
 	bundle exec librarian-puppet install
