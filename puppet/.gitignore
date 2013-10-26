@@ -1,0 +1,7 @@
+# cached and module files for puppet librarian
+.tmp
+.librarian/
+
+# .lock files for gem and puppet-librarian
+*.lock
+
