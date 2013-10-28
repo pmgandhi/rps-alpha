@@ -8,6 +8,9 @@ test
 .. toctree::
    :maxdepth: 2
 
+   team
+   
+
 About Manual
 ============
 
@@ -18,10 +21,3 @@ The web pages you're viewing are maintained as a Sphinx_ project.
 
 .. _Sphinx: http://sphinx-doc.org
 
-.. This stops Sphinx complaining about the fact that README isn't in any
-   toctree.
-
-.. toctree::
-   :hidden:
-
-   sitemap

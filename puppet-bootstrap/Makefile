@@ -13,3 +13,7 @@ clean:
 
 librarian:
 	bundle exec librarian-puppet install
+
+bootstrap:
+	bundle install; sudo puppet apply manifests/site.pp --modulepath=modules
+
