@@ -6,9 +6,5 @@ class { 'baseconfig':
     stage => 'init'
 }
 
-class { 'mongodb':
-      enable_10gen => true,
-}
-
-include baseconfig, git, vim, python_tools, mongodb
+include baseconfig, git, vim, python_tools, librarian_puppet_requirements 
 

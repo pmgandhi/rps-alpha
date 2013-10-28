@@ -11,5 +11,9 @@ class baseconfig {
         mode    => '0644',
         source  => 'puppet:///modules/baseconfig/bashrc';
     }
+
+    package { 'make':
+        ensure => present;
+    }
 }
 
