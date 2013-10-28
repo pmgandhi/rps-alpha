@@ -12,6 +12,13 @@ Jim is a Thoughtworks developer and will be fulltime on the project for Alpha.
 **email**: jgumbley@thoughtworks.com
 
 
+---------------------
+Michael Brunton-Spall
+---------------------
+Michael is a Technical Architect from the Government Digital Service and is around most Monday to Thursdays.
 
+.. image:: http://www.gravatar.com/avatar/037360597d7b529eed1e61bb2329abc9.png
 
+**email**: mbs@digital.cabinet-office.gov.uk
+**twitter**: `@bruntonspall <https://twitter.com/bruntonspall>`_
 
