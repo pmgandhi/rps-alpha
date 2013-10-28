@@ -10,11 +10,11 @@ help:
 	@echo "  clean           start from a clean download/vm"
 
 clean:
-	cd puppet; make clean
+	cd puppet-bootstrap; make clean
 	vagrant destroy -f
 
 puppet:
-	cd puppet; make librarian
+	cd puppet-bootstrap; make librarian
 
 box: puppet
 	vagrant up
