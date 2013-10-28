@@ -16,6 +16,9 @@ clean:
 puppet:
 	cd puppet-bootstrap; make librarian
 
+bootstrap:
+	cd puppet-bootstrap; make bootstrap
+
 box: puppet
 	vagrant up
 
