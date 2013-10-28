@@ -22,3 +22,10 @@ Michael is a Technical Architect from the Government Digital Service and is arou
 **email**: mbs@digital.cabinet-office.gov.uk
 **twitter**: `@bruntonspall <https://twitter.com/bruntonspall>`_
 
+--------------
+Richard McHale
+--------------
+Richard is the Lead Developer from INSS
+
+**email** legionsofbob@gmail.com
+
