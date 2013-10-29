@@ -5,8 +5,6 @@ app = Flask(__name__)
 app.secret_key = 'something_secure_and_secret'
 app.debug = True
 
-app.config.from_object(__name__)
-
 @app.route('/_status', methods=['GET'])
 def status():
     return "everything is ok"
