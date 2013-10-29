@@ -1,8 +1,0 @@
-argh==0.23.3
-Flask==0.10.1
-Flask-FeatureFlags==0.3
-gunicorn==18.0
-pip==1.4.1
-pymongo==2.6.1
-python-dateutil==2.1
-pytz==2013b
