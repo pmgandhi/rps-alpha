@@ -15,16 +15,27 @@ Follow these steps to setup a Quickstart development environment for working wit
   - when prompted to choose conversion setting pick check out as-is, commit unix style (the middle option)
 - Install Vagrant (http://www.vagrantup.com/)
 
+### Mac Pre-reqs
+
+As above, use Mac version.
+
 ### Post Install Tasks
+
 - Configure SSH for GIT - Follow this guide (https://help.github.com/articles/generating-ssh-keys)
+  - OK not to bother with a passphrase for alpha (leave blank), will need one for beta
+- Clone the repository.  
+  - cd to your work in progress folder in git-bash
+  - From git-bash: `git clone git@github.com:InsolvencyService/rps-alpha.git`
 
-  Don't bother with a passphrase for alpha
-- Clone the repository.  In GITBash `git clone git@github.com:InsolvencyService/rps-alpha.git`
+### Build box, run tests
 
-### How to make it work
-
-- Open a new terminal windows (use git-bash on windows) and navigate 
-  to where you have downloaded or cloned this repo.
-- Run `vagrant up`... Vagrant should create a new virtual machine and puppet should provision it
+- Open a new git-bash (windows)/terminal (mac) on and navigate to where you have downloaded or cloned this repo.
+- Run `vagrant up`... Vagrant should create a new virtual machine and puppet should install all the needed deps.
 - Run `vagrant ssh` to ssh into the newly created virtual machine
 - Run `cd /vagrant` to see the files mirrored from your host machine to your VM
+
+### More info
+
+- From within your vagrant box, cd to `/vagrant/manual`
+- Run `make html`
+- Open docs in your browser from: `rps-alpha/manual/_build/html/index.html`
