@@ -1,6 +1,2 @@
 ---
 shell_prompt_string: localdev
-
-nameservers:
-  - "8.8.8.8"
-  - "8.8.4.4"
