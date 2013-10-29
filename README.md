@@ -1,20 +1,24 @@
 rps-alpha
 =========
 
-Quickstart development environment with Vagrant and Puppet
+Follow these steps to setup a Quickstart development environment for working with the RPS Alpha project. 
 
-## Windows and OSX
+## Quickstart Steps
 
-### Requirements
+### Windows Pre-reqs
 
-- Install PyCharm Community Edition for Windows (http://www.jetbrains.com/pycharm/)
+- Install PyCharm Community Edition for Windows 
+   (http://www.jetbrains.com/pycharm/)
 - Install Python 2.7.5 for Windows - Windows X86-64 MSI Installer (2.7.5)  
    (http://www.python.org/download/releases/2.7.5/)
-- Install Oracle Virtual Box for Windows (https://www.virtualbox.org/wiki/Downloads)
-- Install git (http://git-scm.com/downloads) - if you are on Windows also install git-bash when asked.
-
-  When prompted to choose conversion setting pick check out as-is, commit unix style (the middle option)
-- Install Vagrant (http://www.vagrantup.com/)
+- Install Oracle Virtual Box for Windows
+   (https://www.virtualbox.org/wiki/Downloads)
+- Install git 
+   (http://git-scm.com/downloads) 
+  - if you are on Windows also install git-bash when asked.
+  - when prompted to choose conversion setting pick check out as-is, commit unix style (the middle option)
+- Install Vagrant 
+  (http://www.vagrantup.com/)
 
 ### Post Install Tasks
 - Configure SSH for GIT - Follow this guide (https://help.github.com/articles/generating-ssh-keys)
