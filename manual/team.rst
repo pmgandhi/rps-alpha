@@ -37,3 +37,9 @@ Richard is the Lead Developer from INSS
 
 **email** legionsofbob@gmail.com
 
+----------
+Andy Price
+----------
+Andy is the DBA from the INSS, and will be on the project 50% for Alpha.
+
+**email** sixdaysandy@gmail.com
