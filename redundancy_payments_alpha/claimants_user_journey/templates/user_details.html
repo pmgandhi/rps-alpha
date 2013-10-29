@@ -1,3 +1,4 @@
+{% from "partials/_form_field.html" import form_field %}
 <html>
     <head>
         <title>Claimant Contact Details</title>
@@ -6,12 +7,14 @@
         <article>
             <section>
                 <h1>test string</h1>
-                <form>
-                    <legend>Contact Details</legend>
+                <form method="post" action="/claimant-contact-details">
                     <fieldset>
-                        <label for="claimant-details-forenames">Forenames</label><input id="claimant-details-forenames" type="text" name="forenames" />
-                        <label for="claimant-details-surname">Surname</label><input id="claimant-details-surname" type="text" name="surname" />
+                        <legend>Claimant</legend>
+                        {{ form.hidden_tag() }}
+                        {{ form_field(form.forenames) }}
+                        {{ form_field(form.surname) }}
                     </fieldset>
+                    <input type="submit" value="Submit" />
                 </form>
             </section>
         </article>

@@ -4,5 +4,5 @@ Feature: claimants contact details
         Given the app is running
          When we visit the /claimant-contact-details page
          Then the page should have title "Claimant Contact Details"
-          And the page should have an input field called "forenames" labeled "Forenames"
+          And the page should have an input field called "forenames" labeled "Forename(s)"
           And the page should have an input field called "surname" labeled "Surname"
