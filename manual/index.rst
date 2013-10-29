@@ -9,6 +9,7 @@ technical information about working with this project.
 
    team
    codechoice
+   scmchoice
 
 About Manual
 ============
