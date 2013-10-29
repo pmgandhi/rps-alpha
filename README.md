@@ -20,7 +20,7 @@ Quickstart development environment with Vagrant and Puppet
 - Configure SSH for GIT - Follow this guide (https://help.github.com/articles/generating-ssh-keys)
 
   Don't bother with a passphrase for alpha
-- Clone the repository.  In GITBash git clone https://github.com/InsolvencyService/rps-alpha.git
+- Clone the repository.  In GITBash git clone git@github.com:InsolvencyService/rps-alpha.git
 
 ### How to make it work
 
