@@ -1,6 +1,0 @@
-.librarian
-.tmp
-modules/*
-!modules/.gitkeep
-*.lock
-

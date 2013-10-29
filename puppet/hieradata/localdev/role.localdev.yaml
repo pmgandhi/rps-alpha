@@ -1,0 +1,6 @@
+---
+# localdev is a combination of app and db roles
+classes:
+  - mongodb
+
+mongodb::enable_10gen: true

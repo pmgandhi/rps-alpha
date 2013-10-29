@@ -1,0 +1,12 @@
+./.gems
+./.git
+./.tmp
+./.bundle
+./.librarian
+./.vagrant
+./puppet.tgz
+./vendor/bundle/ruby/*/gems/puppet-*/spec
+./vendor/bundle/ruby/*/gems/gpgme-*/examples
+./vendor/bundle/ruby/*/gems/gpgme-*/ext
+./vendor/bundle/ruby/*/gems/gpgme-*/test
+*.gem

@@ -1,0 +1,20 @@
+---
+:backends:
+  - gpg
+  - yaml
+:yaml:
+  :datadir: hieradata
+:gpg:
+  :datadir: hieradata
+:hierarchy:
+  # Data for a given environment overrides defaults
+  - "%{::environment}/%{::hostname}"
+  - "%{::environment}/role.%{::role}"
+  - "%{::environment}/mod.%{module_name}"
+  - "%{::environment}/common"
+
+  # Common to all environments
+  - "%{::hostname}"
+  - "role.%{::role}"
+  - "mod.%{module_name}"
+  - common

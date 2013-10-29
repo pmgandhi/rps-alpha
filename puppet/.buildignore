@@ -1,0 +1,10 @@
+/.gems
+/.tmp
+/.bundle
+/.librarian
+/.vagrant
+/build
+/puppet.tgz
+/vendor/bundle
+.git/
+*.gem
