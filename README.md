@@ -1,5 +1,5 @@
-dev-box
-=======
+rps-alpha
+=========
 
 Quickstart development environment with Vagrant and Puppet
 
