@@ -12,4 +12,9 @@ def step(context, url):
 
 @then('the page should include "{content}"')
 def step(context, content):
-    assert_that(context.response.data, is_(content))
+    assert_that(context.response.data, contains_string(content))
+
+@then('the page should have title "{expected_title}"')
+def step(context, expected_title):
+    assert_that(context.response.data,
+                contains_string('<title>%s</title>' % expected_title))
