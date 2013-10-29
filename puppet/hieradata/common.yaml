@@ -8,5 +8,5 @@ packages:
   - git-core
   - make
   - python-pip
-  - virtualenv
+  - python-virtualenv
   - virtualenvwrapper
