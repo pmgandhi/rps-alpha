@@ -5,3 +5,12 @@
 # .lock files for gem and puppet-librarian
 *.lock
 
+.rspec # Put "--profile" in a file called .rspec to get per-test timing results
+.rvmrc # If you are using rvm
+.tmp/ 
+/.bundle/
+/.gems/
+/bin/
+/build/
+/puppet.tgz
+/vendor/

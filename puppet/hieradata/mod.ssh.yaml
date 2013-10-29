@@ -1,0 +1,9 @@
+ssh_port: 22
+ssh_listen_address: "0.0.0.0"
+ssh_password_auth: "no"
+ssh_permit_root_login: "no"
+ssh_x11_forwarding: "no"
+ssh_challenge_response_auth: "no"
+ssh_hash_known_hosts: "no"
+# Use space-separated string for DenyGroups
+ssh_deny_groups: "nologin"
