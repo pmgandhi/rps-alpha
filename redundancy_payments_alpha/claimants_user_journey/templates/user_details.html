@@ -6,14 +6,16 @@
     <body>
         <article>
             <section>
-                <h1>test string</h1>
+                <h1>Claimant Contact Details</h1>
                 <form method="post" action="/claimant-contact-details">
-                    <fieldset>
-                        <legend>Claimant</legend>
+                    <div>
+                        <h2>Name</h2>
+                        <div>
                         {{ form.hidden_tag() }}
                         {{ form_field(form.forenames) }}
                         {{ form_field(form.surname) }}
-                    </fieldset>
+                        </div>
+                    </div>
                     <input type="submit" value="Submit" />
                 </form>
             </section>
