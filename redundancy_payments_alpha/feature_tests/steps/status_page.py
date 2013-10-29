@@ -1,6 +1,6 @@
 from behave import *
 from hamcrest import *
-from ..claiments_user_journey import routes
+from ..claimants_user_journey import routes
 
 @given('the app is running')
 def step(context):
@@ -13,4 +13,3 @@ def step(context, url):
 @then('the page should include "{content}"')
 def step(context, content):
     assert_that(context.response.data, is_(content))
-
