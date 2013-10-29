@@ -18,3 +18,9 @@ def step(context, content):
 def step(context, expected_title):
     assert_that(context.response.data,
                 contains_string('<title>%s</title>' % expected_title))
+
+@then('the page should have an input field called "{input_name}" labeled "{label_name}"')
+def step(context, input_name, label_name):
+    #TODO: better testing for HTML elements
+    assert_that(context.response.data, contains_string('name="%s"' % input_name))
+    assert_that(context.response.data, contains_string('%s</label>' % label_name))
