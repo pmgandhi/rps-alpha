@@ -1,10 +1,4 @@
-stage { 'init':
-    before => Stage['main']
+
+node default {
+  hiera_include('classes')
 }
-
-class { 'baseconfig':
-    stage => 'init'
-}
-
-include baseconfig, git, vim, python_tools, librarian_puppet_requirements 
-
