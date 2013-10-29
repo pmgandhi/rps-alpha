@@ -29,4 +29,3 @@ Quickstart development environment with Vagrant and Puppet
 - Run `vagrant up`... Vagrant should create a new virtual machine and puppet should provision it
 - Run `vagrant ssh` to ssh into the newly created virtual machine
 - Run `cd /vagrant` to see the files mirrored from your host machine to your VM
-- Run `make bootstrap` and then `make puppet`  and then `make bootstrap` again in order to run the second step of provisioning, as they are interdependant just keep running each one in turn until it works.
