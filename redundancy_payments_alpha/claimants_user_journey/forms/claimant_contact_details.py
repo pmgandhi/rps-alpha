@@ -1,11 +1,11 @@
 from flask_wtf import Form
 from wtforms import TextField, SelectField
-from wtforms.validators import DataRequired, Optional, NoneOf, AnyOf
+from wtforms.validators import DataRequired, Optional, NoneOf, AnyOf, Length
 
 
 class ClaimantContactDetails(Form):
-    forenames = TextField('Forename(s)', validators=[DataRequired()])
-    surname = TextField('Surname', validators=[DataRequired()])
+    forenames = TextField('Forename(s)', validators=[DataRequired(), Length(max=60)])
+    surname = TextField('Surname', validators=[DataRequired(), Length(max=60)])
     title = SelectField('Title',
                         choices=[
                             (1, 'Mr'),
