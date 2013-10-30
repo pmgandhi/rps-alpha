@@ -8,7 +8,6 @@ Jim is a ThoughtWorks developer and will be full-time on the project for Alpha.
 
 **email**: jgumbley@thoughtworks.com
 
-
 ---------------------
 Michael Brunton-Spall
 ---------------------
@@ -21,7 +20,6 @@ Michael is a Technical Architect from the Government Digital Service and is arou
 Rod Carter
 -----------
 Rod is an INSS developer and will be 50% on the project for Alpha.
-
 
 **email**: rodcarter@outlook.com
 
