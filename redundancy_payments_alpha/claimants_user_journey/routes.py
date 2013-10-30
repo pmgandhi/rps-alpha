@@ -1,4 +1,5 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, url_for
+from werkzeug.utils import redirect
 from forms.claimant_contact_details import ClaimantContactDetails
 
 app = Flask(__name__)
@@ -14,5 +15,9 @@ def status():
 def claimant_contact_details():
     form = ClaimantContactDetails()
     if form.validate_on_submit():
-        return 'winner!'
+        return redirect(url_for('done'))
     return render_template('user_details.html', form=form)
+
+@app.route('/done', methods=['GET'])
+def done():
+    return render_template('done.html')
