@@ -1,5 +1,11 @@
-<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <soap:Body>
-<RP1_ApplicationResponse xmlns="www.northgate-is.com/RP1_ApplicationResponse" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><Response><Success>true</Success></Response></RP1_ApplicationResponse>
-  </soap:Body>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <soap:Body>
+        <RP1_ApplicationResponse xmlns="www.northgate-is.com/RP1_ApplicationResponse"
+                                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <Response>
+                <Success>true</Success>
+            </Response>
+        </RP1_ApplicationResponse>
+    </soap:Body>
 </soap:Envelope>

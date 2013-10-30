@@ -1,1 +1,126 @@
-<ap:RP1_Claim_application xmlns:ap="www.inss.gsi.gov.uk/RP1_Application" xmlns:data="www.inss.gsi.gov.uk/DiversityData"><ap:Header><ap:DMSDocumentID>003737431</ap:DMSDocumentID></ap:Header><ap:Claimant><ap:Name><ap:Surname>DUCK</ap:Surname><ap:Forename>DAFFY</ap:Forename><ap:Title>Mr</ap:Title></ap:Name><ap:NINO>AB123457C</ap:NINO><ap:Gender>Male</ap:Gender><ap:DateOfBirth>1980-01-01</ap:DateOfBirth><ap:Address><ap:Line>8 FOREST WALK</ap:Line><ap:Line>FISHPONDS</ap:Line><ap:Town>BRISTOL</ap:Town><ap:Postcode>BS16 4DB</ap:Postcode></ap:Address><ap:PhoneNumber>07919555555</ap:PhoneNumber><ap:BankDetails><ap:BankName>LLOYDS TSB</ap:BankName><ap:Branch>FISHPONDS BRISTOL</ap:Branch><ap:SortCode>30-94-80</ap:SortCode><ap:AccountNumber>12345679</ap:AccountNumber><ap:AccountName>DAFFY DUCK</ap:AccountName></ap:BankDetails></ap:Claimant><ap:Employer><ap:EmployerName>SHELDON CLEANING LTD</ap:EmployerName><ap:Address><ap:Line>235 HILLSIDE ROAD</ap:Line><ap:Town>BRISTOL</ap:Town><ap:Postcode>BS5 7PX</ap:Postcode></ap:Address><ap:PhoneNumber>01179674575</ap:PhoneNumber><ap:WorkAddress><ap:Line>235 HILLSIDE ROAD</ap:Line><ap:Town>BRISTOL</ap:Town><ap:Postcode>BS5 7PX</ap:Postcode></ap:WorkAddress><ap:TradingStatus>Insolvent</ap:TradingStatus></ap:Employer><ap:InsolvencyPractitioner><ap:Name>BDO LLP</ap:Name><ap:PhoneNumber>01179301500</ap:PhoneNumber><ap:Address><ap:Line>1 VICTORIA STREET</ap:Line><ap:Town>BRISTOL</ap:Town><ap:Postcode>BS1 6AA</ap:Postcode></ap:Address></ap:InsolvencyPractitioner><ap:EmploymentDetails><ap:JobTitle>CLEANER</ap:JobTitle><ap:EmploymentCategory>Employed</ap:EmploymentCategory><ap:StartDate>2008-02-25</ap:StartDate><ap:LastDayWorked>2011-07-29</ap:LastDayWorked><ap:EndDate>2011-07-29</ap:EndDate><ap:NoticeGivenByEmployer>no</ap:NoticeGivenByEmployer><ap:GrossBasicPay><ap:Amount>275.00</ap:Amount><ap:Period>week</ap:Period></ap:GrossBasicPay><ap:BonusORCommission>no</ap:BonusORCommission><ap:NoOfDaysWorkedPerWeek>5</ap:NoOfDaysWorkedPerWeek><ap:NoOfHoursWorkedPerWeek>39</ap:NoOfHoursWorkedPerWeek><ap:WeeklyPayDay>Friday</ap:WeeklyPayDay><ap:ContractualOvertime>no</ap:ContractualOvertime><ap:NewJob>no</ap:NewJob></ap:EmploymentDetails><ap:Claims><ap:RedundancyPayment><ap:ClaimingRedundancy>yes</ap:ClaimingRedundancy></ap:RedundancyPayment><ap:OtherPayments><ap:Holiday><ap:OwedPay>yes</ap:OwedPay><ap:YearStartDate>2011-01-04</ap:YearStartDate><ap:Entitlement>23.00</ap:Entitlement><ap:DaysTaken>5.00</ap:DaysTaken><ap:DaysOwed>15.00</ap:DaysOwed></ap:Holiday><ap:Wages><ap:PeriodsOwed/><ap:AttachmentOfEarnings>no</ap:AttachmentOfEarnings></ap:Wages><ap:LossOfNotice><ap:StatutoryNoticeGiven>no</ap:StatutoryNoticeGiven><ap:ClaimingCompensation>yes</ap:ClaimingCompensation></ap:LossOfNotice><ap:EmploymentTribunalPayments>no</ap:EmploymentTribunalPayments></ap:OtherPayments><ap:MoneyOwedByClaimant><ap:MoneyOwedToEmployer>no</ap:MoneyOwedToEmployer></ap:MoneyOwedByClaimant></ap:Claims><ap:DiversityData><data:EntityType>CLM</data:EntityType><data:QuestionAnswers><data:QuestionAnswer><data:Question>Sex</data:Question><data:Answer>Male</data:Answer></data:QuestionAnswer><data:QuestionAnswer><data:Question>Age</data:Question><data:Answer>20-29</data:Answer></data:QuestionAnswer><data:QuestionAnswer><data:Question>Race</data:Question><data:Answer>White</data:Answer></data:QuestionAnswer><data:QuestionAnswer><data:Question>Sexual Orientation</data:Question><data:Answer>Heterosexual</data:Answer></data:QuestionAnswer><data:QuestionAnswer><data:Question>Religion</data:Question><data:Answer>None</data:Answer></data:QuestionAnswer><data:QuestionAnswer><data:Question>Considers self to be disabled</data:Question><data:Answer>no</data:Answer></data:QuestionAnswer></data:QuestionAnswers></ap:DiversityData></ap:RP1_Claim_application>
+<ap:RP1_Claim_application xmlns:ap="www.inss.gsi.gov.uk/RP1_Application" xmlns:data="www.inss.gsi.gov.uk/DiversityData">
+    <ap:Header>
+        <ap:DMSDocumentID>003737431</ap:DMSDocumentID>
+    </ap:Header>
+    <ap:Claimant>
+        <ap:Name>
+            <ap:Surname>DUCK</ap:Surname>
+            <ap:Forename>DAFFY</ap:Forename>
+            <ap:Title>Mr</ap:Title>
+        </ap:Name>
+        <ap:NINO>AB123457C</ap:NINO>
+        <ap:Gender>Male</ap:Gender>
+        <ap:DateOfBirth>1980-01-01</ap:DateOfBirth>
+        <ap:Address>
+            <ap:Line>8 FOREST WALK</ap:Line>
+            <ap:Line>FISHPONDS</ap:Line>
+            <ap:Town>BRISTOL</ap:Town>
+            <ap:Postcode>BS16 4DB</ap:Postcode>
+        </ap:Address>
+        <ap:PhoneNumber>07919555555</ap:PhoneNumber>
+        <ap:BankDetails>
+            <ap:BankName>LLOYDS TSB</ap:BankName>
+            <ap:Branch>FISHPONDS BRISTOL</ap:Branch>
+            <ap:SortCode>30-94-80</ap:SortCode>
+            <ap:AccountNumber>12345679</ap:AccountNumber>
+            <ap:AccountName>DAFFY DUCK</ap:AccountName>
+        </ap:BankDetails>
+    </ap:Claimant>
+    <ap:Employer>
+        <ap:EmployerName>SHELDON CLEANING LTD</ap:EmployerName>
+        <ap:Address>
+            <ap:Line>235 HILLSIDE ROAD</ap:Line>
+            <ap:Town>BRISTOL</ap:Town>
+            <ap:Postcode>BS5 7PX</ap:Postcode>
+        </ap:Address>
+        <ap:PhoneNumber>01179674575</ap:PhoneNumber>
+        <ap:WorkAddress>
+            <ap:Line>235 HILLSIDE ROAD</ap:Line>
+            <ap:Town>BRISTOL</ap:Town>
+            <ap:Postcode>BS5 7PX</ap:Postcode>
+        </ap:WorkAddress>
+        <ap:TradingStatus>Insolvent</ap:TradingStatus>
+    </ap:Employer>
+    <ap:InsolvencyPractitioner>
+        <ap:Name>BDO LLP</ap:Name>
+        <ap:PhoneNumber>01179301500</ap:PhoneNumber>
+        <ap:Address>
+            <ap:Line>1 VICTORIA STREET</ap:Line>
+            <ap:Town>BRISTOL</ap:Town>
+            <ap:Postcode>BS1 6AA</ap:Postcode>
+        </ap:Address>
+    </ap:InsolvencyPractitioner>
+    <ap:EmploymentDetails>
+        <ap:JobTitle>CLEANER</ap:JobTitle>
+        <ap:EmploymentCategory>Employed</ap:EmploymentCategory>
+        <ap:StartDate>2008-02-25</ap:StartDate>
+        <ap:LastDayWorked>2011-07-29</ap:LastDayWorked>
+        <ap:EndDate>2011-07-29</ap:EndDate>
+        <ap:NoticeGivenByEmployer>no</ap:NoticeGivenByEmployer>
+        <ap:GrossBasicPay>
+            <ap:Amount>275.00</ap:Amount>
+            <ap:Period>week</ap:Period>
+        </ap:GrossBasicPay>
+        <ap:BonusORCommission>no</ap:BonusORCommission>
+        <ap:NoOfDaysWorkedPerWeek>5</ap:NoOfDaysWorkedPerWeek>
+        <ap:NoOfHoursWorkedPerWeek>39</ap:NoOfHoursWorkedPerWeek>
+        <ap:WeeklyPayDay>Friday</ap:WeeklyPayDay>
+        <ap:ContractualOvertime>no</ap:ContractualOvertime>
+        <ap:NewJob>no</ap:NewJob>
+    </ap:EmploymentDetails>
+    <ap:Claims>
+        <ap:RedundancyPayment>
+            <ap:ClaimingRedundancy>yes</ap:ClaimingRedundancy>
+        </ap:RedundancyPayment>
+        <ap:OtherPayments>
+            <ap:Holiday>
+                <ap:OwedPay>yes</ap:OwedPay>
+                <ap:YearStartDate>2011-01-04</ap:YearStartDate>
+                <ap:Entitlement>23.00</ap:Entitlement>
+                <ap:DaysTaken>5.00</ap:DaysTaken>
+                <ap:DaysOwed>15.00</ap:DaysOwed>
+            </ap:Holiday>
+            <ap:Wages>
+                <ap:PeriodsOwed/>
+                <ap:AttachmentOfEarnings>no</ap:AttachmentOfEarnings>
+            </ap:Wages>
+            <ap:LossOfNotice>
+                <ap:StatutoryNoticeGiven>no</ap:StatutoryNoticeGiven>
+                <ap:ClaimingCompensation>yes</ap:ClaimingCompensation>
+            </ap:LossOfNotice>
+            <ap:EmploymentTribunalPayments>no</ap:EmploymentTribunalPayments>
+        </ap:OtherPayments>
+        <ap:MoneyOwedByClaimant>
+            <ap:MoneyOwedToEmployer>no</ap:MoneyOwedToEmployer>
+        </ap:MoneyOwedByClaimant>
+    </ap:Claims>
+    <ap:DiversityData>
+        <data:EntityType>CLM</data:EntityType>
+        <data:QuestionAnswers>
+            <data:QuestionAnswer>
+                <data:Question>Sex</data:Question>
+                <data:Answer>Male</data:Answer>
+            </data:QuestionAnswer>
+            <data:QuestionAnswer>
+                <data:Question>Age</data:Question>
+                <data:Answer>20-29</data:Answer>
+            </data:QuestionAnswer>
+            <data:QuestionAnswer>
+                <data:Question>Race</data:Question>
+                <data:Answer>White</data:Answer>
+            </data:QuestionAnswer>
+            <data:QuestionAnswer>
+                <data:Question>Sexual Orientation</data:Question>
+                <data:Answer>Heterosexual</data:Answer>
+            </data:QuestionAnswer>
+            <data:QuestionAnswer>
+                <data:Question>Religion</data:Question>
+                <data:Answer>None</data:Answer>
+            </data:QuestionAnswer>
+            <data:QuestionAnswer>
+                <data:Question>Considers self to be disabled</data:Question>
+                <data:Answer>no</data:Answer>
+            </data:QuestionAnswer>
+        </data:QuestionAnswers>
+    </ap:DiversityData>
+</ap:RP1_Claim_application>
