@@ -33,6 +33,13 @@ As above, use Mac version.
 - Run `vagrant up`... Vagrant should create a new virtual machine and puppet should install all the needed deps.
 - Run `vagrant ssh` to ssh into the newly created virtual machine
 - Run `cd /vagrant` to see the files mirrored from your host machine to your VM
+- To get the project to run, you'll need to do the following
+  - `cd /vagrant/redundancy_payments_alpha/`
+  - `mkvirtualenv rps`
+  - `workon rps`
+  - `pip install -r requirements.txt`
+- You should now be able to run `./run_tests.sh` to run the tests or `python start_app.py` to run the server
+- Once the server is running, you can access the webpage on (http://localhost:8000/claimant-contact-details)
 
 ### More info
 
