@@ -16,3 +16,32 @@ Feature: claimants contact details
           And the page should have an input field called "postcode" labeled "Post Code"
           And the page should have an input field called "email" labeled "Email Address"
           And the page should have an input field called "telephone_number" labeled "Telephone Number"
+
+    Scenario: filling in the contact details form
+        Given a claimant with the personal details
+            | DETAILS           | VALUE             |
+            | forenames         | Donald            |
+            | surname           | Duck              |
+            | title             | Mr                |
+            | building_number   | 1                 |
+            | street            | street name       |
+            | district          | some district     |
+            | town_or_city      | Duckburg          |
+            | county            | foobar            |
+            | postcode          | a1 4lp            |
+            | email             | duck@burg.com     |
+            | telephone_number  | 00000 123456      |
+         When the claimant goes to /claimant-contact-details
+          And enters their details
+         Then the claimant should be sent to the /done page
+
+    Scenario: filling in the contact details form with a missing information
+        Given a claimant with the personal details
+            | DETAILS           | VALUE             |
+            | title             | Mr                |
+            | surname           | Duck              |
+            | building_number   | 1                 |
+            | street            | street name       |
+         When the claimant goes to /claimant-contact-details
+          And enters their details
+         Then the claimant should stay on the /claimant-contact-details page
