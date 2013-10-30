@@ -244,3 +244,16 @@ class TestTelephoneNumberValidation(unittest.TestCase):
         form.validate()
         # then
         assert_that(form.telephone_number.errors, has_length(0))
+
+
+class TestOtherValidation(unittest.TestCase):
+    def test_other_field_must_contain_string_if_other_is_selected(self):
+        # given
+        entered_data = complete_form_data()
+        entered_data['title'] = 'Other'
+        entered_data['other'] = None
+        # when
+        form = complete_form(entered_data)
+        form.validate()
+        # then
+        assert_that(form.other.errors, has_item("Field is required if 'Other' is selected."))

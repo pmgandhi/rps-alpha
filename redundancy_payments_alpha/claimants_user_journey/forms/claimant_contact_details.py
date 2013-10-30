@@ -1,7 +1,7 @@
 from flask_wtf import Form
-from wtforms import TextField, SelectField, StringField
+from wtforms import TextField, SelectField, StringField, ValidationError
 from wtforms.fields.html5 import TelField, EmailField
-from wtforms.validators import DataRequired, Optional, Length, Email
+from wtforms.validators import DataRequired, Optional, Length, Email, AnyOf
 
 
 class ClaimantContactDetails(Form):
@@ -9,16 +9,28 @@ class ClaimantContactDetails(Form):
     surname = TextField('Surname', validators=[DataRequired(), Length(max=60)])
     title = SelectField('Title',
                         choices=[
-                            (1, 'Mr'),
-                            (2, 'Mrs'),
-                            (3, 'Miss'),
-                            (4, 'Ms'),
-                            (5, 'Other'),
-                            (6, '')
+                            ('Mr', 'Mr'),
+                            ('Mrs', 'Mrs'),
+                            ('Miss', 'Miss'),
+                            ('Ms', 'Ms'),
+                            ('Other', 'Other'),
+                            ('', '')
                         ],
-                        default=6,
-                        validators=[Optional()])
-    other = TextField('Other', validators=[Optional()])
+                        default='',
+                        validators=[AnyOf(values=[
+                            'Mr',
+                            'Mrs',
+                            'Miss',
+                            'Ms',
+                            'Other'
+                        ])])
+    other = TextField('Other')
+
+    def validate_other(form, field):
+        claimants_title = form._fields.get('title')
+        if claimants_title.data == 'Other' and not field.data:
+            raise ValidationError("Field is required if 'Other' is selected.")
+
     building_number = StringField('Building Number', validators=[DataRequired(), Length(max=30)])
     street = TextField('Street', validators=[DataRequired(), Length(max=30)])
     district = TextField('District', validators=[DataRequired(), Length(max=30)])
