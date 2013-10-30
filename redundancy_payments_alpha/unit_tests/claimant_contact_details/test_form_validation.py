@@ -19,7 +19,7 @@ def complete_form_data():
         'surname': 'Duck',
         'title': 'Mr',
         'other': '',
-        'building_number': 5,
+        'building_number': '5',
         'street': 'street name',
         'district': 'district name',
         'town_or_city': 'Duckburg',
@@ -82,3 +82,165 @@ class TestSurnameValidation(unittest.TestCase):
         form.validate()
         # then
         assert_that(form.surname.errors, has_item('Field cannot be longer than 60 characters.'))
+
+
+class TestBuildingNumberValidation(unittest.TestCase):
+    def test_building_number_field_allows_strings(self):
+        # given
+        entered_data = complete_form_data()
+        # when
+        form = complete_form(entered_data)
+        form.validate()
+        # then
+        assert_that(form.building_number.errors, has_length(0))
+
+    def test_building_number_field_can_be_no_longer_than_30_characters(self):
+        # given
+        entered_data = complete_form_data()
+        entered_data['building_number'] = 'a' * 31
+        # when
+        form = complete_form(entered_data)
+        form.validate()
+        # then
+        assert_that(form.building_number.errors, has_item('Field cannot be longer than 30 characters.'))
+
+class TestStreetValidation(unittest.TestCase):
+    def test_street_field_allows_strings(self):
+        # given
+        entered_data = complete_form_data()
+        # when
+        form = complete_form(entered_data)
+        form.validate()
+        # then
+        assert_that(form.street.errors, has_length(0))
+
+    def test_street_field_can_be_no_longer_than_30_characters(self):
+        # given
+        entered_data = complete_form_data()
+        entered_data['street'] = 'a' * 31
+        # when
+        form = complete_form(entered_data)
+        form.validate()
+        # then
+        assert_that(form.street.errors, has_item('Field cannot be longer than 30 characters.'))
+
+class TestDistrictValidation(unittest.TestCase):
+    def test_district_field_allows_strings(self):
+        # given
+        entered_data = complete_form_data()
+        # when
+        form = complete_form(entered_data)
+        form.validate()
+        # then
+        assert_that(form.district.errors, has_length(0))
+
+    def test_district_field_can_be_no_longer_than_30_characters(self):
+        # given
+        entered_data = complete_form_data()
+        entered_data['district'] = 'a' * 31
+        # when
+        form = complete_form(entered_data)
+        form.validate()
+        # then
+        assert_that(form.district.errors, has_item('Field cannot be longer than 30 characters.'))
+
+class TestTownOrCityValidation(unittest.TestCase):
+    def test_town_or_city_field_allows_strings(self):
+        # given
+        entered_data = complete_form_data()
+        # when
+        form = complete_form(entered_data)
+        form.validate()
+        # then
+        assert_that(form.town_or_city.errors, has_length(0))
+
+    def test_town_or_city_field_can_be_no_longer_than_30_characters(self):
+        # given
+        entered_data = complete_form_data()
+        entered_data['town_or_city'] = 'a' * 31
+        # when
+        form = complete_form(entered_data)
+        form.validate()
+        # then
+        assert_that(form.town_or_city.errors, has_item('Field cannot be longer than 30 characters.'))
+
+class TestCountyValidation(unittest.TestCase):
+    def test_county_field_allows_strings(self):
+        # given
+        entered_data = complete_form_data()
+        # when
+        form = complete_form(entered_data)
+        form.validate()
+        # then
+        assert_that(form.county.errors, has_length(0))
+
+    def test_county_field_can_be_no_longer_than_30_characters(self):
+        # given
+        entered_data = complete_form_data()
+        entered_data['county'] = 'a' * 31
+        # when
+        form = complete_form(entered_data)
+        form.validate()
+        # then
+        assert_that(form.county.errors, has_item('Field cannot be longer than 30 characters.'))
+
+class TestPostCodeValidation(unittest.TestCase):
+    def test_post_code_field_allows_strings(self):
+        # given
+        entered_data = complete_form_data()
+        # when
+        form = complete_form(entered_data)
+        form.validate()
+        # then
+        assert_that(form.postcode.errors, has_length(0))
+
+    def test_post_code_field_can_be_no_longer_than_10_characters(self):
+        # given
+        entered_data = complete_form_data()
+        entered_data['postcode'] = 'a' * 11
+        # when
+        form = complete_form(entered_data)
+        form.validate()
+        # then
+        assert_that(form.postcode.errors, has_item('Field cannot be longer than 10 characters.'))
+
+class TestEmailValidation(unittest.TestCase):
+    def test_email_field_allows_email_addresses(self):
+        # given
+        entered_data = complete_form_data()
+        # when
+        form = complete_form(entered_data)
+        form.validate()
+        # then
+        assert_that(form.email.errors, has_length(0))
+
+    def test_email_field_can_be_no_longer_than_320_characters(self):
+        # given
+        entered_data = complete_form_data()
+        entered_data['email'] = 'a' * 321
+        # when
+        form = complete_form(entered_data)
+        form.validate()
+        # then
+        assert_that(form.email.errors, has_item('Field cannot be longer than 320 characters.'))
+
+    def test_email_field_only_allows_correctly_formatted_email_addresses(self):
+        # given
+        entered_data = complete_form_data()
+        entered_data['email'] = 'not an email address'
+        # when
+        form = complete_form(entered_data)
+        form.validate()
+        # then
+        assert_that(form.email.errors, has_item('Invalid email address.'))
+
+
+class TestTelephoneNumberValidation(unittest.TestCase):
+    def test_telephone_number_field_allows_strings(self):
+        # given
+        entered_data = complete_form_data()
+        # when
+        form = complete_form(entered_data)
+        form.validate()
+        # then
+        assert_that(form.telephone_number.errors, has_length(0))

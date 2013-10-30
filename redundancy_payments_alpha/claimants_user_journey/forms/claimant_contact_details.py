@@ -1,6 +1,7 @@
 from flask_wtf import Form
-from wtforms import TextField, SelectField
-from wtforms.validators import DataRequired, Optional, NoneOf, AnyOf, Length
+from wtforms import TextField, SelectField, StringField
+from wtforms.fields.html5 import TelField, EmailField
+from wtforms.validators import DataRequired, Optional, Length, Email
 
 
 class ClaimantContactDetails(Form):
@@ -18,13 +19,11 @@ class ClaimantContactDetails(Form):
                         default=6,
                         validators=[Optional()])
     other = TextField('Other', validators=[Optional()])
-    building_number = TextField('Building Number', validators=[DataRequired()])
-    street = TextField('Street', validators=[DataRequired()])
-    district = TextField('District', validators=[DataRequired()])
-    town_or_city = TextField('Town or City', validators=[DataRequired()])
-    county = TextField('County', validators=[DataRequired()])
-    postcode = TextField('Post Code', validators=[DataRequired()])
-    email = TextField('Email Address', validators=[DataRequired()])
-    telephone_number = TextField('Telephone Number', validators=[DataRequired()])
-
-
+    building_number = StringField('Building Number', validators=[DataRequired(), Length(max=30)])
+    street = TextField('Street', validators=[DataRequired(), Length(max=30)])
+    district = TextField('District', validators=[DataRequired(), Length(max=30)])
+    town_or_city = TextField('Town or City', validators=[DataRequired(), Length(max=30)])
+    county = TextField('County', validators=[DataRequired(), Length(max=30)])
+    postcode = TextField('Post Code', validators=[DataRequired(), Length(max=10)])
+    email = EmailField('Email Address', validators=[DataRequired(), Length(max=320), Email()])
+    telephone_number = TelField('Telephone Number', validators=[DataRequired()])
