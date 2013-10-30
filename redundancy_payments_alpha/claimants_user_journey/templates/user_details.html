@@ -8,13 +8,28 @@
 {% endblock %}
 {% block content %}
     <h1>Your personal details</h1>
-                <form method="post" action="/claimant-contact-details">
+                <form method="post" action="/claimant-contact-details" class="form-example-1">
                     <div>
                         <h2>Name</h2>
                         <div>
-                        {{ form.hidden_tag() }}
-                        {{ form_field(form.forenames) }}
-                        {{ form_field(form.surname) }}
+                            {{ form.hidden_tag() }}
+                            {{ form_field(form.title) }}
+                            {{ form_field(form.other) }}
+                            {{ form_field(form.forenames) }}
+                            {{ form_field(form.surname) }}
+                        </div>
+                    </div>
+                    <div>
+                        <h2>Contact Details</h2>
+                        <div>
+                            {{ form_field(form.building_number) }}
+                            {{ form_field(form.street) }}
+                            {{ form_field(form.district) }}
+                            {{ form_field(form.town_or_city) }}
+                            {{ form_field(form.county) }}
+                            {{ form_field(form.postcode) }}
+                            {{ form_field(form.email) }}
+                            {{ form_field(form.telephone_number) }}
                         </div>
                     </div>
                     <input type="submit" value="Submit" />
