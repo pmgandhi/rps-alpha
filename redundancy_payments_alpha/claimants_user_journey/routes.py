@@ -35,12 +35,18 @@ def start():
 
 @app.route('/claim-redundancy-payment/personal-details', methods=['GET', 'POST'])
 def personal_details():
-    form = ClaimantContactDetails()
+    existing_form = session.get('user_details')
+    
+    if existing_form:
+        form = ClaimantContactDetails(**existing_form)
+    else:
+        form = ClaimantContactDetails()
+
     if form.validate_on_submit():
         session['user_details'] = form.data
         return redirect(url_for('employment_details'))
     return render_template('user_details.html', form=form, nav_links=nav_links())
-
+    
 
 @app.route('/claim-redundancy-payment/employment-details', methods=['GET'])
 def employment_details():
