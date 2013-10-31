@@ -3,9 +3,9 @@ python:
   - "2.7"
 # command to install dependencies
 install: 
-  - pip install -r requirements.dev.txt --use-mirrors
+  - pip install -r redundancy_payments_alpha/requirements.dev.txt --use-mirrors
 # command to run tests
 script:
-  - ./run_tests.sh
+  - cd redundancy_payments_alpha; ./run_tests.sh
 notifications:
   email: false
