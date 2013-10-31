@@ -82,10 +82,15 @@
                     <div class="contents">
                         <nav>
                             <h2>Contents</h2>
+                            <div class='link-list'>
+                                {% block nav %}{% endblock %}
+                            </div>
                         </nav>
                     </div>
-                    <section class="inner">
-                      {% block content %}{%endblock%}
+                    <section>
+                        <div class="inner">
+                          {% block content %}{%endblock%}
+                        </div>
                     </section>
                 </div>
             </article>
