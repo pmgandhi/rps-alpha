@@ -16,6 +16,8 @@ Feature: claimants contact details
           And the page should have an input field called "postcode" labeled "Post Code"
           And the page should have an input field called "email" labeled "Email Address"
           And the page should have an input field called "telephone_number" labeled "Telephone Number"
+          And the page should have an input field called "nino" labeled "National Insurance Number"
+          And the page should have an input field called "date_of_birth" labeled "Date Of Birth"
 
     Scenario: filling in the contact details form
         Given a claimant with the personal details
@@ -31,6 +33,8 @@ Feature: claimants contact details
             | postcode          | a1 4lp            |
             | email             | duck@burg.com     |
             | telephone_number  | 00000 123456      |
+            | nino              | AA112233B         |
+            | date_of_birth     | 01/01/1900        |
          When the claimant goes to /claimant-contact-details
           And enters their details
          Then the claimant should be sent to the /done page
