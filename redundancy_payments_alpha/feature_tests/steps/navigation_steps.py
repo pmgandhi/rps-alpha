@@ -13,7 +13,7 @@ def step(context):
         context.urls.append(row['PAGE'])
 
 
-@when('we visit each form page')
+@when('visiting each form page')
 def step(context):
     context.pages = []
     for url in context.urls:

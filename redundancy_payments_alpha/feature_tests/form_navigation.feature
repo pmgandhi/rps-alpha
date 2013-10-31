@@ -6,7 +6,7 @@ Feature: form navigation
             | /claim-redundancy-payment/personal-details/   |
             | /claim-redundancy-payment/employment-details/ |
             | /claim-redundancy-payment/done/               |
-         When we visit each form page
+         When visiting each form page
          Then we should see a navigation bar with these links
             | LINK                                          |
             | /claim-redundancy-payment/start/              |
