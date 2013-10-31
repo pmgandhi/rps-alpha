@@ -43,3 +43,10 @@ Leena Gupte
 Leena is a developer from the INSS, and will be on the project 50% for Alpha.
 
 **email** leena.gupte@gmail.com
+
+-----------
+Ricky Dawson
+-----------
+Ricky works for InsS, and has many hats (currently) - 100% on project.
+
+**email** rickyd@rickyd.co.uk
