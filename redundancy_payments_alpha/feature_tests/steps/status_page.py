@@ -6,7 +6,7 @@ from ..claimants_user_journey import routes
 def step(context):
     context.client = routes.app.test_client()
 
-@when('we visit the {url} page')
+@when('we visit {url}')
 def step(context, url):
     context.response = context.client.get(url)
 

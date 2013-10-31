@@ -21,30 +21,31 @@ def step(context):
         context.form_data[row['DETAILS']] = row['VALUE']
 
 
-@when('the claimant goes to /claimant-contact-details')
-def step(context):
-    personal_details_form = test_client.get('/claimant-contact-details')
+@when('the claimant goes to {url}')
+def step(context, url):
+    personal_details_form = test_client.get(url)
     context.form_data['csrf_token'] = parse_csrf_token(personal_details_form)
 
 
 @when('enters their details')
 def step(context):
     context.response_from_posting_data = test_client.post(
-        '/claimant-contact-details',
+        '/claim-redundancy-payment/personal-details',
         data=context.form_data
     )
 
 
-@then('the claimant should be sent to the /done page')
-def step(context):
+@then('the claimant should be sent to {url}')
+def step(context, url):
     assert_that(context.response_from_posting_data.status, is_('302 FOUND'))
     headers = context.response_from_posting_data.headers
-    redirect_path = headers['Location'].split('/')[-1]
-    assert_that(redirect_path, is_('done'))
+    redirect_path = headers['Location']
+    assert_that(redirect_path, contains_string(url))
 
 
-@then('the claimant should stay on the /claimant-contact-details page')
-def step(context):
+@then('the claimant should stay on {url}')
+def step(context, url):
     page = BeautifulSoup(context.response_from_posting_data.data)
     title = page.find('title').text
     assert_that(title, is_('Claimant Contact Details'))
+

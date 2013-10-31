@@ -14,8 +14,13 @@ def status():
     return "everything is ok"
 
 
-@app.route('/claimant-contact-details', methods=['GET', 'POST'])
-def claimant_contact_details():
+@app.route('/claim-redundancy-payment/start')
+def start():
+    return 'ok'
+
+
+@app.route('/claim-redundancy-payment/personal-details', methods=['GET', 'POST'])
+def personal_details():
     form = ClaimantContactDetails()
     if form.validate_on_submit():
         session['user_details'] = form.data
@@ -23,7 +28,13 @@ def claimant_contact_details():
     return render_template('user_details.html', form=form)
 
 
-@app.route('/done', methods=['GET'])
+@app.route('/claim-redundancy-payment/employment-details')
+def employment_details():
+    return 'employment details'
+
+
+@app.route('/claim-redundancy-payment/done', methods=['GET'])
 def done():
     user_details_json = json.dumps(session.get('user_details'))
     return render_template('done.html', user_details=user_details_json)
+
