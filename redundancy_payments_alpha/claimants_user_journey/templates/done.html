@@ -1,8 +1,12 @@
+{% from "macros/_form_nav.html" import form_nav %}
 {% extends 'base.html' %}
 {% block title %}Done{% endblock %}
 {% block header %}
 <h1>Done</h1>
 <h2 class="subtitle">The real done page will look nicer than this</h2>
+{% endblock %}
+{% block nav %}
+    {{ form_nav(nav_links) }}
 {% endblock %}
 {% block content %}
 <pre>{{ user_details }}</pre>

@@ -2,7 +2,7 @@ Feature: claimants contact details
 
     Scenario: capturing claimants contact details so that they can be contacted by RPS
         Given the app is running
-         When we visit the /claimant-contact-details page
+         When we visit /claim-redundancy-payment/personal-details/
          Then the page should have title "Claimant Contact Details"
           And the page should have an input field called "forenames" labeled "Forename(s)"
           And the page should have an input field called "surname" labeled "Surname"
@@ -31,9 +31,9 @@ Feature: claimants contact details
             | postcode          | a1 4lp            |
             | email             | duck@burg.com     |
             | telephone_number  | 00000 123456      |
-         When the claimant goes to /claimant-contact-details
+         When the claimant goes to /claim-redundancy-payment/personal-details/
           And enters their details
-         Then the claimant should be sent to the /done page
+         Then the claimant should be sent to /claim-redundancy-payment/employment-details/
 
     Scenario: filling in the contact details form with a missing information
         Given a claimant with the personal details
@@ -42,6 +42,6 @@ Feature: claimants contact details
             | surname           | Duck              |
             | building_number   | 1                 |
             | street            | street name       |
-         When the claimant goes to /claimant-contact-details
+         When the claimant goes to /claim-redundancy-payment/personal-details/
           And enters their details
-         Then the claimant should stay on the /claimant-contact-details page
+         Then the claimant should stay on /claimant-contact-details/
