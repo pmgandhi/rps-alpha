@@ -9,19 +9,19 @@
 	<rp1:Claimant>
 		<rp1:Name>
 			<rp1:Surname>{{ surname }}</rp1:Surname>
-			<rp1:Forename>{{ forename }}</rp1:Forename>
+			<rp1:Forename>{{ forenames }}</rp1:Forename>
 			<rp1:Title>{{ title }}</rp1:Title>
 		</rp1:Name>
 		<rp1:NINO>{{ nino }}</rp1:NINO>
 		<rp1:Gender>{{ gender }}</rp1:Gender>
 		<rp1:DateOfBirth>{{ dob }}</rp1:DateOfBirth>
 		<rp1:Address>
-			<rp1:Line>{{ claimant_addr1 }}</rp1:Line>
-			<rp1:Line>{{ claimant_addr2 }}</rp1:Line>
-			<rp1:Town>{{ claimant_town }}</rp1:Town>
-			<rp1:Postcode>{{ claimant_pcode }}</rp1:Postcode>
+			<rp1:Line>{{ building_number}} {{ street }}</rp1:Line>
+			<rp1:Line>{{ district }}</rp1:Line>
+			<rp1:Town>{{ town_or_city }}</rp1:Town>
+			<rp1:Postcode>{{ postcode }}</rp1:Postcode>
 		</rp1:Address>
-		<rp1:PhoneNumber>{{ claimant_phone }}</rp1:PhoneNumber>
+		<rp1:PhoneNumber>{{ telephone_number }}</rp1:PhoneNumber>
 		<rp1:BankDetails>
 			<rp1:BankName>{{ bank }}</rp1:BankName>
 			<rp1:Branch>{{ bank_branch }}</rp1:Branch>
