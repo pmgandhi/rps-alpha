@@ -16,16 +16,16 @@
 		<rp1:Gender>Male</rp1:Gender>
 		<rp1:DateOfBirth>1980-01-01</rp1:DateOfBirth>
 		<rp1:Address>
-			<rp1:Line>8 FOREST WALK</rp1:Line>
-			<rp1:Line>FISHPONDS</rp1:Line>
-			<rp1:Town>BRISTOL</rp1:Town>
-			<rp1:Postcode>BS16 4DB</rp1:Postcode>
+			<rp1:Line>82 DUCK WALK</rp1:Line>
+			<rp1:Line>DUCKPONDS</rp1:Line>
+			<rp1:Town>WALES</rp1:Town>
+			<rp1:Postcode>D01 10DP</rp1:Postcode>
 		</rp1:Address>
 		<rp1:PhoneNumber>07919555555</rp1:PhoneNumber>
 		<rp1:BankDetails>
 			<rp1:BankName>LLOYDS TSB</rp1:BankName>
-			<rp1:Branch>FISHPONDS BRISTOL</rp1:Branch>
-			<rp1:SortCode>30-94-80</rp1:SortCode>
+			<rp1:Branch>DUCKPONDS</rp1:Branch>
+			<rp1:SortCode>01-01-01</rp1:SortCode>
 			<rp1:AccountNumber>12345679</rp1:AccountNumber>
 			<rp1:AccountName>DAFFY DUCK</rp1:AccountName>
 		</rp1:BankDetails>
@@ -37,7 +37,7 @@
 			<rp1:Town>BRISTOL</rp1:Town>
 			<rp1:Postcode>BS5 7PX</rp1:Postcode>
 		</rp1:Address>
-		<rp1:PhoneNumber>01179674575</rp1:PhoneNumber>
+		<rp1:PhoneNumber>01179555555</rp1:PhoneNumber>
 		<rp1:WorkAddress>
 			<rp1:Line>235 HILLSIDE ROAD</rp1:Line>
 			<rp1:Town>BRISTOL</rp1:Town>
@@ -47,7 +47,7 @@
 	</rp1:Employer>
 	<rp1:InsolvencyPractitioner>
 		<rp1:Name>BDO LLP</rp1:Name>
-		<rp1:PhoneNumber>01179301500</rp1:PhoneNumber>
+		<rp1:PhoneNumber>01179555555</rp1:PhoneNumber>
 		<rp1:Address>
 			<rp1:Line>1 VICTORIA STREET</rp1:Line>
 			<rp1:Town>BRISTOL</rp1:Town>
@@ -62,7 +62,7 @@
 		<rp1:EndDate>2011-07-29</rp1:EndDate>
 		<rp1:NoticeGivenByEmployer>no</rp1:NoticeGivenByEmployer>
 		<rp1:GrossBasicPay>
-			<rp1:Amount>275.00</rp1:Amount>
+			<rp1:Amount>295.00</rp1:Amount>
 			<rp1:Period>week</rp1:Period>
 		</rp1:GrossBasicPay>
 		<rp1:BonusORCommission>no</rp1:BonusORCommission>
