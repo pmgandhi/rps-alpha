@@ -23,17 +23,18 @@ def status():
     return "everything is ok"
 
 
-@app.route('/claim-redundancy-payment', methods=['GET'])
+@app.route('/claim-redundancy-payment/', methods=['GET'])
+@app.route('/', methods=['GET'])
 def claim_redundancy_payment():
     return redirect(url_for('start'))
 
 
-@app.route('/claim-redundancy-payment/start')
+@app.route('/claim-redundancy-payment/start/')
 def start():
     return render_template('start.html', nav_links=nav_links())
 
 
-@app.route('/claim-redundancy-payment/personal-details', methods=['GET', 'POST'])
+@app.route('/claim-redundancy-payment/personal-details/', methods=['GET', 'POST'])
 def personal_details():
     existing_form = session.get('user_details')
     
@@ -48,13 +49,15 @@ def personal_details():
     return render_template('user_details.html', form=form, nav_links=nav_links())
     
 
-@app.route('/claim-redundancy-payment/employment-details', methods=['GET'])
+@app.route('/claim-redundancy-payment/employment-details/', methods=['GET'])
 def employment_details():
     return render_template('employment_details.html', nav_links=nav_links())
 
 
-@app.route('/claim-redundancy-payment/done', methods=['GET'])
+@app.route('/claim-redundancy-payment/done/', methods=['GET'])
 def done():
     user_details_json = json.dumps(session.get('user_details'))
     return render_template('done.html', user_details=user_details_json, nav_links=nav_links())
+
+
 
