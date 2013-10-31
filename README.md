@@ -44,5 +44,6 @@ As above, use Mac version.
 ### More info
 
 - From within your vagrant box, cd to `/vagrant/manual`
+- `pip install sphinx`
 - Run `make html`
 - Open docs in your browser from: `rps-alpha/manual/_build/html/index.html`
