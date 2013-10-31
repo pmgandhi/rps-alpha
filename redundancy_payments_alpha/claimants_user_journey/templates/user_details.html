@@ -1,14 +1,18 @@
 {% extends "base.html" %}
-{% from "partials/_form_field.html" import form_field %}
+{% from "macros/_form_field.html" import form_field %}
+{% from "macros/_form_nav.html" import form_nav %}
 
 {% block title %}Claimant Contact Details{% endblock %}
 {% block header %} 
     <h1>Claim Redundancy Payment</h1>
     <h2 class="subtitle">Please enter your personal details</h2>
 {% endblock %}
+{% block nav %}
+    {{ form_nav(nav_links) }}
+{% endblock %}
 {% block content %}
     <h1>Your personal details</h1>
-        <form method="post" action="/claimant-contact-details" class="form-example-1">
+        <form method="post" action="/claim-redundancy-payment/personal-details" class="form-example-1">
             <div>
                 <h2>Name</h2>
                 <div>

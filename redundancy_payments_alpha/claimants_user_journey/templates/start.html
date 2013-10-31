@@ -1,0 +1,14 @@
+{% from "macros/_form_nav.html" import form_nav %}
+{% extends "base.html" %}
+{% block title %}Start Page{% endblock %}
+{% block header %}
+<h1>Make a Claim for Redundancy Payment</h1>
+<h2>The real start page may be based on GOV.UK, this is a prototype</h2>
+{% endblock %}
+{% block nav %}
+    {{ form_nav(nav_links) }}
+{% endblock %}
+{% block content %}
+<h1>Start making a claim</h1>
+<a id="next" href='/claim-redundancy-payment/personal-details'>Next</a>
+{% endblock %}

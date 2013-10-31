@@ -33,7 +33,7 @@ Feature: claimants contact details
             | telephone_number  | 00000 123456      |
          When the claimant goes to /claim-redundancy-payment/personal-details
           And enters their details
-         Then the claimant should be sent to /claim-redundancy-payment/done
+         Then the claimant should be sent to /claim-redundancy-payment/employment-details
 
     Scenario: filling in the contact details form with a missing information
         Given a claimant with the personal details
