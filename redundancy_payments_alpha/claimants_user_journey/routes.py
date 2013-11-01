@@ -15,7 +15,9 @@ def nav_links():
         ('Start', url_for('start')),
         ('Personal Details', url_for('personal_details')),
         ('Employment Details', url_for('employment_details')),
+        ('Wage Details', url_for('wage_details')),
         ('Summary', url_for('summary')),
+        ('Wage Details', url_for('wage_details')),
     ]
     return links
 
@@ -65,6 +67,10 @@ def employment_details():
         return redirect(url_for('summary'))
 
     return render_template('employment_details.html', form=form, nav_links=nav_links())
+
+@app.route('/claim-redundancy-payment/wage-details/', methods=['GET'])
+def wage_details():
+    return render_template('wage_details.html', nav_links=nav_links())
 
 
 @app.route('/claim-redundancy-payment/summary/', methods=['GET'])
