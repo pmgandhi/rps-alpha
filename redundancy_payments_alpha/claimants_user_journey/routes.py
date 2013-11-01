@@ -65,7 +65,7 @@ def employment_details():
 
     if form.validate_on_submit():
         session['employment_details'] = form.data
-        return redirect(url_for('summary'))
+        return redirect(url_for('wage_details'))
 
     return render_template('employment_details.html', form=form, nav_links=nav_links())
 
