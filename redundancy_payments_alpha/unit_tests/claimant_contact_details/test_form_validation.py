@@ -1,3 +1,4 @@
+from datetime import datetime
 import unittest
 from hamcrest import *
 from redundancy_payments_alpha.claimants_user_journey.forms.claimant_contact_details \
@@ -26,7 +27,9 @@ def complete_form_data():
         'county': 'county name',
         'postcode': 'A1 2BC',
         'email': 'donald.duck@duckburg.com',
-        'telephone_number': '12345 123456'
+        'telephone_number': '12345 123456',
+        'nino': 'AA112233B',
+        'date_of_birth': '01/01/1900'
     }
     return form
 
@@ -38,6 +41,7 @@ class TestFormValidation(unittest.TestCase):
         del entered_data['forenames']
         # when
         form = complete_form(entered_data)
+        form.validate()
         # then
         assert_that(form.validate(), is_(False))
 
@@ -257,3 +261,65 @@ class TestOtherValidation(unittest.TestCase):
         form.validate()
         # then
         assert_that(form.other.errors, has_item("Field is required if 'Other' is selected."))
+
+
+class TestNINoValidation(unittest.TestCase):
+    def test_nino_field_allows_valid_nino(self):
+        # given
+        entered_data = complete_form_data()
+        # when
+        form = complete_form(entered_data)
+        form.validate()
+        # then
+        assert_that(form.nino.errors, has_length(0))
+
+    def test_nino_field_only_allows_correctly_formatted_nino(self):
+        # given
+        entered_data = complete_form_data()
+        entered_data['nino'] = 'not a valid NINo'
+        # when
+        form = complete_form(entered_data)
+        form.validate()
+        # then
+        assert_that(form.nino.errors, has_item("National Insurance Number must be two letters followed by six digits and a further letter (e.g. 'AB123456C')."))
+
+
+class TestDateOfBirthValidation(unittest.TestCase):
+    def test_date_of_birth_field_allows_valid_date_of_birth(self):
+        # given
+        entered_data = complete_form_data()
+        # when
+        form = complete_form(entered_data)
+        form.validate()
+        # then
+        assert_that(form.date_of_birth.errors, has_length(0))
+
+    def test_date_of_birth_field_allows_correctly_formatted_date(self):
+        # given
+        entered_date = complete_form_data()
+        entered_date['date_of_birth'] = 'not a valid Date Of Birth'
+        # when
+        form = complete_form(entered_date)
+        form.validate()
+        # then
+        assert_that(form.date_of_birth.errors, has_item("Date Of Birth must be in the format dd/mm/yyyy.") )
+
+    def test_date_of_birth_field_is_invalid_with_date_less_than_1900(self):
+        # given
+        entered_date = complete_form_data()
+        entered_date['date_of_birth'] = '01/01/1889'
+        # when
+        form = complete_form(entered_date)
+        form.validate()
+        # then
+        assert_that(form.date_of_birth.errors, has_item("Date Of Birth must be greater than or equal to 1900 and not in the future.") )
+
+    def test_date_of_birth_field_is_invalid_with_date_greater_than_or_equal_to_today(self):
+        # given
+        entered_date = complete_form_data()
+        entered_date['date_of_birth'] = datetime.today().strftime('%d/%m/%Y')
+        # when
+        form = complete_form(entered_date)
+        form.validate()
+        # then
+        assert_that(form.date_of_birth.errors, has_item("Date Of Birth must be greater than or equal to 1900 and not in the future.") )
