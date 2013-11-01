@@ -1,22 +1,25 @@
 {% from "macros/_form_nav.html" import form_nav %}
+{% from "macros/_form_field.html" import form_field %}
 {% extends "base.html" %}
 {% block title %}Claimant Wage Details{% endblock %}
 {% block header %}
     <h1>Claim Redundancy Payment</h1>
-    <h2 class="subtitle">Please enter the details for the employer</h2>
+    <h2 class="subtitle">Please enter your wage details</h2>
 {% endblock %}
 {% block nav %}
     {{ form_nav(nav_links) }}
 {% endblock %}
 {% block content %}
-    <h1>Employer details</h1>
-        <form>
-            <h2>Something something empoyer details...</h2>
-            <form>
+    <h1>Your personal details</h1>
+        <form method="post" action="/claim-redundancy-payment/personal-details/" class="form-example-1">
+            <div>
+                <h2>Wages</h2>
                 <div>
-                    <input type="text" value="temp"></input>
+                    {{ form.hidden_tag() }}
+                    {{ form_field(form.FrequencyOfPayment) }}
+                    {{ form_field(form.GrossRateOfPay) }}
                 </div>
-                <a href="/claim-redundancy-payment/done">Next</a>
-            </form>
+            </div>
+            <input type="submit" value="Submit" />
         </form>
 {% endblock %}
