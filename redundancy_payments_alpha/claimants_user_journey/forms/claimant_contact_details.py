@@ -52,9 +52,10 @@ class ClaimantContactDetails(Form):
                      validators=[DataRequired(),
                                  Regexp(regex=re.compile('^[A-Z]{2}[0-9]{6}[A-Z]{1}$'),
                                         message="National Insurance Number must be two letters followed by six digits and a further letter (e.g. 'AB123456C').")])
-    date_of_birth = TextField('Date Of Birth', validators=[DataRequired(),
-                                                          Regexp(regex=re.compile('^[0-9]{2}[/][0-9]{2}[/][0-9]{4}$'),
-                                        message="Date Of Birth must be in the format dd/mm/yyyy.") ])
+    date_of_birth = TextField('Date Of Birth',
+                              validators=[DataRequired(),
+                                          Regexp(regex=re.compile('^[0-9]{2}[/][0-9]{2}[/][0-9]{4}$'),
+                                                 message="Date Of Birth must be in the format dd/mm/yyyy.") ])
 
     def validate_date_of_birth(form, field):
         date_of_birth = form._fields.get('date_of_birth')

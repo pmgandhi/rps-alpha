@@ -43,10 +43,3 @@ def step(context, url):
     redirect_path = headers['Location']
     assert_that(redirect_path, contains_string(url))
 
-
-@then('the claimant should stay on {url}')
-def step(context, url):
-    page = BeautifulSoup(context.response_from_posting_data.data)
-    title = page.find('title').text
-    assert_that(title, is_('Claimant Contact Details'))
-
