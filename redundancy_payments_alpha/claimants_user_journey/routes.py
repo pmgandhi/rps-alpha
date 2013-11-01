@@ -3,6 +3,7 @@ from flask import Flask, render_template, url_for, session
 from werkzeug.utils import redirect
 from forms.claimant_contact_details import ClaimantContactDetails
 from forms.employment_details import EmploymentDetails
+from forms.claimant_wage_details import ClaimantWageDetails
 
 
 app = Flask(__name__)
