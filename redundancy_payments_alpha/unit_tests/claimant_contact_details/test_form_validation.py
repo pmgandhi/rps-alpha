@@ -294,7 +294,7 @@ class TestDateOfBirthValidation(unittest.TestCase):
         # then
         assert_that(form.date_of_birth.errors, has_length(0))
 
-    def test_date_of_birth_field_allows_correctly_formatted_date(self):
+    def test_date_of_birth_field_does_not_allow_incorrectly_formatted_date(self):
         # given
         entered_date = complete_form_data()
         entered_date['date_of_birth'] = 'not a valid Date Of Birth'
@@ -323,3 +323,16 @@ class TestDateOfBirthValidation(unittest.TestCase):
         form.validate()
         # then
         assert_that(form.date_of_birth.errors, has_item("Date Of Birth must be greater than or equal to 1900 and not in the future.") )
+
+    def test_date_of_birth_field_does_not_display_int_parsing_error(self):
+        # given
+        entered_date = complete_form_data()
+        entered_date['date_of_birth'] = 'aa/bb/cccc'
+        # when
+        form = complete_form(entered_date)
+        form.validate()
+        # then
+        print form.date_of_birth.errors, '<-----------'
+        assert_that(form.date_of_birth.errors, not(has_item("invalid literal for int() with base 10: 'cccc'")))
+        assert_that(form.date_of_birth.errors, has_item("invalid literal for int() with base 10: 'cccc'"))
+        #assert(False)

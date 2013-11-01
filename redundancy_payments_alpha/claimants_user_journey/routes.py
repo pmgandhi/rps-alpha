@@ -2,6 +2,7 @@ import json
 from flask import Flask, render_template, url_for, session
 from werkzeug.utils import redirect
 from forms.claimant_contact_details import ClaimantContactDetails
+from forms.employment_details import EmploymentDetails
 
 
 app = Flask(__name__)
@@ -49,9 +50,20 @@ def personal_details():
     return render_template('user_details.html', form=form, nav_links=nav_links())
     
 
-@app.route('/claim-redundancy-payment/employment-details/', methods=['GET'])
+@app.route('/claim-redundancy-payment/employment-details/', methods=['GET', 'POST'])
 def employment_details():
-    return render_template('employment_details.html', nav_links=nav_links())
+    existing_form = session.get('employment_details')
+
+    if existing_form:
+        form = EmploymentDetails(**existing_form)
+    else:
+        form = EmploymentDetails()
+
+    if form.validate_on_submit():
+        session['employment_details'] = form.data
+        return redirect(url_for('employment_details'))
+
+    return render_template('employment_details.html', form=form, nav_links=nav_links())
 
 
 @app.route('/claim-redundancy-payment/done/', methods=['GET'])
