@@ -3,7 +3,7 @@ from flask import Flask, render_template, url_for, session
 from werkzeug.utils import redirect
 from forms.claimant_contact_details import ClaimantContactDetails
 from forms.employment_details import EmploymentDetails
-
+from forms.wages_owed import WagesOwed
 
 app = Flask(__name__)
 app.secret_key = 'something_secure_and_secret'
@@ -64,6 +64,21 @@ def employment_details():
         return redirect(url_for('done'))
 
     return render_template('employment_details.html', form=form, nav_links=nav_links())
+
+@app.route('/claim-redundancy-payment/unpaid-wage-details/', methods=['GET', 'POST'])
+def wages_owed():
+    existing_form = session.get('wages_owed')
+
+    if existing_form:
+        form = WagesOwed(**existing_form)
+    else:
+        form = WagesOwed()
+
+    if form.validate_on_submit():
+        session['wages_owed'] = form.data
+        return redirect(url_for('done'))
+
+    return render_template('wages_owed.html', form=form, nav_links=nav_links())
 
 
 @app.route('/claim-redundancy-payment/done/', methods=['GET'])
