@@ -9,7 +9,9 @@ test
    :maxdepth: 2
 
    team
-   
+   codechoice
+   scmchoice
+   chomp
 
 About Manual
 ============

@@ -1,4 +1,5 @@
+BeautifulSoup
+-r requirements.production.txt
 behave==1.2.2
 nose
-requirements.dev.txt
 pyhamcrest

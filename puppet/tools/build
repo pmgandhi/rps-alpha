@@ -1,0 +1,78 @@
+#!/bin/sh
+
+set -eu
+
+usage () {
+  echo "Usage: $(basename "$0") [-n]"
+  echo
+  echo "Run the puppet tests and build a tarball."
+  echo
+  echo "  -n        Don't clean 3rd-party sources before building"
+  echo
+}
+
+status () {
+  echo "---> ${@}" >&2
+}
+
+abort () {
+  echo "$@" >&2
+  exit 1
+}
+
+main () {
+  cd "$(dirname "$0")"
+  cd ..
+
+  local NOCLEAN=0
+
+  while getopts ":hn" opt; do
+    case $opt in
+      n)
+        NOCLEAN=1
+        ;;
+      h)
+        usage >&2
+        exit 1
+        ;;
+      \?)
+        echo "Invalid option: -$OPTARG" >&2
+        usage >&2
+        exit 1
+        ;;
+    esac
+  done
+
+  status "bundling for build"
+  bundle --quiet --without NONEXISTENT
+
+  status "fetching 3rd-party modules"
+  if [ "$NOCLEAN" -ne "1" ]; then
+    bundle exec librarian-puppet install --clean
+  else
+    bundle exec librarian-puppet install
+  fi
+
+  status "running tests"
+  bundle exec rake SPEC_OPTS="--format documentation"
+
+  status "copying to build directory"
+  rsync -a --delete --exclude-from=.buildignore ./ build/
+
+  status "bundling for deployment"
+  cd build/
+  bundle --quiet \
+         --path vendor/bundle \
+         --deployment \
+         --standalone \
+         --binstubs \
+         --without build
+  if [ "$NOCLEAN" -ne "1" ]; then
+    bundle clean
+  fi
+
+  status "creating tarball at puppet.tgz"
+  tar zcf ../puppet.tgz -X .tarballignore .
+}
+
+main "$@"

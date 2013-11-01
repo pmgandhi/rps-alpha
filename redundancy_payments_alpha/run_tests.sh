@@ -1,6 +1,8 @@
-set -o pipefail
+set -oe pipefail
 
-nosetests
+PATH=$PATH:$(pwd)
 
-behave --stop feature_tests/
+nosetests --exe
+
+behave --tags=-wip --stop feature_tests/
 

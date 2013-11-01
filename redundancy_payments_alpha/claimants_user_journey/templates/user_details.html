@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% from "macros/_form_field.html" import form_field %}
+{% from "macros/_form_nav.html" import form_nav %}
+
+{% block title %}Claimant Contact Details{% endblock %}
+{% block header %} 
+    <h1>Claim Redundancy Payment</h1>
+    <h2 class="subtitle">Please enter your personal details</h2>
+{% endblock %}
+{% block nav %}
+    {{ form_nav(nav_links) }}
+{% endblock %}
+{% block content %}
+    <h1>Your personal details</h1>
+        <form method="post" action="/claim-redundancy-payment/personal-details/" class="form-example-1">
+            <div>
+                <h2>Name</h2>
+                <div>
+                    {{ form.hidden_tag() }}
+                    {{ form_field(form.title) }}
+                    {{ form_field(form.other) }}
+                    {{ form_field(form.forenames) }}
+                    {{ form_field(form.surname) }}
+                    {{ form_field(form.nino) }}
+                    {{ form_field(form.date_of_birth) }}
+                </div>
+            </div>
+            <div>
+                <h2>Contact Details</h2>
+                <div>
+                    {{ form_field(form.building_number) }}
+                    {{ form_field(form.street) }}
+                    {{ form_field(form.district) }}
+                    {{ form_field(form.town_or_city) }}
+                    {{ form_field(form.county) }}
+                    {{ form_field(form.postcode) }}
+                    {{ form_field(form.email) }}
+                    {{ form_field(form.telephone_number) }}
+                </div>
+            </div>
+            <input type="submit" value="Submit" />
+        </form>
+{% endblock %}

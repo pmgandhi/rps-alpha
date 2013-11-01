@@ -1,0 +1,22 @@
+{% from "macros/_form_nav.html" import form_nav %}
+{% extends "base.html" %}
+{% block title %}Employment Details{% endblock %}
+{% block header %}
+    <h1>Claim Redundancy Payment</h1>
+    <h2 class="subtitle">Please enter the details for the employer</h2>
+{% endblock %}
+{% block nav %}
+    {{ form_nav(nav_links) }}
+{% endblock %}
+{% block content %}
+    <h1>Employer details</h1>
+        <form>
+            <h2>Something something empoyer details...</h2>
+            <form>
+                <div>
+                    <input type="text" value="temp"></input>
+                </div>
+                <a href="/claim-redundancy-payment/done">Next</a>
+            </form>
+        </form>
+{% endblock %}
