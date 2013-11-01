@@ -18,7 +18,12 @@
                     {{ form.hidden_tag() }}
                     {{ form_field(form.FrequencyOfPayment) }}
                     {{ form_field(form.GrossRateOfPay) }}
-                </div>
+                    {{ form_field(form.every) }}
+                    {{ form_field(form.NumberHoursWorked) }}
+                    {{ form_field(form.BonusOrCommission) }}
+                    {{ form_field(form.Overtime) }}
+                    {{ form_field(form.NormalDaysofWork) }}
+                 </div>
             </div>
             <input type="submit" value="Submit" />
         </form>
