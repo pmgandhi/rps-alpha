@@ -6,5 +6,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network "forwarded_port", guest: 8000, host: 8000
   config.vm.provision :shell, path: "vagrant-bootstrap.sh",
                           args: "localdev localdev"
+  config.ssh.forward_agent = true
 end
 
