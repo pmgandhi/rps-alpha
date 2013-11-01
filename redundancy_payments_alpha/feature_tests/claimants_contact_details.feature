@@ -48,4 +48,4 @@ Feature: claimants contact details
             | street            | street name       |
          When the claimant goes to /claim-redundancy-payment/personal-details/
           And enters their details
-         Then the claimant should stay on /claimant-contact-details/
+         Then the claimant should stay on /claimant-contact-details/ with title "Claimant Contact Details"
