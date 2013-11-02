@@ -7,17 +7,9 @@ technical information about working with this project.
 .. toctree::
    :maxdepth: 2
 
-   team
    components
    tools
+   team
 
-About Manual
-============
 
-The web pages you're viewing are maintained as a Sphinx_ project. 
-
-* :ref:`search`
-* :ref:`sitemap`
-
-.. _Sphinx: http://sphinx-doc.org
 

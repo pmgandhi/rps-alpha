@@ -17,7 +17,6 @@ Language Choice
 **Style Guidence**
 
 * http://www.python.org/dev/peps/pep-0008/
-* http://www.youtube.com/watch?v-g7V89K8QfgQ
 * http://python.net/~goodger/projects/pycon/2007/idiomatic/handout.html
 * http://google-styleguide.googlecode.com/svn/trunk/pyguide.html
 
