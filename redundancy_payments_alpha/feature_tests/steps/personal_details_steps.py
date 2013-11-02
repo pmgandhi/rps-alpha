@@ -18,7 +18,6 @@ def parse_csrf_token(response):
 def step(context):
     context.form_data = {}
     for row in context.table:
-        print row['VALUE']
         context.form_data[row['DETAILS']] = row['VALUE']
 
 

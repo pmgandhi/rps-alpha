@@ -144,7 +144,6 @@ class TestEndDate(unittest.TestCase):
         form = complete_form(entered_date)
         form.validate()
         # then
-        print entered_date['end_date'], '<---------------'
         assert_that(form.end_date.errors, has_item("End date must be in the format dd/mm/yyyy.") )
         assert_that(form.end_date.errors, has_length(1))
 
