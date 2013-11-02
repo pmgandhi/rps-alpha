@@ -13,9 +13,9 @@
 {% block content %}
     <h1>Your personal details</h1>
         <form method="post" action="/claim-redundancy-payment/personal-details/" class="form-example-1">
+                {{ form.hidden_tag() }}
                 <fieldset>
                     <legend>Your Name</legend>
-                    {{ form.hidden_tag() }}
                     {{ form_field(form.title) }}
                     {{ form_field(form.other, hint="Enter your title if you have chosen other above", optional=True) }}
                     {{ form_field(form.forenames) }}
@@ -23,18 +23,24 @@
                 </fieldset>
                 <fieldset>
                     <legend>National Insurance Number and Date of Birth</legend>
-                    {{ form_field(form.nino, hint="Your national insurance number will look like AB123456C, please leave out any spaces or dashes") }}
+                    {{ form_field(form.nino, hint="Your national insurance number will have two letters, six digits and then a letter, for example: AB123456C. Leave out any spaces or dashes") }}
                     {{ form_field(form.date_of_birth, hint="Use the dd/mm/yyyy format, for example 01/01/1975") }}
                 </fieldset>
                 <fieldset>
-                    <legend>Contact Details</legend>
+                    <legend>Address</legend>
                     {{ form_field(form.building_number) }}
                     {{ form_field(form.street) }}
                     {{ form_field(form.district) }}
                     {{ form_field(form.town_or_city) }}
                     {{ form_field(form.county) }}
                     {{ form_field(form.postcode) }}
+                </fieldset>
+                <fieldset>
+                    <legend>Email</legend>
                     {{ form_field(form.email) }}
+                </fieldset>
+                <fieldset>
+                    <legend>Telephone Number</legend>
                     {{ form_field(form.telephone_number) }}
                 </fieldset>
             <input type="submit" value="Submit" />

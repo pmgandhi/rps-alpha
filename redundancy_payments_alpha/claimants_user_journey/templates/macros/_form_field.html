@@ -3,11 +3,11 @@
         {{ field.label }}
         {{ field }}
         {% if optional %}<span>&nbsp;(optional)</span>{% endif %}
-        {% if hint %}<span class="hint">{{ hint }}</span>{% endif %}
         {% if field.errors %}
             {% for error in field.errors %}
                 <span class="validation-message">{{ error }}</span>
             {% endfor %}
         {% endif %}
+        {% if hint %}<span class="hint">{{ hint }}</span>{% endif %}
     </p>
 {% endmacro %}
