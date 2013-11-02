@@ -4,6 +4,6 @@
 #
 class rps_jenkins {
 
-        notify {"I'm notifying you.":}
+        include jenkins
 
 }
