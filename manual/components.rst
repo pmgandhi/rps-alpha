@@ -1,7 +1,7 @@
 Components
 ==========
 
-Claim Form
+ClaimForm
 ----------
 Is a claim form.
 
