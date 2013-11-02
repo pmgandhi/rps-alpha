@@ -1,9 +1,9 @@
 import re
-from datetime import datetime, date
+from datetime import date
 from flask_wtf import Form
-from wtforms import TextField, SelectField, StringField, ValidationError, DateField
-from wtforms.fields.html5 import TelField, EmailField, DateField
-from wtforms.validators import DataRequired, Optional, Length, Email, AnyOf, Regexp
+from wtforms import TextField, SelectField, StringField, ValidationError
+from wtforms.fields.html5 import TelField, EmailField
+from wtforms.validators import DataRequired, Length, Email, AnyOf, Regexp
 
 
 def convert_string_to_date(date_string):
@@ -63,7 +63,7 @@ class ClaimantContactDetails(Form):
         date_of_birth = form._fields.get('date_of_birth')
         try:
             parsed_date = convert_string_to_date(date_of_birth.data)
-        except SyntaxError as ex:
+        except SyntaxError:
             raise ValidationError('Date Of Birth must be greater than or equal to 1900 and not in the future.')
         if parsed_date.year < 1900 or parsed_date >= date.today():
             raise ValidationError('Date Of Birth must be greater than or equal to 1900 and not in the future.')
