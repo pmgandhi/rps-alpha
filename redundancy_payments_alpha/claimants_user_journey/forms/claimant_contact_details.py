@@ -14,14 +14,15 @@ def convert_string_to_date(date_string):
 
 
 class ClaimantContactDetails(Form):
-    forenames = TextField('Forename(s)', validators=[DataRequired(), Length(max=60)])
-    surname = TextField('Surname', validators=[DataRequired(), Length(max=60)])
+    forenames = TextField('First name(s)', validators=[DataRequired(), Length(max=60)])
+    surname = TextField('Last name', validators=[DataRequired(), Length(max=60)])
     title = SelectField('Title',
                         choices=[
                             ('Mr', 'Mr'),
                             ('Mrs', 'Mrs'),
                             ('Miss', 'Miss'),
                             ('Ms', 'Ms'),
+                            ('Dr', 'Dr'),
                             ('Other', 'Other'),
                             ('', '')
                         ],
@@ -31,6 +32,7 @@ class ClaimantContactDetails(Form):
                             'Mrs',
                             'Miss',
                             'Ms',
+                            'Dr',
                             'Other'
                         ])])
     other = TextField('Other')
