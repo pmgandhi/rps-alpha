@@ -2,3 +2,8 @@
 *.swp
 *.pyc
 .idea/workspace.xml
+redundancy_payments_alpha/bin/
+redundancy_payments_alpha/include/
+redundancy_payments_alpha/lib/
+redundancy_payments_alpha/local/
+redundancy_payments_alpha/man/

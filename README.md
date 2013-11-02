@@ -19,7 +19,6 @@ Follow these steps to setup a Quickstart development environment for working wit
 
 As above, use Mac version.
 
-
 ### Ubuntu pre-reqs
 
 ```
