@@ -3,3 +3,4 @@ BeautifulSoup
 behave==1.2.2
 nose
 pyhamcrest
+requests
