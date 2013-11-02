@@ -1,5 +1,3 @@
-Code Choice
-===========
 
 The choice made was *Python*
 

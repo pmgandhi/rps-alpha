@@ -8,9 +8,8 @@ technical information about working with this project.
    :maxdepth: 2
 
    team
-   codechoice
-   scmchoice
    chomp
+   tools
 
 About Manual
 ============
