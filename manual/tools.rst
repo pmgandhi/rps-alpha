@@ -7,8 +7,8 @@ Python Language
 We use Python as it is a modern well structured and intuitive general purpose programming language with good library
 see [link] for further details.
 
-    Language Choice
-    ```````````````
+Language Choice
+```````````````
     .. include:: codechoice.rst
 
 * http://www.python.org/dev/peps/pep-0008/

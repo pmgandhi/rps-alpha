@@ -8,7 +8,7 @@ technical information about working with this project.
    :maxdepth: 2
 
    team
-   chomp
+   components
    tools
 
 About Manual
