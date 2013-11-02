@@ -15,6 +15,7 @@ def nav_links():
         ('Start', url_for('start')),
         ('Personal Details', url_for('personal_details')),
         ('Employment Details', url_for('employment_details')),
+        ('Summary', url_for('summary')),
     ]
     return links
 
@@ -61,15 +62,17 @@ def employment_details():
 
     if form.validate_on_submit():
         session['employment_details'] = form.data
-        return redirect(url_for('done'))
+        return redirect(url_for('summary'))
 
     return render_template('employment_details.html', form=form, nav_links=nav_links())
 
 
-@app.route('/claim-redundancy-payment/done/', methods=['GET'])
-def done():
-    user_details_json = json.dumps(session.get('user_details'))
-    return render_template('done.html', user_details=user_details_json, nav_links=nav_links())
-
-
+@app.route('/claim-redundancy-payment/summary/', methods=['GET'])
+def summary():
+    summary = {
+        'claimant_details': session.get('user_details'),
+        'employment_details': session.get('employment_details')
+    }
+    summary_json = json.dumps(summary)
+    return render_template('summary.html', summary=summary_json, nav_links=nav_links())
 

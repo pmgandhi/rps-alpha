@@ -18,7 +18,7 @@ Feature: employment details
             | end_date           | 01/10/2013            |
           When the claimant goes to /claim-redundancy-payment/employment-details/
           And enters the employment details
-         Then the claimant should be sent to /claim-redundancy-payment/done/
+         Then the claimant should be sent to /claim-redundancy-payment/summary/
 
     Scenario: filling in the contact details form with a missing information
         Given a claimant with the employment details

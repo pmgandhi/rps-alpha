@@ -2,12 +2,12 @@
 {% extends 'base.html' %}
 {% block title %}Done{% endblock %}
 {% block header %}
-<h1>Done</h1>
-<h2 class="subtitle">The real done page will look nicer than this</h2>
+<h1>Summary</h1>
+<h2 class="subtitle">The real summary page will look nicer than this</h2>
 {% endblock %}
 {% block nav %}
     {{ form_nav(nav_links) }}
 {% endblock %}
 {% block content %}
-<pre>{{ user_details }}</pre>
+<pre>{{ summary }}</pre>
 {% endblock %}
