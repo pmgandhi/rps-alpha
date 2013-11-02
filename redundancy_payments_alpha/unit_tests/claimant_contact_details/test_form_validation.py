@@ -332,7 +332,5 @@ class TestDateOfBirthValidation(unittest.TestCase):
         form = complete_form(entered_date)
         form.validate()
         # then
-        print form.date_of_birth.errors, '<-----------'
         assert_that(form.date_of_birth.errors, not(has_item("invalid literal for int() with base 10: 'cccc'")))
         assert_that(form.date_of_birth.errors, has_item("invalid literal for int() with base 10: 'cccc'"))
-        #assert(False)
