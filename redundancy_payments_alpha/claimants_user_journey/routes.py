@@ -73,6 +73,6 @@ def summary():
         'claimant_details': session.get('user_details'),
         'employment_details': session.get('employment_details')
     }
-    summary_json = json.dumps(summary)
+    summary_json = json.dumps(summary, indent=4)
     return render_template('summary.html', summary=summary_json, nav_links=nav_links())
 
