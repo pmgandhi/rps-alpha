@@ -8,20 +8,19 @@ Andy is the DBA from the INSS, and will be on the project 50% for Alpha.
 
 **email** sixdaysandy@gmail.com
 
-
 ------------
 Cal Paterson
 ------------
 Cal is a ThoughtWorks developer and will be full-time on the project for Alpha.
 
-**email** sixdaysandy@gmail.com
+**email** cpaterso@thoughtworks.com
 
 -------------
 Gareth Rogers
 -------------
 Gareth is a ThoughtWorks developer and will be full-time on the project for Alpha.
 
-**email** sixdaysandy@gmail.com
+**email** grogers@thoughtworks.com
 
 -----------
 Jim Gumbley
@@ -65,4 +64,3 @@ Rod Carter
 Rod is an INSS developer and will be 50% on the project for Alpha.
 
 **email**: rodcarter@outlook.com
-
