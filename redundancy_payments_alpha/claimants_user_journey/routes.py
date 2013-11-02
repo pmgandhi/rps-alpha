@@ -68,8 +68,6 @@ def employment_details():
 
 @app.route('/claim-redundancy-payment/done/', methods=['GET'])
 def done():
-    user_details_json = json.dumps(session.get('user_details'))
+    user_details_json = json.dumps(session.get('user_details'), indent=4)
     return render_template('done.html', user_details=user_details_json, nav_links=nav_links())
-
-
 
