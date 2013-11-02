@@ -1,14 +1,24 @@
 {
-   "town_or_city":"London",
-   "street":"Westacre Lane",
-   "district":"Marylebone",
-   "forenames":"Jeremiah",
-   "title":"Other",
-   "telephone_number":"0203 232 2342",
-   "building_number":"56",
-   "county":"London!",
-   "other":"Duke",
-   "postcode":"W2 3TL",
-   "surname":"Westminster III",
-   "email":"jeremy@dukebook.com"
+    "claimant_details": {
+        "town_or_city": "London",
+        "street": "Westacre Lane",
+        "district": "Marylebone",
+        "forenames": "Jeremiah",
+        "title": "Other",
+        "telephone_number": "0203 232 2342",
+        "building_number": "56",
+        "county": "London!",
+        "other": "Duke",
+        "date_of_birth": "13/03/1913",
+        "postcode": "W2 3TL",
+        "surname": "Westminster III",
+        "email": "jeremy@dukebook.com",
+        "nino": "AB123456C"
+    },
+    "employment_details": {
+        "job_title": "VP of Widgets",
+        "start_date": "01/01/2013",
+        "end_date": "01/06/2013",
+        "category_of_worker": "Director or Shareholder"
+    }
 }
