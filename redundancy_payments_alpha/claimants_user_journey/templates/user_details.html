@@ -23,8 +23,8 @@
                 </fieldset>
                 <fieldset>
                     <legend>National Insurance Number and Date of Birth</legend>
-                    {{ form_field(form.nino) }}
-                    {{ form_field(form.date_of_birth) }}
+                    {{ form_field(form.nino, hint="Your national insurance number will look like AB123456C, please leave out any spaces or dashes") }}
+                    {{ form_field(form.date_of_birth, hint="Use the dd/mm/yyyy format, for example 01/01/1975") }}
                 </fieldset>
                 <fieldset>
                     <legend>Contact Details</legend>
