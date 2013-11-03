@@ -1,4 +1,4 @@
-rps-alpha ![build status](https://travis-ci.org/[InsolvencyService]/[rps-alpha].png?branch=master)
+rps-alpha ![build status](https://travis-ci.org/InsolvencyService/rps-alpha.png?branch=master)
 =========
 
 
