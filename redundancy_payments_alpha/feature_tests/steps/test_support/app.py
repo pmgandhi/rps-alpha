@@ -14,18 +14,23 @@ def wait_until(condition, timeout, interval):
     raise RuntimeError("Timed out when starting app (timeout=%d)" % timeout)
 
 
-class app(object):
+class App(object):
     def __init__(self):
         self._port = 8000
+        self._subprocess = None
 
     def run(self):
-        self._subprocess = subprocess.Popen(
-            ["python", "start_app.py"],
-            preexec_fn=os.setsid,
-            stderr=subprocess.STDOUT,
-            stdout=subprocess.PIPE
-        )
-        wait_until(self._is_running, timeout=15, interval=0.1)
+        try:
+            self._subprocess = subprocess.Popen(
+                ["python", "start_app.py"],
+                preexec_fn=os.setsid,
+                stderr=subprocess.STDOUT,
+                stdout=subprocess.PIPE
+            )
+        except OSError as e:
+            print str(e)
+            exit(-1)
+        wait_until(self.is_running, timeout=15, interval=0.1)
 
     def stop(self):
         if self._subprocess is None:
@@ -34,7 +39,7 @@ class app(object):
         os.killpg(self._subprocess.pid, 9)
         self._subprocess.communicate()
 
-    def _is_running(self):
+    def is_running(self):
         try:
             return requests.get(self._status_url).status_code == 200
         except Exception as _:
@@ -42,4 +47,8 @@ class app(object):
 
     @property
     def _status_url(self):
-        return "http://localhost:{port}/_status".format(port=self._port)
+        return self.root + '/_status'
+
+    @property
+    def root(self):
+        return "http://localhost:{port}".format(port=self._port)

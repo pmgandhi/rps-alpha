@@ -1,17 +1,7 @@
 from behave import *
 from hamcrest import *
 from claimants_user_journey import routes
-from BeautifulSoup import BeautifulSoup
-
-test_client = routes.app.test_client()
-
-
-def parse_csrf_token(response):
-    # in order to post form data back to the app
-    # we need to also send back the csrf token
-    page = BeautifulSoup(response.data)
-    csrf_token = page.find('input', id='csrf_token')['value']
-    return csrf_token
+from test_support.pages import ClaimantsDetailsForm
 
 
 @given('a claimant with the personal details')
@@ -23,22 +13,19 @@ def step(context):
 
 @when('the claimant goes to {url}')
 def step(context, url):
-    personal_details_form = test_client.get(url)
-    context.form_data['csrf_token'] = parse_csrf_token(personal_details_form)
+    context.browser.visit(context.app.root + url)
 
 
 @when('enters their details')
 def step(context):
-    context.response_from_posting_data = test_client.post(
-        '/claim-redundancy-payment/personal-details/',
-        data=context.form_data
-    )
+    form = ClaimantsDetailsForm(context.browser)
+    for name, value in context.form_data.items():
+        form.set_input(name, value)
+    form.submit()
 
 
 @then('the claimant should be sent to {url}')
 def step(context, url):
-    assert_that(context.response_from_posting_data.status, is_('302 FOUND'))
-    headers = context.response_from_posting_data.headers
-    redirect_path = headers['Location']
-    assert_that(redirect_path, contains_string(url))
+    current_url = context.browser.url
+    assert_that(current_url, contains_string(url))
 
