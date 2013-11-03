@@ -46,8 +46,9 @@ sudo dpkg -i vagrant.deb
   - `mkvirtualenv rps`
   - `workon rps`
   - `pip install -r requirements.dev.txt`
-- You should now be able to run `./run_tests.sh` to run the tests or `python start_app.py` to run the server
-- Once the server is running, you can access the webpage on (http://localhost:8000/)
+- You should now be able to run `./run_tests.sh` to run the tests or
+  `./redunancy_payment_service` to run the server
+- Once the server is running, you can access the webpage on http://localhost:8000/
 
 ### More info
 
