@@ -1,5 +1,7 @@
-rps-alpha ![build status](https://api.travis-ci.org/InsolvencyService/rps-alpha.png)
+rps-alpha ![build status](https://travis-ci.org/[InsolvencyService]/[rps-alpha].png?branch=master)
 =========
+
+
 
 Follow these steps to setup a Quickstart development environment for working with the RPS Alpha project. 
 
