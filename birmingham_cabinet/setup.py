@@ -7,9 +7,9 @@ from setuptools import setup, find_packages
 setup(
     author="INSS",
     author_email="cpaterso@thoughtworks.com",
-    name="cabinet",
+    name="birmingham_cabinet",
     packages=find_packages(),
-    scripts=["run_cabinet"],
+    scripts=["run_birmingham_cabinet"],
     version=os.environ.get("BUILD_NUMBER", "dev"),
     install_requires=[str(req.req) for req in
                       parse_requirements("requirements.dev.txt")],
