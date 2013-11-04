@@ -57,7 +57,7 @@ class rps_jenkins {
           owner   => 'jenkins',
           group   => 'nogroup',
           mode    => '0644',
-          source  => 'puppet:///modules/ci_environment/jenkins-dot-gitconfig',
+          source  => 'puppet:///modules/rps_jenkins/jenkins-dot-gitconfig',
           require => File["${jenkins_home}"],
         }
 
