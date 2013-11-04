@@ -13,16 +13,22 @@ from random import randint
 """
 
 JSON_FILENAME = "rp1-data-from-week-1-webform.json"
+CLAIMANT_DETAILS_KEY_NAME = "claimant_details"
 ACCEPT_DOC_XML_FILENAME = "CHAMP_Accept_Doc.xml.template"
 RP1_XML_FILENAME = "CHAMP_Submit_RP1.xml.template"
 ACCEPT_DOC_PAYLOAD_FILENAME = "CHAMP_Accept_Doc-Payload.xml"
 RP1_XML_PAYLOAD_FILENAME = "CHAMP_Submit_RP1-Payload.xml"
 
-def read_json_from(filename):
+def read_json_from(filename, and_get_key=None):
     """This code should read in a json object from a file,
     """
     with open(JSON_FILENAME) as f:
         data = json.load(f)
+        # this is a hack because I changed the json format
+        # to contain multiple journey_stages it can
+        # probably be removed later
+        if and_get_key:
+            data = data[and_get_key]
     return data
 
 def read_xml_template_from(filename):
@@ -62,15 +68,7 @@ def write_out_to_file(payload, filename):
 
 if __name__=="__main__":
     dms_id = generate_dms_id()
-    json_data = read_json_from(JSON_FILENAME)
+    json_data = read_json_from(JSON_FILENAME, and_get_key=CLAIMANT_DETAILS_KEY_NAME)
     write_out_to_file(generate_accept_doc_request(dms_id), ACCEPT_DOC_PAYLOAD_FILENAME)
     write_out_to_file(generate_rp1_request(dms_id, json_data), RP1_XML_PAYLOAD_FILENAME)
-
-
-
-
-
-
-
-
 
