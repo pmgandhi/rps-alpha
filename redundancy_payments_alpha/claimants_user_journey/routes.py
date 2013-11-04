@@ -3,6 +3,7 @@ from flask import Flask, render_template, url_for, session
 from werkzeug.utils import redirect
 from forms.claimant_contact_details import ClaimantContactDetails
 from forms.employment_details import EmploymentDetails
+from forms.claimant_wage_details import ClaimantWageDetails
 
 
 app = Flask(__name__)
@@ -15,7 +16,9 @@ def nav_links():
         ('Start', url_for('start')),
         ('Personal Details', url_for('personal_details')),
         ('Employment Details', url_for('employment_details')),
+        ('Wage Details', url_for('wage_details')),
         ('Summary', url_for('summary')),
+        ('Wage Details', url_for('wage_details')),
     ]
     return links
 
@@ -62,9 +65,23 @@ def employment_details():
 
     if form.validate_on_submit():
         session['employment_details'] = form.data
-        return redirect(url_for('summary'))
+        return redirect(url_for('wage_details'))
 
     return render_template('employment_details.html', form=form, nav_links=nav_links())
+
+@app.route('/claim-redundancy-payment/wage-details/', methods=['GET', 'POST'])
+def wage_details():
+    existing_form = session.get('wage_details')
+
+    if existing_form:
+        form = ClaimantWageDetails(**existing_form)
+    else:
+        form = ClaimantWageDetails()
+
+    if form.validate_on_submit():
+        session['wage_details'] = form.data
+        return redirect(url_for('done'))
+    return render_template('wage_details.html', form=form, nav_links=nav_links())
 
 
 @app.route('/claim-redundancy-payment/summary/', methods=['GET'])
