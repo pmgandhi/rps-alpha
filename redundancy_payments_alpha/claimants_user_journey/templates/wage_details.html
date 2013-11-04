@@ -3,26 +3,28 @@
 {% extends "base.html" %}
 {% block title %}Claimant Wage Details{% endblock %}
 {% block header %}
-    <h1>Claim Redundancy Payment</h1>
+<h1 xmlns="http://www.w3.org/1999/html">Claim Redundancy Payment</h1>
     <h2 class="subtitle">Please enter your wage details</h2>
 {% endblock %}
 {% block nav %}
     {{ form_nav(nav_links) }}
 {% endblock %}
 {% block content %}
-    <h1>Your personal details</h1>
-        <form method="post" action="/claim-redundancy-payment/personal-details/" class="form-example-1">
+    <h1>Your wage details</h1>
+        <form method="post" action="/claim-redundancy-payment/wage-details/" class="form-example-1">
             <div>
                 <h2>Wages</h2>
                 <div>
+                    <fieldset>
                     {{ form.hidden_tag() }}
-                    {{ form_field(form.FrequencyOfPayment) }}
-                    {{ form_field(form.GrossRateOfPay) }}
+                    {{ form_field(form.frequency_of_payment) }}
+                    {{ form_field(form.gross_rate_of_pay) }}
                     {{ form_field(form.every) }}
-                    {{ form_field(form.NumberHoursWorked) }}
-                    {{ form_field(form.BonusOrCommission) }}
-                    {{ form_field(form.Overtime) }}
-                    {{ form_field(form.NormalDaysofWork) }}
+                    {{ form_field(form.number_of_hours_worked) }}
+                    {{ form_field(form.bonus_or_commission) }}
+                    {{ form_field(form.overtime) }}
+                    {{ form_field(form.normal_days_of_work) }}
+                    </fieldset>
                  </div>
             </div>
             <input type="submit" value="Submit" />

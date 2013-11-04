@@ -1,16 +1,59 @@
 import re
 from datetime import datetime, date
 from flask_wtf import Form
-from wtforms import TextField, SelectField, StringField, ValidationError, DateField
+from wtforms import TextField, SelectField, StringField, ValidationError, DateField, RadioField
 from wtforms.fields.html5 import TelField, EmailField, DateField
 from wtforms.validators import DataRequired, Optional, Length, Email, AnyOf, Regexp
 
 class ClaimantWageDetails(Form):
-    FrequencyOfPayment = TextField('How often do you get paid?')
-    GrossRateOfPay = TextField('Gross rate of pay (before Tax and NI)')
-    every = TextField('every')
-    NumberHoursWorked = TextField('Number of hours you normally work')
-    BonusOrCommission = TextField('Did your pay include any bonus or commission ?')
-    Overtime = TextField('Did you work overtime as a part of your contract ?')
-    NormalDaysofWork = TextField('How many days you normally work each week')
+    frequency_of_payment = SelectField('How often do you get paid?',
+                    choices=[
+                        ('Hour', 'Hour'),
+                        ('Day', 'Day'),
+                        ('Week', 'Week'),
+                        ('Month', 'Month'),
+                        ('Year', 'Year'),
+                        ('', '')
+                    ],
+                    default='',
+                    validators=[AnyOf(values=[
+                        'Hour',
+                        'Day',
+                        'Week',
+                        'Month',
+                        'Year',
+                        ''
+                    ])])
+    gross_rate_of_pay = TextField('Gross rate of pay (before Tax and NI)', validators=[DataRequired(), Regexp(regex=re.compile('^\d{0,8}(\.\d{0,2})?$'),
+                                        message="Gross rate of pay must be a number e.g 100.25.")])
+    every = SelectField('every',
+                    choices=[
+                        ('Hour', 'Hour'),
+                        ('Day', 'Day'),
+                        ('Week', 'Week'),
+                        ('Month', 'Month'),
+                        ('Year', 'Year'),
+                        ('', '')
+                    ],
+                    default='',
+                    validators=[DataRequired(), AnyOf(values=[
+                        'Hour',
+                        'Day',
+                        'Week',
+                        'Month',
+                        'Year'
+                    ])])
+    number_of_hours_worked = TextField('Number of hours you normally work', validators=[DataRequired(), Regexp(regex=re.compile('^\d{0,2}(\.\d{0,2})?$'),
+                                        message="Number of hours you normally work must be a number e.g 40.25.")])
+    bonus_or_commission = RadioField('Did your pay include any bonus or commission ?',
+                                     choices=[
+                                         ('Yes', 'Yes'),
+                                         ('No', 'No')
+                                     ],
+                                     validators=[DataRequired(), AnyOf(values=[
+                                         'Yes',
+                                         'No'
+                                     ])])
+    overtime = TextField('Did you work overtime as a part of your contract ?')
+    normal_days_of_work = TextField('How many days you normally work each week')
 

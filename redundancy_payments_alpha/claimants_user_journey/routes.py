@@ -69,7 +69,7 @@ def employment_details():
 
     return render_template('employment_details.html', form=form, nav_links=nav_links())
 
-@app.route('/claim-redundancy-payment/wage-details/', methods=['GET'])
+@app.route('/claim-redundancy-payment/wage-details/', methods=['GET', 'POST'])
 def wage_details():
     existing_form = session.get('wage_details')
 
@@ -78,6 +78,9 @@ def wage_details():
     else:
         form = ClaimantWageDetails()
 
+    if form.validate_on_submit():
+        session['wage_details'] = form.data
+        return redirect(url_for('done'))
     return render_template('wage_details.html', form=form, nav_links=nav_links())
 
 
