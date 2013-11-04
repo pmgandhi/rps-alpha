@@ -35,7 +35,7 @@ class ClaimantContactDetails(Form):
                             'Dr',
                             'Other'
                         ])])
-    other = TextField('Other')
+    other = TextField('Other', validators=[Length(max=15)])
 
     def validate_other(form, field):
         claimants_title = form._fields.get('title')

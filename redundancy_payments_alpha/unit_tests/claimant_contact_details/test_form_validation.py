@@ -262,6 +262,17 @@ class TestOtherValidation(unittest.TestCase):
         # then
         assert_that(form.other.errors, has_item("Field is required if 'Other' is selected."))
 
+    def test_other_field_can_have_no_more_than_15_characters(self):
+        # given
+        entered_data = complete_form_data()
+        entered_data['other'] = '?'*16
+
+        # when
+        form = complete_form(entered_data)
+        form.validate()
+
+        #then
+        assert_that(form.other.errors, has_item("Field cannot be longer than 15 characters."))
 
 class TestNINoValidation(unittest.TestCase):
     def test_nino_field_allows_valid_nino(self):
