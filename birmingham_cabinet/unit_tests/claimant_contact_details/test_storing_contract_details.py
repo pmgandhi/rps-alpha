@@ -1,4 +1,5 @@
 import unittest
+import json
 
 from hamcrest import is_, assert_that
 
@@ -28,10 +29,16 @@ class TestStoringContactDetails(unittest.TestCase):
             'date_of_birth': '01/01/1900'
         }
 
-    @unittest.expectedFailure
     def test_should_store_contact_details(self):
         claimant = self.claimant()
         json_headers = [("Content-Type", "application/json")]
-        response = self.test_client.post("/claimant", claimant,
-                                         headers=json_headers)
+        url = "/claimant-contact-details/{nino}".format(nino=claimant["nino"])
+        response = self.test_client.post(
+            url,
+            data=json.dumps(claimant),
+            headers=json_headers)
         assert_that(response.status_code, is_(201))
+
+        response = self.test_client.get(url)
+        assert_that(response.status_code, is_(200))
+        assert_that(json.loads(response.data), is_(claimant))
