@@ -14,7 +14,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
 
     config.vm.define "jenkins", primary: true do |jenkins|
-      jenkins.vm.network "forwarded_port", guest: 8000, host: 8000
+      config.vm.network "private_network", ip: "10.0.0.10"
       jenkins.vm.provision :shell,
                     path: "vagrant-bootstrap.sh",
                     args: "jenkins localdev"
