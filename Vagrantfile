@@ -13,7 +13,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       development.ssh.forward_agent = true
     end
 
-    config.vm.define "jenkins", primary: true do |jenkins|
+    config.vm.define "jenkins" do |jenkins|
       config.vm.network "private_network", ip: "10.0.0.10"
       jenkins.vm.provision :shell,
                     path: "vagrant-bootstrap.sh",
