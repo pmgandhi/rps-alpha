@@ -1,2 +1,2 @@
-Flask
-Flask-WTF
+Flask-WTF==0.9.3
+Flask==0.10.1
