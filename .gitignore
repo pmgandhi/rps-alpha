@@ -1,6 +1,15 @@
 .vagrant
 *.swp
 *.pyc
-.idea/*.iml
-.idea/*.xml
 redundancy_payments_alpha/.idea/*
+.idea/workspace.xml
+bin/
+include/
+lib/
+local/
+man/
+build/
+dist/
+wheelhouse/
+*.egg-info/
+*~

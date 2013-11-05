@@ -1,11 +1,14 @@
 language: python
+env:
+  - APP=birmingham_cabinet
+  - APP=redundancy_payments_alpha
 python:
   - "2.7"
 # command to install dependencies
-install: 
-  - pip install -r redundancy_payments_alpha/requirements.dev.txt --use-mirrors
+install:
+  - pip install -r $APP/requirements.dev.txt --use-mirrors
 # command to run tests
 script:
-  - cd redundancy_payments_alpha; ./run_tests.sh
+  - cd $APP; ./run_tests.sh
 notifications:
   email: false

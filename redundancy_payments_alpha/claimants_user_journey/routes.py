@@ -4,6 +4,8 @@ from werkzeug.utils import redirect
 from forms.claimant_contact_details import ClaimantContactDetails
 from forms.employment_details import EmploymentDetails
 from forms.wages_owed import WagesOwed
+from forms.claimant_wage_details import ClaimantWageDetails
+
 
 app = Flask(__name__)
 app.secret_key = 'something_secure_and_secret'
@@ -16,6 +18,8 @@ def nav_links():
         ('Personal Details', url_for('personal_details')),
         ('Employment Details', url_for('employment_details')),
         ('Unpaid Wages', url_for('wages_owed')),
+        ('Wage Details', url_for('wage_details')),
+        ('Summary', url_for('summary')),
     ]
     return links
 
@@ -62,9 +66,10 @@ def employment_details():
 
     if form.validate_on_submit():
         session['employment_details'] = form.data
-        return redirect(url_for('done'))
+        return redirect(url_for('wage_details'))
 
     return render_template('employment_details.html', form=form, nav_links=nav_links())
+
 
 @app.route('/claim-redundancy-payment/unpaid-wage-details/', methods=['GET', 'POST'])
 def wages_owed():
@@ -82,8 +87,27 @@ def wages_owed():
     return render_template('wages_owed.html', form=form, nav_links=nav_links())
 
 
-@app.route('/claim-redundancy-payment/done/', methods=['GET'])
-def done():
-    user_details_json = json.dumps(session.get('user_details'), indent=4)
-    return render_template('done.html', user_details=user_details_json, nav_links=nav_links())
+@app.route('/claim-redundancy-payment/wage-details/', methods=['GET', 'POST'])
+def wage_details():
+    existing_form = session.get('wage_details')
+
+    if existing_form:
+        form = ClaimantWageDetails(**existing_form)
+    else:
+        form = ClaimantWageDetails()
+
+    if form.validate_on_submit():
+        session['wage_details'] = form.data
+        return redirect(url_for('done'))
+    return render_template('wage_details.html', form=form, nav_links=nav_links())
+
+
+@app.route('/claim-redundancy-payment/summary/', methods=['GET'])
+def summary():
+    summary = {
+        'claimant_details': session.get('user_details'),
+        'employment_details': session.get('employment_details')
+    }
+    summary_json = json.dumps(summary, indent=4)
+    return render_template('summary.html', summary=summary_json, nav_links=nav_links())
 

@@ -1,9 +1,7 @@
 rps-alpha ![build status](https://travis-ci.org/InsolvencyService/rps-alpha.png?branch=master)
 =========
 
-
-
-Follow these steps to setup a Quickstart development environment for working with the RPS Alpha project. 
+Follow these steps to setup a Quickstart development environment for working with the RPS Alpha project.
 
 ## Quickstart Steps
 
@@ -12,7 +10,7 @@ Follow these steps to setup a Quickstart development environment for working wit
 - Install PyCharm Community Edition for Windows (http://www.jetbrains.com/pycharm/)
 - Install Python 2.7.5 for Windows - Windows X86-64 MSI Installer (2.7.5) (http://www.python.org/download/releases/2.7.5/)
 - Install Oracle Virtual Box for Windows (https://www.virtualbox.org/wiki/Downloads)
-- Install git (http://git-scm.com/downloads) 
+- Install git (http://git-scm.com/downloads)
   - if you are on Windows also install git-bash when asked.
   - when prompted to choose conversion setting pick check out as-is, commit unix style (the middle option)
 - Install Vagrant (http://www.vagrantup.com/)
@@ -21,11 +19,19 @@ Follow these steps to setup a Quickstart development environment for working wit
 
 As above, use Mac version.
 
+### Ubuntu pre-reqs
+
+```
+sudo aptitude install git
+# Download vagrant deb package from http://downloads.vagrantup.com/
+sudo dpkg -i vagrant.deb
+```
+
 ### Post Install Tasks
 
 - Configure SSH for GIT - Follow this guide (https://help.github.com/articles/generating-ssh-keys)
   - OK not to bother with a passphrase for alpha (leave blank), will need one for beta
-- Clone the repository.  
+- Clone the repository.
   - cd to your work in progress folder in git-bash
   - From git-bash: `git clone git@github.com:InsolvencyService/rps-alpha.git`
 
@@ -39,9 +45,10 @@ As above, use Mac version.
   - `cd /vagrant/redundancy_payments_alpha/`
   - `mkvirtualenv rps`
   - `workon rps`
-  - `pip install -r requirements.txt`
-- You should now be able to run `./run_tests.sh` to run the tests or `python start_app.py` to run the server
-- Once the server is running, you can access the webpage on (http://localhost:8000/claimant-contact-details)
+  - `pip install -r requirements.dev.txt`
+- You should now be able to run `./run_tests.sh` to run the tests or
+  `./redunancy_payment_service` to run the server
+- Once the server is running, you can access the webpage on http://localhost:8000/
 
 ### More info
 
