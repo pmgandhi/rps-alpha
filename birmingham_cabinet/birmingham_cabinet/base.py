@@ -4,7 +4,7 @@ from sqlalchemy.orm import sessionmaker
 
 Base = declarative_base()
 
-engine = create_engine("postgresql+psycopg2://localhost")
+engine = create_engine("postgresql+psycopg2://vagrant@/rps_alpha?host=/var/run/postgresql")
 
 def make_session():
 	Session = sessionmaker()
