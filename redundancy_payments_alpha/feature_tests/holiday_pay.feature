@@ -13,3 +13,16 @@ Feature: claimants holiday pay
         And the page should have an input field called "holiday_taken_from" labeled "From"
         And the page should have an input field called "holiday_taken_to" labeled "To"
         And the page should have an input field called "number_of_days_pay_owed" labeled "Number of days for which pay is owed"
+
+    Scenario: Submit valid information
+     Given a claimant with the holiday pay details
+       | DETAILS                         | VALUE      |
+       | holiday_owed                    | Y          |
+       | holiday_start_date              | 01/04/2013 |
+       | number_of_holiday_days_entitled | 5          |
+       | days_carried_over               | 15         |
+       | days_taken                      | 10         |
+       | days_owed                       | 5          |
+      When the claimant goes to /claim-redundancy-payment/holiday-pay/
+          And enters the holiday pay details
+      Then the claimant should be redirected

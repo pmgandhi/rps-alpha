@@ -81,7 +81,7 @@ def wage_details():
 
     if form.validate_on_submit():
         session['wage_details'] = form.data
-        return redirect(url_for('done'))
+        return redirect(url_for('summary'))
     return render_template('wage_details.html', form=form, nav_links=nav_links())
 
 @app.route('/claim-redundancy-payment/holiday-pay/', methods=['GET', 'POST'])
@@ -95,7 +95,7 @@ def holiday_pay():
 
     if form.validate_on_submit():
         session['holiday_pay'] = form.data
-        return redirect(url_for('done'))
+        return redirect(url_for('summary'))
     return render_template('holiday_pay.html', form=form, nav_links=nav_links())
 
 
