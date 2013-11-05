@@ -1,3 +1,4 @@
+@wip
 Feature: claimants holiday pay
 
     Scenario: capturing claimants holiday pay details so that their claim can be processed by RPS
@@ -17,7 +18,7 @@ Feature: claimants holiday pay
     Scenario: Submit valid information
      Given a claimant with the holiday pay details
        | DETAILS                         | VALUE      |
-       | holiday_owed                    | Y          |
+       | holiday_owed                    | Yes        |
        | holiday_start_date              | 01/04/2013 |
        | number_of_holiday_days_entitled | 5          |
        | days_carried_over               | 15         |
@@ -26,3 +27,16 @@ Feature: claimants holiday pay
       When the claimant goes to /claim-redundancy-payment/holiday-pay/
           And enters the holiday pay details
       Then the claimant should be redirected
+
+    Scenario: Submit holiday owed with missing required information
+     Given a claimant with the holiday pay details
+       | DETAILS                         | VALUE      |
+       | holiday_owed                    | Yes        |
+       | holiday_start_date              | 01/04/2013 |
+       | number_of_holiday_days_entitled | 5          |
+       | days_carried_over               | 15         |
+      When the claimant goes to /claim-redundancy-payment/holiday-pay/
+          And enters the holiday pay details
+      Then the claimant should stay on /claim-redundancy-payment/holiday-pay/ with title "Holiday pay"
+      And the form should display error message "Days taken mandatory fields has not been completed"
+      And the form should display error message "Days owed mandatory fields has not been completed"
