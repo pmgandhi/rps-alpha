@@ -15,7 +15,7 @@ def complete_form_data():
     form = {
         'frequency_of_payment': 'Month',
         'gross_rate_of_pay': '18000.00',
-        'every': 'Year',
+        'frequency_of_work': 'Year',
         'number_of_hours_worked': '40',
         'bonus_or_commission': 'No',
         'overtime': 'Yes',
@@ -136,36 +136,36 @@ class TestGrossRateOfPay(unittest.TestCase):
         assert_that(form.gross_rate_of_pay.errors, has_item('Gross rate of pay must be a number e.g 100.25.'))
 
 
-class TestEveryField(unittest.TestCase):
-    def test_every_cannot_be_empty(self):
+class TestFrequencyOfWorkField(unittest.TestCase):
+    def test_frequency_of_work_cannot_be_empty(self):
         #given
         entered_data = complete_form_data()
-        entered_data['every'] = ''
+        entered_data['frequency_of_work'] = ''
         # when
         form = complete_form(entered_data)
         form.validate()
         # then
-        assert_that(form.every.errors, has_item('This field is required.'))
+        assert_that(form.frequency_of_work.errors, has_item('This field is required.'))
 
-    def test_every_allows_valid_data(self):
+    def test_frequency_of_work_allows_valid_data(self):
         #given
         entered_data = complete_form_data()
-        entered_data['every'] = 'Year'
+        entered_data['frequency_of_work'] = 'Year'
         # when
         form = complete_form(entered_data)
         form.validate()
         # then
-        assert_that(form.every.errors, has_length(0))
+        assert_that(form.frequency_of_work.errors, has_length(0))
 
-    def test_every_does_not_allow_invalid_data(self):
+    def test_frequency_of_work_does_not_allow_invalid_data(self):
         #given
         entered_data = complete_form_data()
-        entered_data['every'] = 'Not Valid'
+        entered_data['frequency_of_work'] = 'Not Valid'
         # when
         form = complete_form(entered_data)
         form.validate()
         # then
-        assert_that(form.every.errors, has_item('Invalid value, must be one of: Hour, Day, Week, Month, Year.'))
+        assert_that(form.frequency_of_work.errors, has_item('Invalid value, must be one of: Hour, Day, Week, Month, Year.'))
 
 class TestNumberOfHoursWorked(unittest.TestCase):
     def test_number_of_hours_worked_accepts_valid_data(self):
