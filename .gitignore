@@ -1,4 +1,6 @@
 .vagrant
 *.swp
 *.pyc
-.idea/workspace.xml
+.idea/*.iml
+.idea/*.xml
+redundancy_payments_alpha/.idea/*
