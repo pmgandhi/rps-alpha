@@ -8,4 +8,27 @@ class rps_postgres {
     class {'postgresql::lib::devel': }
     package {'build-essential': }
     package {'python-dev': }
+
+    # FIXME: This is to simplify the configuration for development
+    postgresql::server::pg_hba_rule {'allow unix socket connections to access anything':
+        type        => 'local',
+        database    => 'all',
+        user        => 'all',
+        auth_method => 'peer'
+    }
+
+    postgresql::server::role { 'vagrant': }
+
+    postgresql::server::database_grant {'give vagrant rps_alpha':
+        privilege => 'ALL',
+        db        => 'rps_alpha',
+        role      => 'vagrant',
+        require   => [
+            Postgresql::Server::Role['vagrant'],
+            Postgresql::Server::Database['rps_alpha']
+        ]
+    }
+
+    postgresql::server::database { 'rps_alpha': }
+
 }
