@@ -1,7 +1,7 @@
 import unittest
 from hamcrest import assert_that, is_, has_length, has_item
-from redundancy_payments_alpha.claimants_user_journey.forms.wages_owed import WagesOwed
-from redundancy_payments_alpha.claimants_user_journey.routes import app
+from ...claimants_user_journey.forms.wages_owed import WagesOwed
+from ...claimants_user_journey.routes import app
 
 test_client = app.test_client()
 
@@ -35,7 +35,7 @@ class TestFormValidation(unittest.TestCase):
 
 
 class TestOwedValidation(unittest.TestCase):
-    def test_owed_field_allows_strings(self):
+    def test_owed_field_allows_valid_selection(self):
         # given
         entered_data = complete_form_data()
         # when
@@ -43,18 +43,6 @@ class TestOwedValidation(unittest.TestCase):
         form.validate()
         # then
         assert_that(form.owed.errors, has_length(0))
-
-    def test_owed_field_does_not_allow_invalid_value(self):
-        # given
-        entered_data = complete_form_data()
-        entered_data['owed'] = 'x'
-        # when
-        form = complete_form(entered_data)
-        form.validate()
-        # then
-        assert_that(form.owed.errors, has_item("Must be 'Y' or 'N'.") )
-
-
 
 class TestWageOwedFrom(unittest.TestCase):
     def test_wage_owed_from_field_allows_a_valid_date(self):
@@ -97,7 +85,7 @@ class TestWageOwedTo(unittest.TestCase):
         assert_that(form.wage_owed_to.errors, has_item("Date must be in the format dd/mm/yyyy.") )
 
 class TestNumberOfDaysOwed(unittest.TestCase):
-    def test_number_of_days_owed_field_allows_strings(self):
+    def test_number_of_days_owed_field_allows_valid_integer(self):
         # given
         entered_data = complete_form_data()
         # when
@@ -108,16 +96,16 @@ class TestNumberOfDaysOwed(unittest.TestCase):
 
     def test_number_of_days_owed_field_does_not_allow_non_integer(self):
         # given
-        entered_data = complete_form_data()
-        entered_data['number_of_days_owed'] = 'x'
+        entered_days_owed = complete_form_data()
+        entered_days_owed['number_of_days_owed'] = 'x'
         # when
-        form = complete_form(entered_data)
+        form = complete_form(entered_days_owed)
         form.validate()
         # then
         assert_that(form.number_of_days_owed.errors, has_item("Number of days owed must be numeric.") )
 
 class TestGrossAmountOwed(unittest.TestCase):
-    def test_gross_amount_owed_field_allows_strings(self):
+    def test_gross_amount_owed_field_allows_valid_decimal(self):
         # given
         entered_data = complete_form_data()
         # when
@@ -128,10 +116,10 @@ class TestGrossAmountOwed(unittest.TestCase):
 
     def test_gross_amount_owed_field_does_not_allow_non_decimal(self):
         # given
-        entered_data = complete_form_data()
-        entered_data['gross_amount_owed'] = '1.x'
+        entered_gross_amount_owed = complete_form_data()
+        entered_gross_amount_owed['gross_amount_owed'] = '1.x'
         # when
-        form = complete_form(entered_data)
+        form = complete_form(entered_gross_amount_owed)
         form.validate()
         # then
         assert_that(form.gross_amount_owed.errors, has_item("Gross amount owed must be numeric.") )

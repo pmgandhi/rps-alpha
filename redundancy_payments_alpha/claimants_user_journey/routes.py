@@ -15,6 +15,7 @@ def nav_links():
         ('Start', url_for('start')),
         ('Personal Details', url_for('personal_details')),
         ('Employment Details', url_for('employment_details')),
+        ('Unpaid Wages', url_for('wages_owed')),
     ]
     return links
 
