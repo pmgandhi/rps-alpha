@@ -17,10 +17,16 @@
                 <div>
                     <fieldset>
                     {{ form.hidden_tag() }}
-                    {{ form_field(form.frequency_of_payment) }}
-                    {{ form_field(form.gross_rate_of_pay) }}
-                    {{ form_field(form.every) }}
-                    {{ form_field(form.number_of_hours_worked) }}
+                        <fieldset>
+                            <legend>How much do you get paid</legend>
+                            {{ form_field(form.gross_rate_of_pay) }}
+                            {{ form_field(form.frequency_of_payment) }}
+                        </fieldset>
+                        <fieldset>
+                            <legend>How much do you work</legend>
+                            {{ form_field(form.number_of_hours_worked) }}
+                            {{ form_field(form.frequency_of_work) }}
+                        </fieldset>
                     {{ form_field(form.bonus_or_commission) }}
                     {{ form_field(form.overtime) }}
                     {{ form_field(form.normal_days_of_work) }}
