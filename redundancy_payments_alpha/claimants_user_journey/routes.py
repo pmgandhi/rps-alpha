@@ -71,7 +71,7 @@ def employment_details():
     return render_template('employment_details.html', form=form, nav_links=nav_links())
 
 
-@app.route('/claim-redundancy-payment/unpaid-wage-details/', methods=['GET', 'POST'])
+@app.route('/claim-redundancy-payment/unpaid-wages-details/', methods=['GET', 'POST'])
 def wages_owed():
     existing_form = session.get('wages_owed')
 
@@ -82,7 +82,7 @@ def wages_owed():
 
     if form.validate_on_submit():
         session['wages_owed'] = form.data
-        return redirect(url_for('done'))
+        return redirect(url_for('summary'))
 
     return render_template('wages_owed.html', form=form, nav_links=nav_links())
 
@@ -106,7 +106,8 @@ def wage_details():
 def summary():
     summary = {
         'claimant_details': session.get('user_details'),
-        'employment_details': session.get('employment_details')
+        'employment_details': session.get('employment_details'),
+        'wages_owed': session.get('wages_owed')
     }
     summary_json = json.dumps(summary, indent=4)
     return render_template('summary.html', summary=summary_json, nav_links=nav_links())
