@@ -6,7 +6,7 @@ Feature: uploading information about an employer who has become redundant
             | FIELD_NAME                            | VALUE                             | 
             | company_name                          | Self Pres 12#                     |
             | company_number                        | 98998987                          |
-            | nature_of_bussiness                   | Stealing gold from Italian banks  |
+            | nature_of_business                    | Stealing gold from Italian banks  |
             | date_of_insolvency                    | 01/05/2013                        |
             | type_of_insolvency                    | Compulsory Liquidation (WUO)      |
             | insolvency_practitioner_name          | Tywin Lannster                    |
