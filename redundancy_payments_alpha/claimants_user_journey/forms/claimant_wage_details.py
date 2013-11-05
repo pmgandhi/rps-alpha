@@ -2,8 +2,9 @@ import re
 from datetime import datetime, date
 from flask_wtf import Form
 from wtforms import TextField, SelectField, StringField, ValidationError, DateField, RadioField
-from wtforms.fields.html5 import TelField, EmailField, DateField
-from wtforms.validators import DataRequired, Optional, Length, Email, AnyOf, Regexp
+from wtforms.fields.html5 import TelField, EmailField, DateField, IntegerField
+from wtforms.validators import DataRequired, Optional, Length, Email, AnyOf, Regexp, NumberRange, InputRequired
+
 
 class ClaimantWageDetails(Form):
     frequency_of_payment = SelectField('How often do you get paid?',
@@ -54,6 +55,14 @@ class ClaimantWageDetails(Form):
                                          'Yes',
                                          'No'
                                      ])])
-    overtime = TextField('Did you work overtime as a part of your contract ?')
-    normal_days_of_work = TextField('How many days you normally work each week')
+    overtime = RadioField('Did you work overtime as a part of your contract ?',
+                                     choices=[
+                                         ('Yes', 'Yes'),
+                                         ('No', 'No')
+                                     ],
+                                     validators=[DataRequired(), AnyOf(values=[
+                                         'Yes',
+                                         'No'
+                                     ])])
+    normal_days_of_work = IntegerField('How many days you normally work each week', validators=[DataRequired(), NumberRange(0,7)])
 

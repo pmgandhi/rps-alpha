@@ -5,7 +5,6 @@ from redundancy_payments_alpha.claimants_user_journey.routes import app
 
 test_client = app.test_client()
 
-
 def complete_form(data):
     with app.test_request_context('/wage-details'):
         form = ClaimantWageDetails(**data)
@@ -19,8 +18,8 @@ def complete_form_data():
         'every': 'Year',
         'number_of_hours_worked': '40',
         'bonus_or_commission': 'No',
-        'overtime': 'N',
-        'normal_days_of_work': '5'
+        'overtime': 'Yes',
+        'normal_days_of_work': 5
     }
     return form
 
@@ -258,25 +257,65 @@ class TestBonusOrCommission(unittest.TestCase):
         # then
         assert_that(form.bonus_or_commission.errors, has_item('Invalid value, must be one of: Yes, No.'))
 
+class TestOvertime(unittest.TestCase):
+    def test_overtime_accepts_valid_data(self):
+        # given
+        entered_data = complete_form_data()
+        # when
+        form = complete_form(entered_data)
+        form.validate()
+        # then
+        assert_that(form.overtime.errors, has_length(0))
 
-#
-#
-#class TestJobTitleValidation(unittest.TestCase):
-#    def test_job_title_field_allows_strings(self):
+    def test_overtime_has_been_selected(self):
+        # given
+        entered_data = complete_form_data()
+        entered_data['overtime'] = None
+        # when
+        form = complete_form(entered_data)
+        form.validate()
+        # then
+        assert_that(form.overtime.errors, has_item("Invalid value, must be one of: Yes, No."))
+
+class TestNormalDaysOfWork(unittest.TestCase):
+    def test_normal_days_of_work_accepts_an_integer(self):
+        # given
+        entered_data = complete_form_data()
+        # when
+        form = complete_form(entered_data)
+        form.validate()
+        # then
+        assert_that(form.normal_days_of_work.errors, has_length(0))
+
+    def test_normal_days_of_work_will_not_accept_alpha_character(self):
+        # given
+        entered_data = complete_form_data()
+        entered_data['normal_days_of_work'] = 'a'
+        # when
+        form = complete_form(entered_data)
+        form.validate()
+        # then
+        assert_that(form.normal_days_of_work.errors, has_item('Number must be between 0 and 7.'))
+
+    def test_normal_days_of_work_will_not_accept_more_than_one_digit(self):
+        # given
+        entered_data = complete_form_data()
+        entered_data['normal_days_of_work'] = '12'
+        # when
+        form = complete_form(entered_data)
+        form.validate()
+        # then
+        assert_that(form.normal_days_of_work.errors, has_item('Number must be between 0 and 7.'))
+
+    #issues with the DataRequired validator as zero is falsy
+#    def test_normal_days_of_work_will_accept_zero(self):
 #        # given
 #        entered_data = complete_form_data()
+#        entered_data['normal_days_of_work'] = 0
 #        # when
 #        form = complete_form(entered_data)
+#        form.normal_days_of_work.raw_data = form.normal_days_of_work.data
 #        form.validate()
 #        # then
-#        assert_that(form.job_title.errors, has_length(0))
+#        assert_that(form.normal_days_of_work.errors, has_item('Number must be between 0 and 7.'))
 #
-#    def test_job_title_field_can_be_no_longer_than_30_characters(self):
-#        # given
-#        entered_data = complete_form_data()
-#        entered_data['job_title'] = 'a' * 31
-#        # when
-#        form = complete_form(entered_data)
-#        form.validate()
-#        # then
-#        assert_that(form.job_title.errors, has_item('Field cannot be longer than 30 characters.'))
