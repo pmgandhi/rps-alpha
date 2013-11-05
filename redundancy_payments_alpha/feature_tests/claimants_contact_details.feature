@@ -4,8 +4,8 @@ Feature: claimants contact details
         Given the app is running
          When we visit /claim-redundancy-payment/personal-details/
          Then the page should have title "Claimant Contact Details"
-          And the page should have an input field called "forenames" labeled "Forename(s)"
-          And the page should have an input field called "surname" labeled "Surname"
+          And the page should have an input field called "forenames" labeled "First name(s)"
+          And the page should have an input field called "surname" labeled "Last name"
           And the page should have an input field called "title" labeled "Title"
           And the page should have an input field called "other" labeled "Other"
           And the page should have an input field called "building_number" labeled "Building Number"

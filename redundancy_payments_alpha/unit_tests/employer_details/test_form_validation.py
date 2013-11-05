@@ -1,3 +1,4 @@
+from datetime import datetime
 import unittest
 from hamcrest import assert_that, is_, has_length, has_item
 from ...claimants_user_journey.forms.employment_details import EmploymentDetails
@@ -71,7 +72,7 @@ class TestCategoryOfWorker(unittest.TestCase):
         form = complete_form(entered_data)
         form.validate()
         # then
-        assert_that(form.category_of_worker.errors, has_item('Invalid value, must be one of: Employed, Labour-only, Sub-contractor, Agency Worker, Fixed-term contracts work, Director or Shareholder, Freelance worker, Casual worker, Home worker.'))
+        assert_that(form.category_of_worker.errors, has_item('Invalid value, must be one of: Employed, Labour-only Sub-contractor, Agency Worker, Fixed-term contracts work, Director or Shareholder, Freelance worker, Casual worker, Home worker.'))
 
 class TestStartDate(unittest.TestCase):
     def test_start_date_field_allows_a_valid_date(self):
@@ -91,7 +92,29 @@ class TestStartDate(unittest.TestCase):
         form = complete_form(entered_date)
         form.validate()
         # then
-        assert_that(form.start_date.errors, has_item("Date must be in the format dd/mm/yyyy.") )
+        assert_that(form.start_date.errors, has_item("Start date must be in the format dd/mm/yyyy.") )
+
+    def test_start_date_field_does_not_display_the_int_parsing_error_when_letters_are_used_in_place_of_numbers(self):
+        # given
+        entered_date = complete_form_data()
+        entered_date['start_date'] = 'aa/bb/cccc'
+        # when
+        form = complete_form(entered_date)
+        form.validate()
+        # then
+        assert_that(form.start_date.errors, has_item("Start date must be in the format dd/mm/yyyy.") )
+        assert_that(form.start_date.errors, has_length(1))
+
+    def test_start_date_field_is_invalid_with_date_greater_than_today(self):
+        # given
+        entered_date = complete_form_data()
+        entered_date['start_date'] = '20/01/3000'
+        # when
+        form = complete_form(entered_date)
+        form.validate()
+        # then
+        assert_that(form.start_date.errors, has_item("Start date cannot be in the future.") )
+
 
 class TestEndDate(unittest.TestCase):
     def test_end_date_field_allows_a_valid_date(self):
@@ -111,4 +134,26 @@ class TestEndDate(unittest.TestCase):
         form = complete_form(entered_date)
         form.validate()
         # then
-        assert_that(form.end_date.errors, has_item("Date must be in the format dd/mm/yyyy.") )
+        assert_that(form.end_date.errors, has_item("End date must be in the format dd/mm/yyyy.") )
+
+    def test_end_date_field_does_not_display_the_int_parsing_error_when_letters_are_used_in_place_of_numbers(self):
+        # given
+        entered_date = complete_form_data()
+        entered_date['end_date'] = 'aa/bb/cccc'
+        # when
+        form = complete_form(entered_date)
+        form.validate()
+        # then
+        assert_that(form.end_date.errors, has_item("End date must be in the format dd/mm/yyyy.") )
+        assert_that(form.end_date.errors, has_length(1))
+
+    def test_start_date_field_is_invalid_with_date_greater_than_today(self):
+        # given
+        entered_date = complete_form_data()
+        entered_date['end_date'] = '20/01/3000'
+        # when
+        form = complete_form(entered_date)
+        form.validate()
+        # then
+        assert_that(form.end_date.errors, has_item("End date cannot be in the future.") )
+

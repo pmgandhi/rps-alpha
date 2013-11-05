@@ -1,11 +1,9 @@
-Code Choice
-===========
 
 The choice made was *Python*
 
 The following factors were considered in the initial selection;
 
-* Has at least one proven (used for a major commercial website) web framework.
+* Be a modern, mainstream commercial language.
 * At least one of the TW/GDS developers has enough experience to coach other people.
 * Being able to develop and host on Linux and Windows, due to GDS alpha hosting, and INSS potential beta/live hosting.
 
@@ -29,13 +27,12 @@ Performance was considered but, while the non interpreted languages perform slig
 **Scala**
 
 * Initially steep learning curve (possibly too steep for a seven week alpha).
-* Speed of development while learning is very low, but can be very rapid for experienced developers (more so than Python, Java, C#. Comparable to Ruby?)
+* Speed of development while learning is very low, but can be very rapid for experienced developers.
 * Enough experience to coach in GDS and TW
 * No one mentioned any problems, as long as people don't start abusing features like operator overloading
 
 **Ruby**
 
-* Very similar to Scala for most criteria
 * The developers who have used Ruby mentioned three main criticisms;
 * It's easy for people to write “bad” code
 * People can write code that, while clever, takes a long time to understand
@@ -43,8 +40,8 @@ Performance was considered but, while the non interpreted languages perform slig
 
 **Python**
 
-* Fairly even learning curve, and considered by some TW and INSS developers to be the most intuitive of the languages.
-* Speed of development is fairly good, while it will increase with experience, it's unlikely to be as rapid as Ruby or Scala.
+* Shallow learning curve, and considered by some TW and INSS developers to be the most intuitive of the languages.
+* Speed of development is good, and will increase with experience.
 * Enough experience to coach in GDS and TW
 * The main positive with Python is the design principles which favour simplicity, readability, and intuitiveness.
 
@@ -53,13 +50,13 @@ Performance was considered but, while the non interpreted languages perform slig
 * Fairly even learning curve, and most (although not all) INSS developers have some prior experience.
 * Speed of development can be slow compared with the other languages
 * Enough experience for coaching
+* Frameworks and infrastructure would be a drag on tight Alpha timeline.
 
 **C#**
 
-* Fairly even learning curve, and it's the one INSS have most experience with by a long way. Would still need to learn some new skills, as MVC is a lot more useful for this type of project than the web forms we're used to.
+* The language INSS have most experience with by a long way. Would still need to learn some new skills, as MVC is a lot more useful for this type of project than the web forms we're used to.
 * Speed of development comparable with Python
 * Enough experience for coaching were necessary
 * Negatives are;
-
     * It's the only language with large proprietary licensing costs attached
     * Would be missing a unique opportunity to broaden our skills base

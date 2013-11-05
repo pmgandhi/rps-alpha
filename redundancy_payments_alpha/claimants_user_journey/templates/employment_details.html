@@ -13,13 +13,17 @@
 {% block content %}
     <h1>Employer details</h1>
         <form method="post" action="/claim-redundancy-payment/employment-details/" class="form-example-1">
-            <div>
+            <fieldset>
+                <legend>Your employment</legend>
                 {{ form.hidden_tag() }}
                 {{ form_field(form.job_title) }}
                 {{ form_field(form.category_of_worker) }}
-                {{ form_field(form.start_date) }}
-                {{ form_field(form.end_date) }}
-            </div>
+            </fieldset>
+            <fieldset>
+                <legend>Dates of employment</legend>
+                {{ form_field(form.start_date, hint="Use the dd/mm/yyyy format, for example 01/01/1975") }}
+                {{ form_field(form.end_date, hint="Use the dd/mm/yyyy format, for example 01/01/1975") }}
+            </fieldset>
             <input type="submit" value="Submit" />
         </form>
 {% endblock %}

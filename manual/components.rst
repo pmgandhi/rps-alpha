@@ -1,5 +1,12 @@
-Chomp
-=====
+Components
+==========
+
+claim_form
+----------
+Is a claim form.
+
+chomp
+-----
 1. Create a fake DMS ID.
  a. The DMS ID is a string. Can the first character be alpha, so that it doesn't conflict with wisdom.
 2. Web Dav URL
