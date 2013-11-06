@@ -2,16 +2,7 @@
 classes:
   - base
   - shell
-  - baseconfig
 packages:
   - vim-nox
   - git-core
   - make
-  - python-pip
-  - python-virtualenv
-  - virtualenvwrapper
-
-ssl::params::ssl_path: '/etc/ssl'
-ssl::params::ssl_cert_file: 'certs/ssl-cert-snakeoil.pem'
-ssl::params::ssl_key_file: 'private/ssl-cert-snakeoil.key'
-

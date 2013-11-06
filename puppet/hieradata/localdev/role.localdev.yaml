@@ -1,2 +1,9 @@
 ---
 # localdev is a combination of app and db roles
+classes:
+  - baseconfig
+
+packages:
+  - python-pip
+  - python-virtualenv
+  - virtualenvwrapper
