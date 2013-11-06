@@ -13,3 +13,4 @@ dist/
 wheelhouse/
 *.egg-info/
 *~
+nosetests.xml
