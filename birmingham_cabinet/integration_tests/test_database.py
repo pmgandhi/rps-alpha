@@ -1,6 +1,6 @@
 import unittest
 
-from birmingham_cabinet.base import make_session, Base, engine
+from birmingham_cabinet.base import make_session, Base
 from birmingham_cabinet.models import Claimant
 
 class TestDatabase(unittest.TestCase):
@@ -17,7 +17,7 @@ class TestDatabase(unittest.TestCase):
         claimant.claimant_id = 1000
         self.session.add(claimant)
         self.session.commit()
-        
+
         found = self.session.query(Claimant).filter(
             Claimant.claimant_id == 1000).count()
         self.assertEqual(found, 1)
