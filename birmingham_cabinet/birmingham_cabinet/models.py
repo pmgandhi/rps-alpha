@@ -25,6 +25,7 @@ class Employer(Base):
     __tablename__ = "employers"
 
     employer_id = Column(Integer, primary_key=True)
+    ip_number = Column(Text, nullable=False)
     employer_name  = Column(Text, nullable=False)
     company_number  = Column(Text, unique=True, index=True, nullable=False)
     date_of_insolvency  = Column(Date, nullable=False)

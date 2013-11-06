@@ -41,6 +41,7 @@ def step(context):
 @when("we add a dictionary containing sample rp14 details")
 def step(context):
     context.form = {
+        "ip_number": "9314",
         "employer_name": "Mickey Mouse Enterprises",
         "company_number": "010101",
         "date_of_insolvency": "01/01/1900",
@@ -55,6 +56,7 @@ def step(context):
         employer = session.query(Employer).all() [0]
         date_of_insolvency = datetime.strptime(
             context.form["date_of_insolvency"], "%d/%m/%Y").date()
+        assert_that(employer.ip_number, is_(context.form["ip_number"]))
         assert_that(employer.employer_name, is_(context.form["employer_name"]))
         assert_that(employer.company_number, is_(context.form["company_number"]))
         assert_that(employer.date_of_insolvency, is_(date_of_insolvency))
