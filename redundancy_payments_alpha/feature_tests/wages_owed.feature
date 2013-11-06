@@ -12,7 +12,7 @@ Feature: wages owed
        And the page should have an input field called "failed_payment_from" labeled "From"
        And the page should have an input field called "failed_payment_to" labeled "To"
        And the page should have an input field called "net_amount" labeled "Net Amount of bounced cheque or failed payment"
-       And the page should have subtitle "Failed Payment - Did your employer try to pay you and the payment fail or cheque bounce?"
+       And the page should have subtitle "Failed Payment - If your employer attempted to pay your wages and that payment failed (e.g cheque bounced) please provide details below:"
 
     Scenario: submit valid information
         Given that I am entering the unpaid wage information
