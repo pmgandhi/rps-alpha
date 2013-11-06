@@ -16,7 +16,7 @@ class Claimant(Base):
     title = Column(Text, nullable=False)
     forenames = Column(Text, nullable=False)
     surname  = Column(Text, nullable=False)
-    nino = Column(Text) # nullable?
+    nino = Column(Text, nullable=False)
     date_of_birth = Column(Date, nullable=False)
     hstore = Column(HSTORE)
 
@@ -32,11 +32,15 @@ class Employer(Base):
     hstore = Column(HSTORE)
 
 
-class InsolvencyPractitioner(Base):
-    __tablename__ = "insolvency_practitioners"
+class Employee(Base):
+    __tablename__ = "employees"
 
-    ip_id = Column(Integer, primary_key=True)
-    name  = Column(Text, nullable=False)
-    registration_number  = Column(Text, nullable=False)
-    insolvency_practitioner_firm  = Column(Text, nullable=False) # FK?
+    employee_id = Column(Integer, primary_key=True)
+    employer_name  = Column(Text, nullable=False)
+    title = Column(Text, nullable=False)
+    forenames = Column(Text, nullable=False)
+    surname  = Column(Text, nullable=False)
+    nino = Column(Text, nullable=False)
+    date_of_birth = Column(Date, nullable=False)
+    ip_number = Column(Text, nullable=False)
     hstore = Column(HSTORE)

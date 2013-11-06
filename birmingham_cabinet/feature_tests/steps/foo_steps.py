@@ -1,7 +1,11 @@
 from hamcrest import assert_that, is_
 
-from birmingham_cabinet.api import add_rp1_form, add_rp14_form
-from birmingham_cabinet.models import Claimant, Employer
+from birmingham_cabinet.api import (
+    add_rp1_form, 
+    add_rp14_form,
+    add_rp14a_form,
+    )
+from birmingham_cabinet.models import Claimant, Employer, Employee
 from birmingham_cabinet.base import make_session
 from datetime import datetime
 
@@ -61,5 +65,29 @@ def step(context):
         assert_that(employer.company_number, is_(context.form["company_number"]))
         assert_that(employer.date_of_insolvency, is_(date_of_insolvency))
         assert_that(employer.hstore, is_(context.form))
+    finally:
+        session.close()
+
+@when("we add a dictionary containing sample rp14a details")
+def step(context):
+    context.form = {
+        "ip_number": "9314",
+        "telephone_number": "0121 123 4567",
+        'forenames': 'Donald',
+        'surname': 'Duck',
+        'title': 'Mr',
+        'date_of_birth': '01/01/1900',
+        'nino': 'AA112233B',
+        "employer_name": "Mickey Mouse Enterprises",
+    }
+    add_rp14a_form(context.form)
+
+@then("the data store should contain an employee")
+def step(context):
+    session = make_session()
+    try:
+        employee = session.query(Employee).all() [0]
+        assert_that(employee.ip_number, is_(context.form["ip_number"]))
+        assert_that(employee.hstore, is_(context.form))
     finally:
         session.close()
