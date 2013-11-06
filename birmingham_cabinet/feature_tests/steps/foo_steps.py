@@ -3,10 +3,11 @@ from hamcrest import assert_that, is_
 from birmingham_cabinet.api import add_rp1_form, add_rp14_form
 from birmingham_cabinet.models import Claimant, Employer
 from birmingham_cabinet.base import make_session
+from datetime import datetime
 
 @when('we add a dictionary containing sample rp1 details')
 def step(context):
-    form = {
+    context.form = {
         'forenames': 'Donald',
         'surname': 'Duck',
         'title': 'Mr',
@@ -21,30 +22,42 @@ def step(context):
         'nino': 'AA112233B',
         'date_of_birth': '01/01/1900'
     }
-    add_rp1_form(form)
-    
+    add_rp1_form(context.form)
+
 @then('the data store should contain a claimant')
 def step(context):
     session = make_session()
     try:
-        assert_that(session.query(Claimant).count(), is_(1))
+        claimant = session.query(Claimant).all()[0]
+        date_of_birth = datetime.strptime(
+            context.form["date_of_birth"], "%d/%m/%Y").date()
+        assert_that(claimant.title, is_(context.form["title"]))
+        assert_that(claimant.nino, is_(context.form["nino"]))
+        assert_that(claimant.date_of_birth, is_(date_of_birth))
+        assert_that(claimant.hstore, is_(context.form))
     finally:
         session.close()
-        
+
 @when("we add a dictionary containing sample rp14 details")
 def step(context):
-    form = {
+    context.form = {
         "employer_name": "Mickey Mouse Enterprises",
         "company_number": "010101",
         "date_of_insolvency": "01/01/1900",
         "telephone_number": "12345 123456"
     }
-    add_rp14_form(form)
+    add_rp14_form(context.form)
 
 @then("the data store should contain an employer")
 def step(context):
     session = make_session()
     try:
-        assert_that(session.query(Employer).count(), is_(1))
+        employer = session.query(Employer).all() [0]
+        date_of_insolvency = datetime.strptime(
+            context.form["date_of_insolvency"], "%d/%m/%Y").date()
+        assert_that(employer.employer_name, is_(context.form["employer_name"]))
+        assert_that(employer.company_number, is_(context.form["company_number"]))
+        assert_that(employer.date_of_insolvency, is_(date_of_insolvency))
+        assert_that(employer.hstore, is_(context.form))
     finally:
         session.close()
