@@ -13,7 +13,6 @@ def employer_details():
     if form.validate_on_submit():
         return redirect(url_for('case_created'))
     else:
-        print form.errors, '<---------------'
         return render_template('insolvency_case_form.html', form=form)
 
 

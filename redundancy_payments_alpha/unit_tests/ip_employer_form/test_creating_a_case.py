@@ -13,7 +13,7 @@ class TestCreatingAnInsolvencyCase(form_test.FormTest):
             'company_number': '98998987',
             'nature_of_business': 'Stealing gold from Italian banks',
             'date_of_insolvency': '01/05/2013',
-            'type_of_insolvency': 'Compulsory Liquidation (WUO)',
+            'type_of_insolvency': 'compulsory_liquidation',
             'insolvency_practitioner_name': 'Tywin Lannster',
             'insolvency_practitioner_registration': '9888',
             'insolvency_practitioner_firm':'House Lannister',

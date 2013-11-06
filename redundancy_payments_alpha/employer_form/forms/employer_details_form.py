@@ -1,14 +1,47 @@
 import time
 from flask_wtf import Form
-from wtforms import TextField
-from wtforms.validators import DataRequired, ValidationError, Length
+from wtforms import TextField, SelectField
+from wtforms.validators import DataRequired, ValidationError, Length, AnyOf
 
 class EmployerDetailsForm(Form):
     company_name  = TextField('Company Name', validators=[DataRequired(), Length(max=60)])
     company_number  = TextField('Company Number', validators=[Length(max=10)])
     nature_of_business  = TextField('Nature of Business', validators=[DataRequired(), Length(max=60)])
     date_of_insolvency  = TextField('Date of Insolvency', validators=[DataRequired()])
-    type_of_insolvency  = TextField('Type of Insolvency', validators=[DataRequired()])
+    type_of_insolvency  = SelectField(
+        'Type of Insolvency',
+        choices=[
+            ('creditors_voluntary_liquidation', 'Creditors Voluntary Liquidation (CVL)'),
+            ('compulsory_liquidation', 'Compulsory Liquidation (WUO)'),
+            ('company_voluntary_arrangement', 'Company Voluntary Arrangement (CVA)'),
+            ('administration', 'Administration'),
+            ('administrative_receivership', 'Administrative Receivership'),
+            ('bankruptcy', 'Bankruptcy'),
+            ('individual_voluntary_arrangements', 'Individual Voluntary Arrangements (IVA)'),
+            ('members_voluntary_liquidation', 'Members Voluntary Liquidation (MVL)'),
+            ('dro', 'DRO'),
+            ('employer_deceased_judicial_factor', 'Employer Deceased - Judicial Factor'),
+            ('employer_deceased_estate_insolvent', 'Employer Deceased - Estate Insolvent'),
+            ('individual_voluntary_arrangements', 'Individual Voluntary Arrangements (IVA)'),
+            ('sequestrian', 'Sequestrian'),
+            ('','')
+        ],
+        validators=[AnyOf([
+            'creditors_voluntary_liquidation',
+            'compulsory_liquidation',
+            'company_voluntary_arrangement',
+            'administration',
+            'administrative_receivership',
+            'bankruptcy',
+            'individual_voluntary_arrangements',
+            'members_voluntary_liquidation',
+            'dro',
+            'employer_deceased_judicial_factor',
+            'employer_deceased_estate_insolvent',
+            'individual_voluntary_arrangements',
+            'sequestrian'
+        ])]
+    )
     insolvency_practitioner_name  = TextField('Insolvency Practitioner Name', validators=[DataRequired(), Length(max=30)])
     insolvency_practitioner_registration  = TextField('Insolvency Practitioner Registration', validators=[DataRequired(), Length(max=15)])
     insolvency_practitioner_firm  = TextField('Insolvency Practitioner Firm', validators=[DataRequired(), Length(max=30)])

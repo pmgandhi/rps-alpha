@@ -24,7 +24,7 @@ class TestFormValidation(form_test.FormTest):
             has_item('Date must be in the format dd/mm/yyyy.')
         )
 
-    def test_date_validation(self):
+    def test_company_number_validation(self):
         # given
         form = self.create_form(
             routes.app,
@@ -58,6 +58,24 @@ class TestFormValidation(form_test.FormTest):
         assert_that(
             form.insolvency_practitioner_registration.errors,
             has_item('Insolvency Practitioner Registration must be a number.')
+        )
+
+    def test_insolvency_type_validation(self):
+        # given
+        form = self.create_form(
+            routes.app,
+            'create-insolvency-case/employer-details/',
+            EmployerDetailsForm,
+            type_of_insolvency='wibble'
+        )
+        
+        # when
+        form.validate()
+
+        # then
+        assert_that(
+            form.type_of_insolvency.errors,
+            has_item('Not a valid choice')
         )
 
     def test_field_lengths(self):
