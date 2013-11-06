@@ -40,7 +40,7 @@ class EmployerDetailsForm(Form):
             'employer_deceased_estate_insolvent',
             'individual_voluntary_arrangements',
             'sequestrian'
-        ])]
+        ], message="Please choose a type of insolvency.")]
     )
     insolvency_practitioner_name  = TextField('Insolvency Practitioner Name', validators=[DataRequired(), Length(max=30)])
     insolvency_practitioner_registration  = TextField('Insolvency Practitioner Registration', validators=[DataRequired(), Length(max=15)])
