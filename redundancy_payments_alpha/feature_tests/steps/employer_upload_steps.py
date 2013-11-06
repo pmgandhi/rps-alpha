@@ -1,7 +1,6 @@
 from behave import *
 from ..employer_form import routes
 
-test_client = routes.app.test_client()
 
 @given('the employer information')
 def step(context):
@@ -12,12 +11,13 @@ def step(context):
 
 @when('the insolvency practitioner submits the employer information')
 def step(context):
-    test_client.get('/create-insolvency-case/employer-details')
-    # some code to get csrf token
+    other_test_client = routes.app.test_client()
+    print test_client.get('/_status/').data, '<---------------------'
     csrf_token = None
     context.employer_information['csrf_token'] = csrf_token
-    test_client.post(
-        '/create-insolvency-case/employer-details',
+    response = test_client.post(
+        '/create-insolvency-case/employer-details/',
         data=context.employer_information
     )
+    assert_that(response.status_code, is_(200))
 

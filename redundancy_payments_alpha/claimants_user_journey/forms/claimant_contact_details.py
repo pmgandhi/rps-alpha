@@ -67,3 +67,4 @@ class ClaimantContactDetails(Form):
             raise ValidationError('Date Of Birth must be greater than or equal to 1900 and not in the future.')
         if parsed_date.year < 1900 or parsed_date >= date.today():
             raise ValidationError('Date Of Birth must be greater than or equal to 1900 and not in the future.')
+
