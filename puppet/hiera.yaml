@@ -12,9 +12,12 @@
   - "%{::environment}/role.%{::role}"
   - "%{::environment}/mod.%{module_name}"
   - "%{::environment}/common"
+  - "%{::environment}/common-prv"
 
   # Common to all environments
   - "%{::hostname}"
+  - "%{::hostname}-prv"
   - "role.%{::role}"
+  - "role.%{::role}-prv"
   - "mod.%{module_name}"
   - common
