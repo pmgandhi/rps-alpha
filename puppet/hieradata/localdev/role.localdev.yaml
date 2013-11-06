@@ -1,6 +1,12 @@
 ---
 # localdev is a combination of app and db roles
 classes:
+  - baseconfig
   - mongodb
+
+packages:
+  - python-pip
+  - python-virtualenv
+  - virtualenvwrapper
 
 mongodb::enable_10gen: true
