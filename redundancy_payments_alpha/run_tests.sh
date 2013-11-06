@@ -17,6 +17,6 @@ if [ -z "$VIRTUAL_ENV" -a -n "$WORKON_HOME" ]; then
   pip install -r requirements.dev.txt
 fi
 
-nosetests --exe
+nosetests --exe --with-xunit
 
 behave -q --tags=-wip --stop feature_tests/
