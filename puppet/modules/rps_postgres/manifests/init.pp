@@ -6,6 +6,7 @@ class rps_postgres {
     # files (which are pre-compiled binaries) but for now, just put this
     # everywhere that we put postgres
     class {'postgresql::lib::devel': }
+    class {'postgresql::server::contrib': }
     package {'build-essential': }
     package {'python-dev': }
 
@@ -30,5 +31,11 @@ class rps_postgres {
     }
 
     postgresql::server::database { 'rps_alpha': }
+
+    exec {'add hstore to the template table':
+        command => "/usr/bin/psql template1 -c 'create extension hstore;'",
+        user    => 'postgres',
+        require => Class['postgresql::server::contrib']
+    }
 
 }
