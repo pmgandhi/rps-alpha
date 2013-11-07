@@ -41,7 +41,7 @@ def read_xml_template_from(filename):
 def generate_dms_id():
     """This function just returns a random DMS id, while we are not integrating with Wisdom
     """
-    return randint(6000000000,7000000000)
+    return str(randint(6000000000,7000000000))
 
 def generate_accept_doc_request(dms_id):
     """This function just takes a dms_id and returns a long string which is an accept_doc request
@@ -58,6 +58,16 @@ def generate_rp1_request(dms_id, json_data):
     dms_dict = {'dmsid': dms_id}
     json_data.update(dms_dict)
     return template.render(json_data)
+
+RP14_TEMPLATE = "templates/champ_rp14_payload.xml"
+
+def generate_rp14_request(json_data):
+    """This function takes the json data and returns a long string which is a valid rp14 xml request
+    """
+    xml_template = read_xml_template_from(RP14_TEMPLATE)
+    template = Template(xml_template)
+    print json_data
+    return template.render()
 
 def write_out_to_file(payload, filename):
     """This function...
