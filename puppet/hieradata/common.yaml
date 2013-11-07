@@ -12,6 +12,8 @@ packages:
   - iotop
   - mailutils
   - make
+  - man-db
+  - man-pages
   - screen
   - sysstat
   - traceroute
