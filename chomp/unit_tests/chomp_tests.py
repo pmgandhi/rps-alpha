@@ -43,7 +43,9 @@ def test_happy_rp1_json_is_mapped_to_valid_champ_xml():
     # when
     xml_payload = generate_rp14_request(employer_json)
     # then
-    assert_that(employer_json['company_name'], is_(get_xml_attribute_from(xml_payload, "company_name")))
+
+def check_xml_attribute_is_populated_from_json(xml, attribute, json):
+    assert_that(json[attribute], is_(get_xml_attribute_from(xml, attribute)))
 
 
 
