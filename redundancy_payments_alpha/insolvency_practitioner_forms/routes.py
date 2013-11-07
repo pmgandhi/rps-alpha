@@ -1,6 +1,7 @@
 from flask import Flask, url_for, request, render_template
 from werkzeug.utils import redirect
 from forms.employer_details_form import EmployerDetailsForm
+from forms.employee_details_form import EmployeeDetailsForm
 
 app = Flask(__name__)
 app.secret_key = 'i_am_a_secret'
@@ -20,6 +21,11 @@ def employer_details():
 def case_created():
     return 'ok'
 
+
+@app.route('/create-employee-record/employee-details', methods=['GET'])
+def employee_details():
+    form = EmployeeDetailsForm()
+    return render_template('employee_details_form.html', form=form)
 
 if __name__ == '__main__':
     app.run()
