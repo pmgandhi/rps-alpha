@@ -5,11 +5,11 @@ mod 'puppetlabs/razor'
 mod 'puppetlabs/git',              '0.0.2'
 
 
-mod 'jenkins',      :git => 'git://github.com/alphagov/puppet-jenkins.git',
+mod 'jenkins',      :git => 'https://github.com/alphagov/puppet-jenkins.git',
                     :ref => 'ca40459bea5a9dc91e12e8014c9878fcd2856ee7'
-mod 'nginx',        :git => 'git://github.com/alphagov/puppet-nginx.git',
+mod 'nginx',        :git => 'https://github.com/alphagov/puppet-nginx.git',
                     :ref => '1a87dd9fb29f5f137e3d4ee42ddcf45c9054700e'
-mod 'ssl',          :git => 'git://github.com/alphagov/puppet-ssl.git',
+mod 'ssl',          :git => 'https://github.com/alphagov/puppet-ssl.git',
                     :ref => '23bbb5ab57f26269acce3d4b43e643781747a551'
 mod 'python',       :git => 'https://github.com/stankevich/puppet-python.git',
                     :ref => 'e47c5bbc602cdc7d0e2c1fffe890517dd190999c'
