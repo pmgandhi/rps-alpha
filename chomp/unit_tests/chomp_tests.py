@@ -6,7 +6,7 @@ import json
 from ..chomp import generate_dms_id, generate_rp14_request
 
 def test_law_of_excluded_middle():
-    """Testing the longstanding Aristotelian axiom.
+    """Test the longstanding Aristotelian axiom.
     """
     assert_that(True, is_(True))
 
@@ -37,15 +37,24 @@ def get_xml_attribute_from(xml_fragment, attr_name):
     xml_soup = BeautifulSoup(xml_fragment, "xml")
     return xml_soup.find("NameOfBusiness").contents[0]
 
+def check_xml_attribute_is_populated_from_json(xml, xml_attribute, json_attribute, json):
+    assert_that(json[json_attribute], is_(get_xml_attribute_from(xml, xml_attribute)))
+
 def test_happy_rp1_json_is_mapped_to_valid_champ_xml():
     # given
     employer_json = json.loads(HAPPY_PATH_EMPLOYER_DETAILS_JSON)["employer_details"]
     # when
     xml_payload = generate_rp14_request(employer_json)
+    # and
+    field_mapping = {
+        "NameOfBusiness" : "company_name",
+        "NameOfBusiness" : "company_name",
+    }
     # then
+    for xml_attribute, json_attribute in field_mapping.iteritems():
+        yield check_xml_attribute_is_populated_from_json, xml_payload, xml_attribute,\
+              json_attribute, employer_json
 
-def check_xml_attribute_is_populated_from_json(xml, attribute, json):
-    assert_that(json[attribute], is_(get_xml_attribute_from(xml, attribute)))
 
 
 
