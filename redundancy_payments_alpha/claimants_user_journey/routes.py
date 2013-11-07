@@ -18,7 +18,7 @@ def nav_links():
         ('Start', url_for('start')),
         ('Personal Details', url_for('personal_details')),
         ('Employment Details', url_for('employment_details')),
-        ('Unpaid Wages', url_for('wages_owed')),
+        ('Wages Owed', url_for('wages_owed')),
         ('Wage Details', url_for('wage_details')),
         ('Holiday Pay', url_for('holiday_pay')),
         ('Summary', url_for('summary')),
@@ -73,7 +73,7 @@ def employment_details():
     return render_template('employment_details.html', form=form, nav_links=nav_links())
 
 
-@app.route('/claim-redundancy-payment/unpaid-wages-details/', methods=['GET', 'POST'])
+@app.route('/claim-redundancy-payment/wages-owed-details/', methods=['GET', 'POST'])
 def wages_owed():
     existing_form = session.get('wages_owed')
 
