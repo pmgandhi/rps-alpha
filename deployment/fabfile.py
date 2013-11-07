@@ -1,4 +1,13 @@
-from fabric.api import abort, cd, env, roles, run, settings, task
+from fabric.api import (
+    abort,
+    cd,
+    env,
+    local,
+    roles,
+    run,
+    settings,
+    task,
+)
 from fabric.api import show, hide, put
 from fabric.api import fastprint
 
@@ -38,9 +47,13 @@ def fetch_artifact(puppet_env, job, artifact, dest, build_number='lastSuccessful
 
     run(cmd)
 
+@task
+def build_puppet():
+    local("../puppet/tools/build")
 
 @task
 def bootstrap_jenkins(deploy_env):
+    build_puppet()
     role = roles_for_host(env.host_string)[0]
     if role is not "ci":
         abort("Only CI boxes can be bootstrapped")
@@ -62,6 +75,7 @@ def bootstrap_jenkins(deploy_env):
 
 @task
 def puppet(deploy_env):
+    build_puppet()
     env.gateway = JUMP_HOSTS.get(deploy_env, None)
     role = roles_for_host(env.host_string)[0]
     if role is None:
@@ -81,5 +95,3 @@ def puppet(deploy_env):
                 '--modulepath modules:vendor/modules '
                 'manifests/site.pp"'.format(role=role, deploy_env=deploy_env))
     run('sudo rm -rf puppet puppet.tgz puppet-secrets.tgz')
-
-
