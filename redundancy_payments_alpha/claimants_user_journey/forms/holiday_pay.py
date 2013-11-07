@@ -2,25 +2,7 @@ from flask_wtf import Form
 from wtforms import TextField, RadioField
 from wtforms.validators import DataRequired, AnyOf, StopValidation
 from employment_details import FutureDateValidator
-
-class RequiredIfFieldHasValue(DataRequired):
-    # a validator which makes a field required if
-    # another field is set and has a truthy value
-    def __init__(self, other_field_name, other_field_value, *args, **kwargs):
-        self.other_field_name = other_field_name
-        self.other_field_value = other_field_value
-        super(RequiredIfFieldHasValue, self).__init__(*args, **kwargs)
-
-    def __call__(self, form, field):
-        other_field = form._fields.get(self.other_field_name)
-        if other_field is None:
-            raise Exception('no field named "%s" in form' % self.other_field_name)
-        if other_field.data == self.other_field_value:
-            super(RequiredIfFieldHasValue, self).__call__(form, field)
-        else:
-            #If it gets this far then the field is optional
-            field.errors[:] = []
-            raise StopValidation()
+from validators.Validators import RequiredIfFieldHasValue
 
 
 class HolidayPay(Form):

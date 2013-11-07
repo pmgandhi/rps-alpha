@@ -1,25 +1,7 @@
-import re
-from datetime import date
 from flask_wtf import Form
-from wtforms import TextField, SelectField, ValidationError
-from wtforms.validators import DataRequired, Length, AnyOf, Regexp
-from claimant_contact_details import convert_string_to_date
-
-
-class FutureDateValidator(Regexp):
-    def __init__(self, format_message, future_message):
-        self.future_message = future_message
-        super(FutureDateValidator, self).__init__(r'^[0-9]{2}[/][0-9]{2}[/][0-9]{4}$', re.IGNORECASE, format_message)
-
-    def __call__(self, form, field):
-        message = self.message
-        super(FutureDateValidator, self).__call__(form, field, message)
-        extracted_date = convert_string_to_date(field.data)
-        if self.future_message is None:
-            self.future_message = 'Date cannot be in the future'
-
-        if extracted_date > date.today():
-            raise ValidationError(self.future_message)
+from wtforms import TextField, SelectField
+from wtforms.validators import DataRequired, Length, AnyOf
+from validators.Validators import FutureDateValidator
 
 
 class EmploymentDetails(Form):
@@ -55,4 +37,3 @@ class EmploymentDetails(Form):
                            validators=[DataRequired(),
                                        FutureDateValidator(format_message="End date must be in the format dd/mm/yyyy.",
                                                            future_message='End date cannot be in the future.')])
-
