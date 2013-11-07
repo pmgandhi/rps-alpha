@@ -7,12 +7,6 @@ class baseconfig {
         source  => 'puppet:///modules/baseconfig/bashrc';
     }
 
-  class { 'python':
-        version    => 'system',
-        dev        => true,
-        virtualenv => true,
-        gunicorn   => true,
-    }
 
 }
 
