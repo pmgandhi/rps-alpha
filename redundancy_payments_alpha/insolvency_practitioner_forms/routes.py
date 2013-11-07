@@ -22,10 +22,18 @@ def case_created():
     return 'ok'
 
 
-@app.route('/create-employee-record/employee-details', methods=['GET'])
+@app.route('/create-employee-record/employee-details/', methods=['GET','POST'])
 def employee_details():
     form = EmployeeDetailsForm()
+    if form.validate_on_submit():
+        return redirect(url_for('employee_added'))
     return render_template('employee_details_form.html', form=form)
+
+
+@app.route('/create-employee-record/employee-added/')
+def employee_added():
+    return 'ok'
+
 
 if __name__ == '__main__':
     app.run()

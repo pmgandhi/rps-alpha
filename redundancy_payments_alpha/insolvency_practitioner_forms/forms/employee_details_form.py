@@ -1,8 +1,9 @@
 from flask_wtf import Form
 from wtforms import TextField, SelectField, DecimalField
+from wtforms.validators import ValidationError, Length, AnyOf
 
 class EmployeeDetailsForm(Form):
-    employer_name = TextField('Employer Name')
+    employer_name = TextField('Employer Name', validators=[Length(max=60)])
     employee_title = SelectField(
         default = '',
         choices = [
@@ -12,11 +13,17 @@ class EmployeeDetailsForm(Form):
             ('Ms', 'Ms'),
             ('Other', 'Other'),
             ('', '')
-        ]
+        ],
+        validators=[AnyOf(['Mr', 'Mrs', 'Miss', 'Ms', 'Other'])]
     )
-    employee_title_other = TextField('Title if other')
-    employee_forenames = TextField('Employee forenames')
-    employee_surname = TextField('Employee surname')
+    employee_title_other = TextField('Title if other', validators=[Length(max=15)])
+
+    def validate_employee_title_other(self, field):
+        if not field.data and self.employee_title.data == 'Other':
+            raise ValidationError('A title must be provided if other is selected.')
+
+    employee_forenames = TextField('Employee forenames', validators=[Length(max=40)])
+    employee_surname = TextField('Employee surname', validators=[Length(max=60)])
     employee_national_insurance_class = TextField('National insurance class')
     employee_national_insurance_number = TextField('National insurance number')
     employee_date_of_birth = TextField('Date of birth')

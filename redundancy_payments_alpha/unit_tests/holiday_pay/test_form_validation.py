@@ -33,7 +33,6 @@ class TestFormValidation(unittest.TestCase):
         # when
         form = complete_form(entered_data)
         form.validate()
-        print form.errors
 
         # then
         assert_that(form.days_carried_over.errors, has_length(0))
