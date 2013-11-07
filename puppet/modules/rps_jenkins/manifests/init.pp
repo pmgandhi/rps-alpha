@@ -11,14 +11,6 @@ class rps_jenkins {
             require => Class['apt::update'],
         }
 
-
-        file {"/etc/ssl/certs/ssl-cert-snakeoil.pem":
-          owner   => 'root',
-          group   => 'root',
-          mode    => '0600'
-        }
-
-
         class {'nginx::server':
         }
 

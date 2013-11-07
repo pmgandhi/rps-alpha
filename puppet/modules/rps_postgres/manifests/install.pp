@@ -6,11 +6,16 @@ class rps_postgres::install {
         type        => 'local',
         database    => 'all',
         user        => 'all',
-        auth_method => 'peer',
-        #require     => Class['postgresql::server']
+        auth_method => 'trust',
     }
 
-    postgresql::server::config_entry { 'ssl':
-      value => 'false',
+    postgresql::server::pg_hba_rule {'allow tcp localhost connections to access anything':
+        type        => 'host',
+        address     => '127.0.0.0/8',
+        database    => 'all',
+        user        => 'all',
+        auth_method => 'trust',
     }
+
+    postgresql::server::role { 'ubuntu': }
 }

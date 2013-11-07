@@ -53,7 +53,6 @@ def build_puppet():
 
 @task
 def bootstrap_jenkins(deploy_env):
-    build_puppet()
     role = roles_for_host(env.host_string)[0]
     if role is not "ci":
         abort("Only CI boxes can be bootstrapped")
@@ -75,7 +74,6 @@ def bootstrap_jenkins(deploy_env):
 
 @task
 def puppet(deploy_env):
-    build_puppet()
     env.gateway = JUMP_HOSTS.get(deploy_env, None)
     role = roles_for_host(env.host_string)[0]
     if role is None:
