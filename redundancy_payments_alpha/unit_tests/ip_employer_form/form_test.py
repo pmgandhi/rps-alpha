@@ -16,3 +16,4 @@ class FormTest(unittest.TestCase):
         with app.test_request_context(url):
             form = form_class(**kwargs)
         return form
+
