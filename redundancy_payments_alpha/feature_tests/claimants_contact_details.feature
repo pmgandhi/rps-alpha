@@ -8,11 +8,10 @@ Feature: claimants contact details
           And the page should have an input field called "surname" labeled "Last name"
           And the page should have an input field called "title" labeled "Title"
           And the page should have an input field called "other" labeled "Other"
-          And the page should have an input field called "building_number" labeled "Building Number"
-          And the page should have an input field called "street" labeled "Street"
-          And the page should have an input field called "district" labeled "District"
+          And the page should have an input field called "address_line_1" labeled "Line 1"
+          And the page should have an input field called "address_line_2" labeled "Line 2"
+          And the page should have an input field called "address_line_3" labeled "Line 3"
           And the page should have an input field called "town_or_city" labeled "Town or City"
-          And the page should have an input field called "county" labeled "County"
           And the page should have an input field called "postcode" labeled "Post Code"
           And the page should have an input field called "email" labeled "Email Address"
           And the page should have an input field called "telephone_number" labeled "Telephone Number"
@@ -25,11 +24,10 @@ Feature: claimants contact details
             | forenames         | Donald            |
             | surname           | Duck              |
             | title             | Mr                |
-            | building_number   | 1                 |
-            | street            | street name       |
-            | district          | some district     |
+            | address_line_1    | Line 1            |
+            | address_line_2    | Line 2            |
+            | address_line_3    | Line 3            |
             | town_or_city      | Duckburg          |
-            | county            | foobar            |
             | postcode          | a1 4lp            |
             | email             | duck@burg.com     |
             | telephone_number  | 00000 123456      |

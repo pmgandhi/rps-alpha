@@ -42,11 +42,10 @@ class ClaimantContactDetails(Form):
         if claimants_title.data == 'Other' and not field.data:
             raise ValidationError("Field is required if 'Other' is selected.")
 
-    building_number = StringField('Building Number', validators=[DataRequired(), Length(max=30)])
-    street = TextField('Street', validators=[DataRequired(), Length(max=30)])
-    district = TextField('District', validators=[DataRequired(), Length(max=30)])
+    address_line_1 = StringField('Line 1', validators=[DataRequired(), Length(max=30)])
+    address_line_2 = TextField('Line 2', validators=[DataRequired(), Length(max=30)])
+    address_line_3 = TextField('Line 3', validators=[DataRequired(), Length(max=30)])
     town_or_city = TextField('Town or City', validators=[DataRequired(), Length(max=30)])
-    county = TextField('County', validators=[DataRequired(), Length(max=30)])
     postcode = TextField('Post Code', validators=[DataRequired(), Length(max=10)])
     email = EmailField('Email Address', validators=[DataRequired(), Length(max=320), Email()])
     telephone_number = TelField('Telephone Number', validators=[DataRequired()])

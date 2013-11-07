@@ -19,11 +19,10 @@ def complete_form_data():
         'surname': 'Duck',
         'title': 'Mr',
         'other': '',
-        'building_number': '5',
-        'street': 'street name',
-        'district': 'district name',
+        'address_line_1': 'Address line 1',
+        'address_line_2': 'Address line 2',
+        'address_line_3': 'Address line 3',
         'town_or_city': 'Duckburg',
-        'county': 'county name',
         'postcode': 'A1 2BC',
         'email': 'donald.duck@duckburg.com',
         'telephone_number': '12345 123456',
@@ -87,7 +86,7 @@ class TestSurnameValidation(unittest.TestCase):
         assert_that(form.surname.errors, has_item('Field cannot be longer than 60 characters.'))
 
 
-class TestBuildingNumberValidation(unittest.TestCase):
+class TestAddressLine1Validation(unittest.TestCase):
     def test_building_number_field_allows_strings(self):
         # given
         entered_data = complete_form_data()
@@ -95,19 +94,19 @@ class TestBuildingNumberValidation(unittest.TestCase):
         form = complete_form(entered_data)
         form.validate()
         # then
-        assert_that(form.building_number.errors, has_length(0))
+        assert_that(form.address_line_1.errors, has_length(0))
 
     def test_building_number_field_can_be_no_longer_than_30_characters(self):
         # given
         entered_data = complete_form_data()
-        entered_data['building_number'] = 'a' * 31
+        entered_data['address_line_1'] = 'a' * 31
         # when
         form = complete_form(entered_data)
         form.validate()
         # then
-        assert_that(form.building_number.errors, has_item('Field cannot be longer than 30 characters.'))
+        assert_that(form.address_line_1.errors, has_item('Field cannot be longer than 30 characters.'))
 
-class TestStreetValidation(unittest.TestCase):
+class TestAddressLine2Validation(unittest.TestCase):
     def test_street_field_allows_strings(self):
         # given
         entered_data = complete_form_data()
@@ -115,19 +114,19 @@ class TestStreetValidation(unittest.TestCase):
         form = complete_form(entered_data)
         form.validate()
         # then
-        assert_that(form.street.errors, has_length(0))
+        assert_that(form.address_line_2.errors, has_length(0))
 
     def test_street_field_can_be_no_longer_than_30_characters(self):
         # given
         entered_data = complete_form_data()
-        entered_data['street'] = 'a' * 31
+        entered_data['address_line_2'] = 'a' * 31
         # when
         form = complete_form(entered_data)
         form.validate()
         # then
-        assert_that(form.street.errors, has_item('Field cannot be longer than 30 characters.'))
+        assert_that(form.address_line_2.errors, has_item('Field cannot be longer than 30 characters.'))
 
-class TestDistrictValidation(unittest.TestCase):
+class TestAddressLine3Validation(unittest.TestCase):
     def test_district_field_allows_strings(self):
         # given
         entered_data = complete_form_data()
@@ -135,17 +134,17 @@ class TestDistrictValidation(unittest.TestCase):
         form = complete_form(entered_data)
         form.validate()
         # then
-        assert_that(form.district.errors, has_length(0))
+        assert_that(form.address_line_3.errors, has_length(0))
 
     def test_district_field_can_be_no_longer_than_30_characters(self):
         # given
         entered_data = complete_form_data()
-        entered_data['district'] = 'a' * 31
+        entered_data['address_line_3'] = 'a' * 31
         # when
         form = complete_form(entered_data)
         form.validate()
         # then
-        assert_that(form.district.errors, has_item('Field cannot be longer than 30 characters.'))
+        assert_that(form.address_line_3.errors, has_item('Field cannot be longer than 30 characters.'))
 
 class TestTownOrCityValidation(unittest.TestCase):
     def test_town_or_city_field_allows_strings(self):
@@ -166,26 +165,6 @@ class TestTownOrCityValidation(unittest.TestCase):
         form.validate()
         # then
         assert_that(form.town_or_city.errors, has_item('Field cannot be longer than 30 characters.'))
-
-class TestCountyValidation(unittest.TestCase):
-    def test_county_field_allows_strings(self):
-        # given
-        entered_data = complete_form_data()
-        # when
-        form = complete_form(entered_data)
-        form.validate()
-        # then
-        assert_that(form.county.errors, has_length(0))
-
-    def test_county_field_can_be_no_longer_than_30_characters(self):
-        # given
-        entered_data = complete_form_data()
-        entered_data['county'] = 'a' * 31
-        # when
-        form = complete_form(entered_data)
-        form.validate()
-        # then
-        assert_that(form.county.errors, has_item('Field cannot be longer than 30 characters.'))
 
 class TestPostCodeValidation(unittest.TestCase):
     def test_post_code_field_allows_strings(self):
