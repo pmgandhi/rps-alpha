@@ -7,6 +7,6 @@ PROJECT_ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 cd $PROJECT_ROOT
 
-nosetests --exe --with-xunit
+nosetests --exe
 
 behave -q --tags=-wip --stop feature_tests/
