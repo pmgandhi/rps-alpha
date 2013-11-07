@@ -9,4 +9,8 @@ class rps_postgres::install {
         auth_method => 'peer',
         #require     => Class['postgresql::server']
     }
+
+    postgresql::server::config_entry { 'ssl':
+      value => 'false',
+    }
 }
