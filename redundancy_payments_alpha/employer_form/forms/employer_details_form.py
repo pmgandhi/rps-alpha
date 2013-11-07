@@ -10,7 +10,9 @@ class EmployerDetailsForm(Form):
     date_of_insolvency  = TextField('Date of Insolvency', validators=[DataRequired()])
     type_of_insolvency  = SelectField(
         'Type of Insolvency',
+        default='',
         choices=[
+            ('',''),
             ('creditors_voluntary_liquidation', 'Creditors Voluntary Liquidation (CVL)'),
             ('compulsory_liquidation', 'Compulsory Liquidation (WUO)'),
             ('company_voluntary_arrangement', 'Company Voluntary Arrangement (CVA)'),
@@ -23,8 +25,7 @@ class EmployerDetailsForm(Form):
             ('employer_deceased_judicial_factor', 'Employer Deceased - Judicial Factor'),
             ('employer_deceased_estate_insolvent', 'Employer Deceased - Estate Insolvent'),
             ('individual_voluntary_arrangements', 'Individual Voluntary Arrangements (IVA)'),
-            ('sequestrian', 'Sequestrian'),
-            ('','')
+            ('sequestrian', 'Sequestrian')
         ],
         validators=[AnyOf([
             'creditors_voluntary_liquidation',

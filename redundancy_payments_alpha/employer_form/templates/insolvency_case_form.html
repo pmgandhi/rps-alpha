@@ -6,14 +6,14 @@
     <body>
         <form method="post" action="/create-insolvency-case/employer-details/">
             <fieldset>
-                <legend>About the bussiness that has gone insolvent</legend>
+                <legend>About the business that has gone insolvent</legend>
                 {{ form_field(form.company_name) }}
-                {{ form_field(form.company_number) }}
+                {{ form_field(form.company_number, hint="For companies with numbers") }}
                 {{ form_field(form.nature_of_business) }}
             </fieldset>
             <fieldset>
                 <legend>About the Insolvency</legend>
-                {{ form_field(form.type_of_insolvency) }}
+                {{ form_field(form.type_of_insolvency, hint="Select from dropdown") }}
                 {{ form_field(form.date_of_insolvency) }}
             </fieldset>
             <fieldset>
