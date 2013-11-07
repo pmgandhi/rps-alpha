@@ -66,8 +66,7 @@ def generate_rp14_request(json_data):
     """
     xml_template = read_xml_template_from(RP14_TEMPLATE)
     template = Template(xml_template)
-    print json_data
-    return template.render()
+    return template.render(json_data)
 
 def write_out_to_file(payload, filename):
     """This function...

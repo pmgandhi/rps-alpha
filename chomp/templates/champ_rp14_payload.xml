@@ -3,7 +3,7 @@
    <soapenv:Body>
    <rp14:RP14>
  	<rp14:Header/>
-	<rp14:NameOfBusiness>THE EGG CAME FIRST</rp14:NameOfBusiness>
+	<rp14:NameOfBusiness>{{ company_name }}</rp14:NameOfBusiness>
 	<rp14:Directors>
 		<rp14:ClaimingRPAsEmployee>yes</rp14:ClaimingRPAsEmployee>
 	</rp14:Directors>
