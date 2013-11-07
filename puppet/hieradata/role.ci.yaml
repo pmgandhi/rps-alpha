@@ -7,6 +7,10 @@ packages:
   - python-pip
   - python-virtualenv
   - virtualenvwrapper
+  - git-core
+  - ruby1.9.1
+  - ruby1.9.1-dev
+  - build-essential
 
 jenkins::lts: 1
 
