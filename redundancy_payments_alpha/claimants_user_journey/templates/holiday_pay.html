@@ -12,23 +12,22 @@
 {% block content %}
     <h1>Your holiday details</h1>
         <form method="post" action="/claim-redundancy-payment/holiday-pay/" class="form-example-1">
-            <div>
-                <h2>Holiday Pay</h2>
-                <div>
-                    <fieldset>
-                    {{ form.hidden_tag() }}
-                    {{ form_field(form.holiday_owed) }}
-                    {{ form_field(form.holiday_start_date) }}
-                    {{ form_field(form.number_of_holiday_days_entitled) }}
-                    {{ form_field(form.days_carried_over) }}
-                    {{ form_field(form.days_taken) }}
-                    {{ form_field(form.days_owed) }}
-                    {{ form_field(form.holiday_taken_from) }}
-                    {{ form_field(form.holiday_taken_to) }}
-                    {{ form_field(form.number_of_days_pay_owed) }}
-                    </fieldset>
-                 </div>
-            </div>
+            <fieldset>
+                <legend>Holiday Pay</legend>
+                {{ form.hidden_tag() }}
+                {{ form_field(form.holiday_owed) }}
+                {{ form_field(form.holiday_start_date) }}
+                {{ form_field(form.number_of_holiday_days_entitled) }}
+                {{ form_field(form.days_carried_over) }}
+                {{ form_field(form.days_taken) }}
+                {{ form_field(form.days_owed) }}
+            </fieldset>
+            <fieldset>
+                <legend>Please give details of any days that you have taken as holiday but for which you have not been paid</legend>
+                {{ form_field(form.holiday_taken_from) }}
+                {{ form_field(form.holiday_taken_to) }}
+                {{ form_field(form.number_of_days_pay_owed) }}
+            </fieldset>
             <input type="submit" value="Submit" />
         </form>
 {% endblock %}
