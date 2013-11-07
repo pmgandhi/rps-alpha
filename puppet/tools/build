@@ -44,7 +44,7 @@ main () {
   done
 
   status "bundling for build"
-  bundle --quiet --without NONEXISTENT --path "${HOME}/bundles/${JOB_NAME:-puppet}" --deployment
+  bundle --quiet --without NONEXISTENT --path "${HOME}/bundles/${JOB_NAME:-puppet}"
 
   status "fetching 3rd-party modules"
   if [ "$NOCLEAN" -ne "1" ]; then
