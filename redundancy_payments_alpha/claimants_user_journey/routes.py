@@ -18,9 +18,9 @@ def nav_links():
         ('Start', url_for('start')),
         ('Personal Details', url_for('personal_details')),
         ('Employment Details', url_for('employment_details')),
-        ('Wages Owed', url_for('wages_owed')),
         ('Wage Details', url_for('wage_details')),
         ('Holiday Pay', url_for('holiday_pay')),
+        ('Wages Owed', url_for('wages_owed')),
         ('Summary', url_for('summary')),
     ]
     return links
@@ -100,7 +100,8 @@ def wage_details():
 
     if form.validate_on_submit():
         session['wage_details'] = form.data
-        return redirect(url_for('summary'))
+        return redirect(url_for('holiday_pay'))
+
     return render_template('wage_details.html', form=form, nav_links=nav_links())
 
 @app.route('/claim-redundancy-payment/holiday-pay/', methods=['GET', 'POST'])
@@ -114,7 +115,8 @@ def holiday_pay():
 
     if form.validate_on_submit():
         session['holiday_pay'] = form.data
-        return redirect(url_for('summary'))
+        return redirect(url_for('wages_owed'))
+
     return render_template('holiday_pay.html', form=form, nav_links=nav_links())
 
 
