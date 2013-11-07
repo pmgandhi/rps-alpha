@@ -4,6 +4,6 @@ set -oe pipefail
 
 PATH=$PATH:$(pwd)
 
-#python -m unittest discover .
+./ensure_clean_tables
 
 behave -q --tags=-wip --stop feature_tests/
