@@ -1,5 +1,5 @@
 import form_test
-from ...employer_form import routes
+from ...insolvency_practitioner_forms import routes
 from hamcrest import *
 from BeautifulSoup import BeautifulSoup
 
