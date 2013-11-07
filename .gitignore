@@ -2,7 +2,7 @@
 *.swp
 *.pyc
 redundancy_payments_alpha/.idea/*
-.idea/workspace.xml
+.idea/
 bin/
 include/
 lib/

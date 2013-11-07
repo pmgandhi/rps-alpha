@@ -42,12 +42,10 @@ sudo dpkg -i vagrant.deb
 - Run `vagrant ssh` to ssh into the newly created virtual machine
 - Run `cd /vagrant` to see the files mirrored from your host machine to your VM
 - To get the project to run, you'll need to do the following
-  - `cd /vagrant/redundancy_payments_alpha/`
-  - `mkvirtualenv rps`
-  - `workon rps`
-  - `pip install -r requirements.dev.txt`
+  - `./activate.sh`
+  - `cd redundancy_payments_alpha/`
 - You should now be able to run `./run_tests.sh` to run the tests or
-  `./redunancy_payment_service` to run the server
+  `./redundancy_payment_service` to run the server
 - Once the server is running, you can access the webpage on http://localhost:8000/
 
 ### More info

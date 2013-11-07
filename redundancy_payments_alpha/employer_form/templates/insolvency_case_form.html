@@ -1,0 +1,39 @@
+{% from 'macros/_form_field.html' import form_field  %}
+<html>
+    <head>
+        <title>Create an Insolvency Case</title>
+    </head>
+    <body>
+        <form method="post" action="/create-insolvency-case/employer-details/">
+            <fieldset>
+                <legend>About the business that has gone insolvent</legend>
+                {{ form_field(form.company_name) }}
+                {{ form_field(form.company_number, hint="For companies with numbers") }}
+                {{ form_field(form.nature_of_business) }}
+            </fieldset>
+            <fieldset>
+                <legend>About the Insolvency</legend>
+                {{ form_field(form.type_of_insolvency, hint="Select from dropdown") }}
+                {{ form_field(form.date_of_insolvency) }}
+            </fieldset>
+            <fieldset>
+                <legend>About the Insolvency Practitioner</legend>
+                {{ form_field(form.insolvency_practitioner_name) }}
+                {{ form_field(form.insolvency_practitioner_registration) }}
+                {{ form_field(form.insolvency_practitioner_firm) }}
+                {{ form_field(form.address_line_1) }}
+                {{ form_field(form.address_line_2) }}
+                {{ form_field(form.address_line_3) }}
+                {{ form_field(form.town_or_city) }}
+                {{ form_field(form.postcode) }}
+                {{ form_field(form.country) }}
+                {{ form_field(form.email_address) }}
+                {{ form_field(form.telephone_number) }}
+            </fieldset>
+            {{ form.hidden_tag() }}
+            <input type="submit"></input>
+        </form>
+    <link href="/static/simple.css" rel="stylesheet" type="text/css"/>
+    </body>
+</html>
+
