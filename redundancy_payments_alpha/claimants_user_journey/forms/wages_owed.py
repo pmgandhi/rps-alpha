@@ -6,7 +6,7 @@ from wtforms.validators import DataRequired, Length, AnyOf, Regexp
 
 class WagesOwed(Form):
 
-    owed = RadioField('Are you owed any wages?',  choices=[('N','No'),('Y','Yes')])
+    owed = RadioField('Are you owed any wages?',  choices=[('No','No'),('Yes','Yes')])
 
     wage_owed_from = TextField('From',
                            validators=[DataRequired(),

@@ -21,12 +21,6 @@ def step(context):
         context.form_data[row['DETAILS']] = row['VALUE']
 
 
-@when('the claimant goes to {url}')
-def step(context, url):
-    personal_details_form = test_client.get(url)
-    context.form_data['csrf_token'] = parse_csrf_token(personal_details_form)
-
-
 @when('enters their details')
 def step(context):
     context.response_from_posting_data = test_client.post(

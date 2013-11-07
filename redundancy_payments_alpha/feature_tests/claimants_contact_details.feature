@@ -37,7 +37,7 @@ Feature: claimants contact details
             | date_of_birth     | 01/01/1900        |
          When the claimant goes to /claim-redundancy-payment/personal-details/
           And enters their details
-         Then the claimant should be sent to /claim-redundancy-payment/employment-details/
+         Then the claimant should be redirected
 
     Scenario: filling in the contact details form with a missing information
         Given a claimant with the personal details

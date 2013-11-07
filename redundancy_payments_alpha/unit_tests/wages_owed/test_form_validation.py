@@ -14,12 +14,12 @@ def complete_form(data):
 
 def complete_form_data():
     form = {
-        'owed': 'Y',
+        'owed': 'Yes',
         'wage_owed_from': '20/02/1985',
         'wage_owed_to': '21/03/1999',
         'number_of_days_owed': '1',
         'gross_amount_owed': '1.50',
-        'failed_payment': 'Y',
+        'failed_payment': 'Yes',
         'failed_payment_from': '20/02/1985',
         'failed_payment_to': '21/03/1999',
         'net_amount': '1.50'
