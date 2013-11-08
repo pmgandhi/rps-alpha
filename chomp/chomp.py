@@ -1,5 +1,4 @@
 import json
-from pprint import pprint
 from jinja2 import Template
 from random import randint
 
@@ -59,7 +58,7 @@ def generate_rp1_request(dms_id, json_data):
     json_data.update(dms_dict)
     return template.render(json_data)
 
-RP14_TEMPLATE = "templates/champ_rp14_payload.xml"
+RP14_TEMPLATE = "templates/employer_details.payload.xml"
 
 def generate_rp14_request(json_data):
     """This function takes the json data and returns a long string which is a valid rp14 xml request
