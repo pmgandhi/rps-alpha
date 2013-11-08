@@ -14,8 +14,21 @@ class TestAddingEmployeeDetails(form_test.FormTest):
             'employee_title': 'Other',
             'employee_title_other': 'Doctor',
             'employee_forenames': 'J',
-            'employee_surnames': 'Smith',
-            'employee_weekly_pay_day': 'monday' 
+            'employee_surname': 'Smith',
+            'employee_national_insurance_class': 'z',
+            'employee_national_insurance_number': 'wibble',
+            'employee_date_of_birth': '01/01/1940',
+            'employee_start_date': '01/01/1980',
+            'employee_date_of_notice': '01/01/1990',
+            'employee_end_date': '05/01/1990',
+            'employee_basic_weekly_pay': '600',
+            'employee_weekly_pay_day': 'monday',
+            'employee_owed_wages_from': '01/12/1989',
+            'employee_owed_wages_to': '05/01/1990',
+            'employee_owed_wages_in_arrears': '1200.50',
+            'employee_owed_wages_in_arrears_type': 'wages',
+            'employee_holiday_year_start_date': '01/01/1990',
+            'employee_holiday_owed': '5.5'
         }
         employee_data.update(kwargs)
         return employee_data

@@ -27,6 +27,26 @@ class TestEmployeeFormValidation(form_test.FormTest):
         form.validate()
         assert_that(form.employee_title_other.errors, has_length(0))
 
+    def test_national_insurance_class_must_be_a_single_letter(self):
+        form = self.create_form(
+            app = routes.app,
+            url = '/create-employee-record/employee-added/',
+            form_class = EmployeeDetailsForm, 
+            employee_national_insurance_class='1'
+        )
+        form.validate()
+        assert_that(form.employee_national_insurance_class.errors, has_item('foo'))
+
+    def test_national_insurance_class_must_be_a_single_letter(self):
+        form = self.create_form(
+            app = routes.app,
+            url = '/create-employee-record/employee-added/',
+            form_class = EmployeeDetailsForm, 
+            employee_national_insurance_class='a'
+        )
+        form.validate()
+        assert_that(form.employee_national_insurance_class.errors, has_length(0))
+    
     def test_length_validations(self):
         form = self.create_form(
             app = routes.app,

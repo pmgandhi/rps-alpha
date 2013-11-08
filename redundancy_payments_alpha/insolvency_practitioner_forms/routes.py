@@ -27,6 +27,7 @@ def employee_details():
     form = EmployeeDetailsForm()
     if form.validate_on_submit():
         return redirect(url_for('employee_added'))
+    print form.errors
     return render_template('employee_details_form.html', form=form)
 
 
