@@ -30,7 +30,7 @@ class rps_jenkins {
 
         $jenkins_home = "/home/jenkins"
 
-        file {"${jenkins_home}":
+        file {$jenkins_home:
           ensure  => directory,
           owner   => 'jenkins',
           group   => 'jenkins',
@@ -41,7 +41,7 @@ class rps_jenkins {
           owner   => 'jenkins',
           group   => 'jenkins',
           mode    => '0700',
-          require => File["${jenkins_home}"],
+          require => File[$jenkins_home],
         }
 
         $private_key = "${jenkins_home}/.ssh/id_rsa"
@@ -58,7 +58,7 @@ class rps_jenkins {
           group   => 'nogroup',
           mode    => '0644',
           source  => 'puppet:///modules/rps_jenkins/jenkins-dot-gitconfig',
-          require => File["${jenkins_home}"],
+          require => File[$jenkins_home],
         }
 
 }
