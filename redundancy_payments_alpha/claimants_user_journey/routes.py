@@ -1,14 +1,12 @@
 import json
-
 from flask import Flask, render_template, url_for, session
 from werkzeug.utils import redirect
-
-from birmingham_cabinet import api
 from forms.claimant_contact_details import ClaimantContactDetails
-from forms.claimant_wage_details import ClaimantWageDetails
 from forms.employment_details import EmploymentDetails
-from forms.holiday_pay import HolidayPay
 from forms.wages_owed import WagesOwed
+from forms.claimant_wage_details import ClaimantWageDetails
+from forms.holiday_pay import HolidayPay
+
 
 app = Flask(__name__)
 app.secret_key = 'something_secure_and_secret'
@@ -47,7 +45,7 @@ def start():
 @app.route('/claim-redundancy-payment/personal-details/', methods=['GET', 'POST'])
 def personal_details():
     existing_form = session.get('user_details')
-
+    
     if existing_form:
         form = ClaimantContactDetails(**existing_form)
     else:
@@ -57,7 +55,7 @@ def personal_details():
         session['user_details'] = form.data
         return redirect(url_for('employment_details'))
     return render_template('user_details.html', form=form, nav_links=nav_links())
-
+    
 
 @app.route('/claim-redundancy-payment/employment-details/', methods=['GET', 'POST'])
 def employment_details():
@@ -77,14 +75,6 @@ def employment_details():
 
 @app.route('/claim-redundancy-payment/wages-owed-details/', methods=['GET', 'POST'])
 def wages_owed():
-    def flatten_dict(in_dictionary):
-        out_dictionary = {}
-        for in_key, in_value in in_dictionary.items():
-            if in_key == "csrf_token":
-                continue
-            out_dictionary.update(in_value)
-        return out_dictionary
-
     existing_form = session.get('wages_owed')
 
     if existing_form:
@@ -93,7 +83,6 @@ def wages_owed():
         form = WagesOwed()
 
     if form.validate_on_submit():
-        api.add_rp1_form(flatten_dict(session))
         session['wages_owed'] = form.data
         return redirect(url_for('summary'))
 
@@ -140,3 +129,4 @@ def summary():
     }
     summary_json = json.dumps(summary, indent=4)
     return render_template('summary.html', summary=summary_json, nav_links=nav_links())
+
