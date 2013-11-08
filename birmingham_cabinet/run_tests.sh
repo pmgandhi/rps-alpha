@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
-set -e
+set -oe pipefail
 
-PROJECT_ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+PATH=$PATH:$(pwd)
 
-nosetests --exe --with-xunit $PROJECT_ROOT
+./ensure_clean_tables
+
+behave -q --tags=-wip --stop feature_tests/

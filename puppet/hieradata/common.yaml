@@ -3,6 +3,20 @@ classes:
   - base
   - shell
 packages:
-  - vim-nox
+  - ack-grep
+  - aptitude
+  - cron
+  - dstat
   - git-core
+  - htop
+  - iotop
+  - mailutils
   - make
+  - man-db
+  - manpages
+  - screen
+  - sysstat
+  - traceroute
+  - tree
+  - vim-nox
+  - zip

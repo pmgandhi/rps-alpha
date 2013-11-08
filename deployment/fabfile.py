@@ -1,4 +1,13 @@
-from fabric.api import abort, cd, env, roles, run, settings, task
+from fabric.api import (
+    abort,
+    cd,
+    env,
+    local,
+    roles,
+    run,
+    settings,
+    task,
+)
 from fabric.api import show, hide, put
 from fabric.api import fastprint
 
@@ -38,6 +47,9 @@ def fetch_artifact(puppet_env, job, artifact, dest, build_number='lastSuccessful
 
     run(cmd)
 
+@task
+def build_puppet():
+    local("../puppet/tools/build")
 
 @task
 def bootstrap_jenkins(deploy_env):
@@ -81,5 +93,3 @@ def puppet(deploy_env):
                 '--modulepath modules:vendor/modules '
                 'manifests/site.pp"'.format(role=role, deploy_env=deploy_env))
     run('sudo rm -rf puppet puppet.tgz puppet-secrets.tgz')
-
-

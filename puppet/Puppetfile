@@ -1,8 +1,9 @@
 forge 'http://forge.puppetlabs.com/'
 
-mod 'puppetlabs/stdlib',           '~> 3.0'
+mod 'puppetlabs/git', '0.0.2'
+mod 'puppetlabs/postgresql', '~> 3.1.0'
 mod 'puppetlabs/razor'
-mod 'puppetlabs/git',              '0.0.2'
+mod 'puppetlabs/stdlib', '~> 3.0'
 
 
 mod 'jenkins',      :git => 'https://github.com/alphagov/puppet-jenkins.git',

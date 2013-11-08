@@ -2,6 +2,7 @@
 # localdev is a combination of app and db roles
 classes:
   - baseconfig
+  - rps_postgres
 
 packages:
   - python-pip
