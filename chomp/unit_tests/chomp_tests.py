@@ -1,4 +1,4 @@
-from hamcrest import assert_that, is_, greater_than_or_equal_to
+from hamcrest import assert_that, is_, greater_than_or_equal_to, has_item
 from bs4 import BeautifulSoup
 import json
 
@@ -24,7 +24,8 @@ def test_should_generate_non_conflicting_dms_id():
 HAPPY_PATH_EMPLOYER_DETAILS_JSON = """
 {
     "employer_details": {
-        "company_name": "THE EGG CAME FIRST"
+        "company_name": "THE EGG CAME FIRST",
+        "date_of_insolvency": "whatever"
     }
 
 }
@@ -35,24 +36,27 @@ def get_xml_attribute_from(xml_fragment, attr_name):
     content from an xml fragment.
     """
     xml_soup = BeautifulSoup(xml_fragment, "xml")
-    return xml_soup.find("NameOfBusiness").contents[0]
+    return xml_soup.find(attr_name).contents[0]
 
-def check_xml_attribute_is_populated_from_json(xml, xml_attribute, json_attribute, json):
+def check_xml_is_populated_from_json(xml, xml_attribute, json_attribute, json):
+    assert_that(json, has_item(json_attribute) )
+    print get_xml_attribute_from(xml, xml_attribute)
+    print xml_attribute
     assert_that(json[json_attribute], is_(get_xml_attribute_from(xml, xml_attribute)))
 
-def test_happy_rp1_json_is_mapped_to_valid_champ_xml():
+def test_claimant_information_json_is_mapped_to_valid_champ_xml():
     # given
     employer_json = json.loads(HAPPY_PATH_EMPLOYER_DETAILS_JSON)["employer_details"]
     # when
     xml_payload = generate_rp14_request(employer_json)
-    # and
+    # for
     field_mapping = {
         "NameOfBusiness" : "company_name",
-        "NameOfBusiness" : "company_name",
+        "InsolvencyDate" : "date_of_insolvency",
     }
     # then
     for xml_attribute, json_attribute in field_mapping.iteritems():
-        yield check_xml_attribute_is_populated_from_json, xml_payload, xml_attribute,\
+        yield check_xml_is_populated_from_json, xml_payload, xml_attribute,\
               json_attribute, employer_json
 
 
