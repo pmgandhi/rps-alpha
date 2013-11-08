@@ -1,4 +1,4 @@
-from base import Base
+from sqlalchemy.ext.mutable import MutableDict
 
 from sqlalchemy import(
     Column,
@@ -9,6 +9,8 @@ from sqlalchemy import(
     )
 from sqlalchemy.dialects.postgresql import HSTORE
 
+from base import Base
+
 class Claimant(Base):
     __tablename__ = 'claimants'
 
@@ -18,7 +20,7 @@ class Claimant(Base):
     surname  = Column(Text, nullable=False)
     nino = Column(Text, nullable=False)
     date_of_birth = Column(Date, nullable=False)
-    hstore = Column(HSTORE)
+    hstore = Column(MutableDict.as_mutable(HSTORE))
 
 
 class Employer(Base):
@@ -29,7 +31,7 @@ class Employer(Base):
     employer_name  = Column(Text, nullable=False)
     company_number  = Column(Text, unique=True, index=True, nullable=False)
     date_of_insolvency  = Column(Date, nullable=False)
-    hstore = Column(HSTORE)
+    hstore = Column(MutableDict.as_mutable(HSTORE))
 
 
 class Employee(Base):
@@ -43,4 +45,4 @@ class Employee(Base):
     nino = Column(Text, nullable=False)
     date_of_birth = Column(Date, nullable=False)
     ip_number = Column(Text, nullable=False)
-    hstore = Column(HSTORE)
+    hstore = Column(MutableDict.as_mutable(HSTORE))
