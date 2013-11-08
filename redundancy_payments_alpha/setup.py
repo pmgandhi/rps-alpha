@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import os
 
 from pip.req import parse_requirements
@@ -13,5 +14,4 @@ setup(
     install_requires=[str(req.req) for req in
                       parse_requirements("requirements.dev.txt")],
     include_package_data=True,
-    zip_safe=False
     )
