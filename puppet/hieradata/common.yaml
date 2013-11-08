@@ -13,7 +13,7 @@ packages:
   - mailutils
   - make
   - man-db
-  - man-pages
+  - manpages
   - screen
   - sysstat
   - traceroute
