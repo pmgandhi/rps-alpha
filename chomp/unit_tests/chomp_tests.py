@@ -3,23 +3,7 @@ from bs4 import BeautifulSoup
 import json
 
 # sut:
-from ..chomp import generate_dms_id, generate_rp14_request
-
-def test_law_of_excluded_middle():
-    """Test the longstanding Aristotelian axiom.
-    """
-    assert_that(True, is_(True))
-
-def test_should_generate_non_conflicting_dms_id():
-    """Wisdom already generates DMS ids upto 9 digits long and therefore we need to generate
-    ids which are longer.
-    """
-    # when
-    dms_id = generate_dms_id()
-    # then
-    assert_that(type(dms_id), is_(type(str)))
-    assert_that(len(dms_id), greater_than_or_equal_to(10))
-
+from ..chomp import generate_rp14_request
 
 EMPLOYER_DETAILS_JSON = """
 {
@@ -48,7 +32,7 @@ def check_xml_is_populated_from_json(xml, xml_attribute, json_attribute, json):
 
 def test_claimant_information_json_is_mapped_to_valid_champ_xml():
     # given
-    employer_json = json.loads(HAPPY_PATH_EMPLOYER_DETAILS_JSON)["employer_details"]
+    employer_json = json.loads(EMPLOYER_DETAILS_JSON)["employer_details"]
     # when
     xml_payload = generate_rp14_request(employer_json)
     # for
