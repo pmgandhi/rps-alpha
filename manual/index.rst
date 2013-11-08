@@ -10,6 +10,7 @@ technical information about working with this project.
    components
    tools
    team
+   beta_architecture
 
 
 
