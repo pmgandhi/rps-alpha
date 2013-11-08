@@ -2,4 +2,4 @@
 
 set -e
 
-pyflakes claimants_user_journey
+flake8 birmingham_cabinet claimants_user_journey insolvency_practitioner_forms unit_tests
