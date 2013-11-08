@@ -21,10 +21,10 @@ def test_should_generate_non_conflicting_dms_id():
     assert_that(len(dms_id), greater_than_or_equal_to(10))
 
 
-HAPPY_PATH_EMPLOYER_DETAILS_JSON = """
+EMPLOYER_DETAILS_JSON = """
 {
     "employer_details": {
-        "company_name": "THE EGG CAME FIRST",
+        "company_name": "Scrooge McDuck Enterprises",
         "date_of_insolvency": "whatever"
     }
 
@@ -39,9 +39,11 @@ def get_xml_attribute_from(xml_fragment, attr_name):
     return xml_soup.find(attr_name).contents[0]
 
 def check_xml_is_populated_from_json(xml, xml_attribute, json_attribute, json):
+    """Assertions on the xml payload to ensure that the json value has been populated
+    as expected
+    TODO: Use Xpath rather than find
+    """
     assert_that(json, has_item(json_attribute) )
-    print get_xml_attribute_from(xml, xml_attribute)
-    print xml_attribute
     assert_that(json[json_attribute], is_(get_xml_attribute_from(xml, xml_attribute)))
 
 def test_claimant_information_json_is_mapped_to_valid_champ_xml():
