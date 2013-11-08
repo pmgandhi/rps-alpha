@@ -36,6 +36,11 @@ class EmployeeDetailsForm(Form):
             raise ValidationError('National insurance class must be a single letter.')
 
     employee_national_insurance_number = TextField('National insurance number', validators=[DataRequired()])
+
+    def validate_employee_national_insurance_number(self, field):
+        if field.data and not re.match('^[A-Za-z]{2}[0-9]{6}[A-Za-z]{0,1}$', field.data):
+            raise ValidationError('National insurance number should be two letters followed by six numbers and an optional letter')
+
     employee_date_of_birth = TextField('Date of birth', validators=[DataRequired(), parses_to_date])
     employee_start_date = TextField('Start date', validators=[DataRequired(), parses_to_date])
     employee_date_of_notice = TextField('Date notice was given', validators=[DataRequired(), parses_to_date])
@@ -72,6 +77,6 @@ class EmployeeDetailsForm(Form):
     )
     employee_holiday_year_start_date = TextField('Holiday year start date', validators=[DataRequired(), parses_to_date])
     employee_holiday_owed = DecimalField('Number of days holiday owed', validators=[DataRequired()])
-    employee_unpaid_holiday_from = TextField('Unpaid holiday from')
-    employee_unpaid_holiday_to = TextField('Unpaid holiday to')
+    employee_unpaid_holiday_from = TextField('Unpaid holiday from', validators=[parses_to_date])
+    employee_unpaid_holiday_to = TextField('Unpaid holiday to', validators=[parses_to_date])
 

@@ -16,7 +16,7 @@ class TestAddingEmployeeDetails(form_test.FormTest):
             'employee_forenames': 'J',
             'employee_surname': 'Smith',
             'employee_national_insurance_class': 'z',
-            'employee_national_insurance_number': 'wibble',
+            'employee_national_insurance_number': 'ab123456',
             'employee_date_of_birth': '01/01/1940',
             'employee_start_date': '01/01/1980',
             'employee_date_of_notice': '01/01/1990',
@@ -28,7 +28,9 @@ class TestAddingEmployeeDetails(form_test.FormTest):
             'employee_owed_wages_in_arrears': '1200.50',
             'employee_owed_wages_in_arrears_type': 'wages',
             'employee_holiday_year_start_date': '01/01/1990',
-            'employee_holiday_owed': '5.5'
+            'employee_holiday_owed': '5.5',
+            'employee_unpaid_holiday_from': '01/01/1990',
+            'employee_unpaid_holiday_to': '01/01/1990'
         }
         employee_data.update(kwargs)
         return employee_data
