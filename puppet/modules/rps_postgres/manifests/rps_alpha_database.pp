@@ -13,4 +13,16 @@ class rps_postgres::rps_alpha_database {
             Postgresql::Server::Database['rps_alpha']
         ]
     }
+
+    postgresql::server::role { 'jenkins': }
+
+    postgresql::server::database_grant {'give jenkins rps_alpha':
+        privilege => 'ALL',
+        db        => 'rps_alpha',
+        role      => 'jenkins',
+        require   => [
+            Postgresql::Server::Role['jenkins'],
+            Postgresql::Server::Database['rps_alpha']
+        ]
+    }
 }
