@@ -1,0 +1,50 @@
+{% from 'macros/_form_field.html' import form_field  %}
+<html>
+    <head>
+        <title>Add employee details to insolvency case</title>
+    </head>
+    <body>
+        <form method="post" action="/create-employee-record/employee-details/">
+            <fieldset>
+                <legend>About the employer</legend>
+                {{ form_field(form.employer_name) }}
+            </fieldset>
+            <fieldset>
+                <legend>About the employee who was made redundant</legend>
+                {{ form_field(form.employee_title) }}
+                {{ form_field(form.employee_title_other) }}
+                {{ form_field(form.employee_forenames) }}
+                {{ form_field(form.employee_surname) }}
+                {{ form_field(form.employee_national_insurance_class) }}
+                {{ form_field(form.employee_national_insurance_number) }}
+                {{ form_field(form.employee_date_of_birth) }}
+            </fieldset>
+            <fieldset>
+                <legend>About the employees employment</legend>
+                {{ form_field(form.employee_start_date) }}
+                {{ form_field(form.employee_date_of_notice) }}
+                {{ form_field(form.employee_end_date) }}
+                {{ form_field(form.employee_basic_weekly_pay) }}
+                {{ form_field(form.employee_weekly_pay_day) }}
+            </fieldset>
+            <fieldset>
+                <legend>Wages owed to the employee</legend>
+                {{ form_field(form.employee_owed_wages_from) }}
+                {{ form_field(form.employee_owed_wages_to) }}
+                {{ form_field(form.employee_owed_wages_in_arrears) }}
+                {{ form_field(form.employee_owed_wages_in_arrears_type) }}
+            </fieldset>
+            <fieldset>
+                <legend>Holiday owed to the employee</legend>
+                {{ form_field(form.employee_holiday_year_start_date) }}
+                {{ form_field(form.employee_holiday_owed) }}
+                {{ form_field(form.employee_unpaid_holiday_from) }}
+                {{ form_field(form.employee_unpaid_holiday_to) }}
+                {{ form.hidden_tag() }}
+            </fieldset>
+            <input type="submit"></input>
+        </form>
+    <link href="/static/simple.css" rel="stylesheet" type="text/css"/>
+    </body>
+</html>
+

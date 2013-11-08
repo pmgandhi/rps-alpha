@@ -5,6 +5,8 @@ class FormTest(unittest.TestCase):
     def _parse_csrf_token(self, response):
         page = BeautifulSoup(response.data)
         csrf_token = page.find(id='csrf_token')
+        if not csrf_token:
+            raise Exception("Couldn't find a csrf_token... is the form wired up correctly?")
         return csrf_token['value']
 
     def submit_form(self, test_client, url, data):
