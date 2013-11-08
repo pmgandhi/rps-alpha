@@ -5,6 +5,4 @@ classes:
   - rps_postgres
 
 packages:
-  - python-pip
-  - python-virtualenv
   - virtualenvwrapper

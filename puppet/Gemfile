@@ -1,3 +1,6 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
 source 'http://rubygems.org'
 
 gem 'puppet', '~> 3.1.0'

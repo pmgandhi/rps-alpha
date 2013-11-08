@@ -2,6 +2,7 @@
 classes:
   - base
   - shell
+  - rps_python
 packages:
   - ack-grep
   - aptitude

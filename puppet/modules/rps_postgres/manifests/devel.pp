@@ -4,5 +4,4 @@ class rps_postgres::devel {
     # files (which are pre-compiled binaries) but for now, just put this
     # everywhere that we put postgres
     class {'postgresql::lib::devel': }
-    package {'python-dev': }
 }

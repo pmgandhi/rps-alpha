@@ -5,8 +5,6 @@ classes:
  - rps_postgres
 packages:
   - htop
-  - python-pip
-  - python-virtualenv
   - virtualenvwrapper
   - git-core
   - ruby1.9.1
