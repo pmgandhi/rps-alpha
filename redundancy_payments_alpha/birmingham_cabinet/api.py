@@ -1,5 +1,4 @@
 import contextlib
-import json
 
 from models import Claimant, Employer, Employee
 from base import make_session
@@ -13,8 +12,7 @@ def add_rp1_form(dictionary):
         claimant.title = dictionary["title"]
         claimant.forenames = dictionary["forenames"]
         claimant.surname = dictionary["surname"]
-        claimant.hstore = {key: json.dumps(value)
-                           for key, value in dictionary.items()}
+        claimant.hstore = dictionary
         session.add(claimant)
         session.commit()
 
