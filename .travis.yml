@@ -1,6 +1,6 @@
 language: python
 env:
-  - APP=birmingham_cabinet
+#  - APP=birmingham_cabinet
   - APP=redundancy_payments_alpha
 python:
   - "2.7"
