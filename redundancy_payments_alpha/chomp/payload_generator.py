@@ -58,6 +58,7 @@ def generate_rp14_request(json_data):
     template = Template(xml_template)
     return template.render(json_data)
 
+
 def generate_rp14a_request(json_data):
     """This function takes the json data and returns a long string which is a
     valid rp14a xml request
@@ -65,4 +66,3 @@ def generate_rp14a_request(json_data):
     xml_template = read_xml_template_from(RP14A_TEMPLATE)
     template = Template(xml_template)
     return template.render(json_data)
-
