@@ -21,3 +21,4 @@ packages:
   - tree
   - vim-nox
   - zip
+  - tmux

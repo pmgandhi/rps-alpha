@@ -40,6 +40,22 @@ def get_xml_attribute_from(xml_fragment, attr_name):
     else:
         return None
 
+from xml.dom.minidom import parseString
+import xpath
+
+def get_xpath_attribute_from(xml_doc, xpath_sel):
+    """This is a test helper method which gets an attribute name and returns its
+    content from an xml fragment using xpath.
+    """
+    # http://stackoverflow.com/questions/5572247/how-to-find-xml-elements-via-xpath-in-python-in-a-namespace-agnostic-way
+    xml_dom = parseString(xml_doc)
+    value = xpath.findvalues(xpath_sel, xml_dom)
+    if value:
+        return value[0]
+    else:
+        return None
+
+
 def check_json_is_mapped_into_xml(xml_attribute, json_attribute ):
     """Assertions on the xml payload to ensure that the json value has been populated
     as expected
@@ -51,18 +67,18 @@ def check_json_is_mapped_into_xml(xml_attribute, json_attribute ):
     xml_payload = generate_rp14_request(employer_json)
     # then
     assert_that(employer_json, has_item(json_attribute) )
-    assert_that(get_xml_attribute_from(xml_payload, xml_attribute), not none() )
-    assert_that(employer_json[json_attribute], is_(get_xml_attribute_from(xml_payload, xml_attribute)))
+    assert_that(get_xpath_attribute_from(xml_payload, xml_attribute), not none() )
+    assert_that(employer_json[json_attribute], is_(get_xpath_attribute_from(xml_payload, xml_attribute)))
 
 def test_claimant_information_json_is_mapped_to_valid_champ_xml():
     """Generator of unit tests for each field we currently support.
     """
     # for these fields
     field_mapping = {
-        "company_name" : "NameOfBusiness",
-        "date_of_insolvency" : "InsolvencyDate",
-        "type_of_insolvency" : "InsolvencyType",
-        "insolvency_practitioner_name" : "Name"
+        "company_name" : "//rp14:NameOfBusiness",
+#        "date_of_insolvency" : "InsolvencyDate",
+#        "type_of_insolvency" : "InsolvencyType",
+#        "insolvency_practitioner_name" : "Name"
     }
     # test that
     for json_attribute, xml_attribute in field_mapping.iteritems():
