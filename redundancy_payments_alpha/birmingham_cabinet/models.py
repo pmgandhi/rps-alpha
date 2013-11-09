@@ -1,4 +1,5 @@
 from base import Base
+from collections import OrderedDict
 
 from sqlalchemy import(
     Column,
@@ -9,7 +10,24 @@ from sqlalchemy import(
     )
 from sqlalchemy.dialects.postgresql import HSTORE
 
-class Claimant(Base):
+class DictSerialisable(object):
+    """This class is potentially evil, it is designed to coerce a sqlalchemy
+    collection into a json collection. It is not of high quality and is
+    not tested. It does two things which are worth noting:
+
+    1. It does not add hstore values to the dict
+    2. It flattens all value into strings
+    """
+    def _asdict(self):
+        result = OrderedDict()
+        for key in self.__mapper__.c.keys():
+            if key=="hstore":
+                continue
+            else:
+                result[key] = str(getattr(self, key))
+        return result
+
+class Claimant(Base, DictSerialisable):
     __tablename__ = 'claimants'
 
     claimant_id = Column(Integer, primary_key=True)
@@ -19,6 +37,7 @@ class Claimant(Base):
     nino = Column(Text, nullable=False)
     date_of_birth = Column(Date, nullable=False)
     hstore = Column(HSTORE)
+
 
 
 class Employer(Base):

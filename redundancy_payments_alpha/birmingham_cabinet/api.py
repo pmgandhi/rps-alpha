@@ -4,7 +4,10 @@ import json
 from models import Claimant, Employer, Employee
 from base import make_session
 
-
+def get_rp1_form():
+    with contextlib.closing(make_session()) as session:
+        claimants = session.query(Claimant).all()[0]
+        return json.dumps(claimants._asdict())
 
 def add_rp1_form(dictionary):
     with contextlib.closing(make_session()) as session:
