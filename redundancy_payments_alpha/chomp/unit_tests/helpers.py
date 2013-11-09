@@ -1,5 +1,5 @@
 from xml.dom.minidom import parseString
-from xpath import findvalues
+from xpath import findvalues, XPathTypeError
 
 
 def get_value_from_xpath(xpath_sel, xml_doc):
@@ -11,3 +11,5 @@ def get_value_from_xpath(xpath_sel, xml_doc):
         return findvalues(xpath_sel, xml_dom)[0]
     except IndexError:
         raise Exception("%s not found in xml_document" % xpath_sel)
+    except XPathTypeError:
+        raise Exception("Invalid Xpath syntax")
