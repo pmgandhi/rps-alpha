@@ -1,4 +1,5 @@
 import json
+import os
 from jinja2 import Template
 from random import randint
 
@@ -18,6 +19,8 @@ RP1_XML_FILENAME = "CHAMP_Submit_RP1.xml.template"
 ACCEPT_DOC_PAYLOAD_FILENAME = "CHAMP_Accept_Doc-Payload.xml"
 RP1_XML_PAYLOAD_FILENAME = "CHAMP_Submit_RP1-Payload.xml"
 
+TEMPLATE_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates')
+
 def read_json_from(filename, and_get_key=None):
     """This code should read in a json object from a file,
     """
@@ -33,7 +36,7 @@ def read_json_from(filename, and_get_key=None):
 def read_xml_template_from(filename):
     """This code should read in a xml template from a file,
     """
-    with open(filename) as f:
+    with open(os.path.join(TEMPLATE_DIR, filename)) as f:
         template=f.read()
     return template
 
@@ -58,7 +61,7 @@ def generate_rp1_request(dms_id, json_data):
     json_data.update(dms_dict)
     return template.render(json_data)
 
-RP14_TEMPLATE = "templates/employer_details.payload.xml"
+RP14_TEMPLATE = "employer_details.payload.xml"
 
 def generate_rp14_request(json_data):
     """This function takes the json data and returns a long string which is a valid rp14 xml request

@@ -6,4 +6,9 @@ class rps_python {
     pip        => true,
     virtualenv => true,
   }
+
+  package { ['libxml2-dev', 'libxslt-dev']:
+    ensure    => present,
+  }
+
 }

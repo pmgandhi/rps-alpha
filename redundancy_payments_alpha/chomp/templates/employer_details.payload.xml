@@ -23,7 +23,7 @@
 		<rp14:InsolvencyType>Creditors Voluntary Liquidation</rp14:InsolvencyType>
 	</rp14:InsolvencyDetails>
 	<rp14:PayRecordsContact>
-		<rp14:Name>Huey Duck</rp14:Name>
+		<rp14:Name>{{ insolvency_practitioner_name }}</rp14:Name>
 		<rp14:Address>
 			<rp14:Line>5th Floor</rp14:Line>
 			<rp14:Line>Duck House</rp14:Line>
