@@ -1,7 +1,6 @@
 from hamcrest import assert_that, is_
 from functools import partial
-from xml.dom.minidom import parseString
-from xpath import findvalues
+from helpers import get_value_from_xpath
 
 # sut:
 from ..payload_generator import generate_accept_doc_request
@@ -34,14 +33,3 @@ def check_value_is_mapped_into_xml(key, xpath_location):
     # then
     xml_value = get_value_from_xpath(xpath_location, xml_payload)
     assert_that(xml_value, is_(values_dict[key]))
-
-
-def get_value_from_xpath(xpath_sel, xml_doc):
-    """This is a test helper method which gets an attribute name and returns
-    its value from an xml fragment using xpath.
-    """
-    xml_dom = parseString(xml_doc)
-    try:
-        return findvalues(xpath_sel, xml_dom)[0]
-    except IndexError:
-        raise Exception("%s not found in xml_document" % xpath_sel)

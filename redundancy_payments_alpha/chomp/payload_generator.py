@@ -6,9 +6,9 @@ TEMPLATE_DIR = os.path.join(os.path.dirname(
     os.path.abspath(__file__)), 'templates')
 
 RP1_ACCEPT_DOC_TEMPLATE = "claimant_accept_doc.payload.xml"
-RP1_SUBMIT_FORM_TEMPLATE = "CHAMP_Submit_RP1.xml.template"
+RP1_SUBMIT_FORM_TEMPLATE = "claimant_submit.payload.xml"
 RP14_TEMPLATE = "employer_details.payload.xml"
-RP14A_TEMPLATE = "CHAMP_Submit_RP1.xml.template"
+RP14A_TEMPLATE = "claimant_submit.payload.xml"
 
 
 def read_xml_template_from(filename):
