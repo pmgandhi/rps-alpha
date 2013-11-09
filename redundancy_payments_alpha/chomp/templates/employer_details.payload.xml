@@ -20,7 +20,7 @@
 	</rp14:Employees>		
 	<rp14:InsolvencyDetails>
 		<rp14:InsolvencyDate>{{ date_of_insolvency }}</rp14:InsolvencyDate>
-		<rp14:InsolvencyType>Creditors Voluntary Liquidation</rp14:InsolvencyType>
+		<rp14:InsolvencyType>{{ type_of_insolvency }}</rp14:InsolvencyType>
 	</rp14:InsolvencyDetails>
 	<rp14:PayRecordsContact>
 		<rp14:Name>{{ insolvency_practitioner_name }}</rp14:Name>

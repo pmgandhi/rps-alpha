@@ -1,6 +1,7 @@
 from hamcrest import assert_that, is_, has_item, none
 from bs4 import BeautifulSoup
 import json
+from functools import partial
 
 # sut:
 from ..chomp import generate_rp14_request
@@ -13,7 +14,7 @@ EMPLOYER_DETAILS_JSON = """
         "company_number": "not-in-minimum",
         "nature_of_business": "not-in-minimum",
         "type_of_insolvency": "Creditors Voluntary Liquidation",
-        "insolvency_practitioner_name": "whatever",
+        "insolvency_practitioner_name": "Lewis, Lewis and Lewis",
         "insolvency_practitioner_registration": "whatever",
         "insolvency_practitioner_firm": "whatever",
         "address_line_1": "whatever",
@@ -65,7 +66,9 @@ def test_claimant_information_json_is_mapped_to_valid_champ_xml():
     }
     # test that
     for json_attribute, xml_attribute in field_mapping.iteritems():
-        yield check_json_is_mapped_into_xml, xml_attribute, json_attribute
+        generated_test = partial(check_json_is_mapped_into_xml, xml_attribute, json_attribute)
+        generated_test.description = '%s is mapped to %s in xml payload' % (json_attribute, xml_attribute)
+        yield generated_test,
 
 
 
