@@ -8,7 +8,7 @@ TEMPLATE_DIR = os.path.join(os.path.dirname(
 RP1_ACCEPT_DOC_TEMPLATE = "claimant_accept_doc.payload.xml"
 RP1_SUBMIT_FORM_TEMPLATE = "claimant_submit.payload.xml"
 RP14_TEMPLATE = "employer_details.payload.xml"
-RP14A_TEMPLATE = "claimant_submit.payload.xml"
+RP14A_TEMPLATE = "employee_details.payload.xml"
 
 
 def read_xml_template_from(filename):
@@ -57,3 +57,12 @@ def generate_rp14_request(json_data):
     xml_template = read_xml_template_from(RP14_TEMPLATE)
     template = Template(xml_template)
     return template.render(json_data)
+
+def generate_rp14a_request(json_data):
+    """This function takes the json data and returns a long string which is a
+    valid rp14a xml request
+    """
+    xml_template = read_xml_template_from(RP14A_TEMPLATE)
+    template = Template(xml_template)
+    return template.render(json_data)
+
