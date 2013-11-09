@@ -1,4 +1,4 @@
-from ..claimants_user_journey import routes
+from claimants_user_journey import routes
 import unittest
 
 test_client = routes.app.test_client()

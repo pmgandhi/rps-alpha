@@ -2,8 +2,8 @@ import form_test
 
 from hamcrest import *
 
-from ...insolvency_practitioner_forms.forms.employer_details_form import EmployerDetailsForm
-from ...insolvency_practitioner_forms import routes
+from insolvency_practitioner_forms.forms.employer_details_form import EmployerDetailsForm
+from insolvency_practitioner_forms import routes
 
 class TestFormValidation(form_test.FormTest):
     def test_date_validation(self):

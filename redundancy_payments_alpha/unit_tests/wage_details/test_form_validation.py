@@ -1,7 +1,7 @@
 import unittest
 from hamcrest import assert_that, is_, has_length, has_item
-from redundancy_payments_alpha.claimants_user_journey.forms.claimant_wage_details import ClaimantWageDetails
-from redundancy_payments_alpha.claimants_user_journey.routes import app
+from claimants_user_journey.forms.claimant_wage_details import ClaimantWageDetails
+from claimants_user_journey.routes import app
 
 test_client = app.test_client()
 

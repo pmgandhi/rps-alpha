@@ -1,7 +1,7 @@
 import unittest
 from datetime import date
 from hamcrest import assert_that, is_
-from redundancy_payments_alpha.claimants_user_journey.forms.validators.Validators import convert_string_to_date
+from claimants_user_journey.forms.claimant_contact_details import convert_string_to_date
 
 
 class TestStringToDate(unittest.TestCase):

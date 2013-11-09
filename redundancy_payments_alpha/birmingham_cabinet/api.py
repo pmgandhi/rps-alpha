@@ -1,8 +1,8 @@
 import contextlib
 import json
 
-from birmingham_cabinet.models import Claimant, Employer, Employee
-from birmingham_cabinet.base import make_session
+from models import Claimant, Employer, Employee
+from base import make_session
 
 
 def add_rp1_form(dictionary):
