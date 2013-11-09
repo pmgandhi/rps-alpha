@@ -3,7 +3,7 @@ from functools import partial
 from helpers import get_value_from_xpath
 
 # sut:
-from ..payload_generator import generate_rp14a_request
+from chomp.payload_generator import generate_rp14a_request
 
 
 def test_claimant_information_json_is_mapped_to_valid_champ_xml():
