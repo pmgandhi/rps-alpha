@@ -1,7 +1,8 @@
 from hamcrest import assert_that, is_, has_item, none
-from bs4 import BeautifulSoup
 import json
 from functools import partial
+from xml.dom.minidom import parseString
+import xpath
 
 # sut:
 from ..chomp import generate_rp14_request
@@ -29,34 +30,22 @@ EMPLOYER_DETAILS_JSON = """
 }
 """
 
-def get_xml_attribute_from(xml_fragment, attr_name):
-    """This is a test helper method which gets an attribute name and returns its
-    content from an xml fragment.
-    """
-    xml_soup = BeautifulSoup(xml_fragment, "xml")
-    get_from_attr = xml_soup.find(attr_name)
-    if get_from_attr:
-        return get_from_attr.contents[0]
-    else:
-        return None
-
 from xml.dom.minidom import parseString
 import xpath
 
-def get_xpath_attribute_from(xml_doc, xpath_sel):
+def get_value_from_xpath(xml_doc, xpath_sel):
     """This is a test helper method which gets an attribute name and returns its
     content from an xml fragment using xpath.
     """
     # http://stackoverflow.com/questions/5572247/how-to-find-xml-elements-via-xpath-in-python-in-a-namespace-agnostic-way
     xml_dom = parseString(xml_doc)
-    value = xpath.findvalues(xpath_sel, xml_dom)
-    if value:
-        return value[0]
-    else:
+    try:
+        return xpath.findvalues(xpath_sel, xml_dom)[0]
+    except IndexError:
         return None
 
 
-def check_json_is_mapped_into_xml(xml_attribute, json_attribute ):
+def check_json_is_mapped_into_xml(json_attribute, xpath_location ):
     """Assertions on the xml payload to ensure that the json value has been populated
     as expected
     TODO: Use Xpath rather than find
@@ -65,10 +54,11 @@ def check_json_is_mapped_into_xml(xml_attribute, json_attribute ):
     employer_json = json.loads(EMPLOYER_DETAILS_JSON)["employer_details"]
     # when
     xml_payload = generate_rp14_request(employer_json)
+    xml_value = get_value_from_xpath(xml_payload, xpath_location)
     # then
-    assert_that(employer_json, has_item(json_attribute) )
-    assert_that(get_xpath_attribute_from(xml_payload, xml_attribute), not none() )
-    assert_that(employer_json[json_attribute], is_(get_xpath_attribute_from(xml_payload, xml_attribute)))
+    assert_that(employer_json, has_item(json_attribute))
+    assert_that(xml_value, not none() )
+    assert_that(employer_json[json_attribute], is_(xml_value))
 
 def test_claimant_information_json_is_mapped_to_valid_champ_xml():
     """Generator of unit tests for each field we currently support.
@@ -76,14 +66,14 @@ def test_claimant_information_json_is_mapped_to_valid_champ_xml():
     # for these fields
     field_mapping = {
         "company_name" : "//rp14:NameOfBusiness",
-#        "date_of_insolvency" : "InsolvencyDate",
-#        "type_of_insolvency" : "InsolvencyType",
-#        "insolvency_practitioner_name" : "Name"
+        "date_of_insolvency" : "//rp14:InsolvencyDate",
+        "type_of_insolvency" : "//rp14:InsolvencyType",
+        "insolvency_practitioner_name" : "//rp14:PayRecordsContact/rp14:Name"
     }
     # test that
-    for json_attribute, xml_attribute in field_mapping.iteritems():
-        generated_test = partial(check_json_is_mapped_into_xml, xml_attribute, json_attribute)
-        generated_test.description = '%s is mapped to %s in xml payload' % (json_attribute, xml_attribute)
+    for json_attribute, xpath_location in field_mapping.iteritems():
+        generated_test = partial(check_json_is_mapped_into_xml, json_attribute, xpath_location)
+        generated_test.description = '%s is mapped to %s in xml payload' % (json_attribute, xpath_location)
         yield generated_test,
 
 
