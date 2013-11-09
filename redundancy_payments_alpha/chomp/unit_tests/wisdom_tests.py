@@ -1,7 +1,7 @@
 from hamcrest import assert_that, is_, greater_than_or_equal_to
 
 # sut:
-from ..chomp import generate_dms_id
+from ..payload_generator import generate_dms_id
 
 
 def test_should_generate_non_conflicting_dms_id():

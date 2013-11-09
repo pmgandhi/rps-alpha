@@ -4,7 +4,7 @@ from xml.dom.minidom import parseString
 from xpath import findvalues
 
 # sut:
-from ..payload_generator import generate_rp14_request
+from ..payload_generator import generate_accept_doc_request
 
 
 def test_claimant_information_json_is_mapped_to_valid_champ_xml():
@@ -12,15 +12,7 @@ def test_claimant_information_json_is_mapped_to_valid_champ_xml():
     """
     # for these fields
     field_mapping = {
-        "company_name": "//rp14:NameOfBusiness",
-        "date_of_insolvency": "//rp14:InsolvencyDate",
-        "type_of_insolvency": "//rp14:InsolvencyType",
-        "insolvency_practitioner_name": "//rp14:PayRecordsContact/rp14:Name",
-        "address_line_1": "//rp14:PayRecordsContact/rp14:Address/rp14:Line[1]",
-        "address_line_2": "//rp14:PayRecordsContact/rp14:Address/rp14:Line[2]",
-        "town_or_city": "//rp14:PayRecordsContact/rp14:Address/rp14:Town",
-        "postcode": "//rp14:PayRecordsContact/rp14:Address/rp14:Postcode",
-        "email_address": "//rp14:PayRecordsContact/rp14:EmailAddress",
+        "dms_id": "//rps:DocReceivedRequest/rps:Document/rps:DocReference",
     }
     # test that
     for json_attribute, xpath_location in field_mapping.iteritems():
@@ -38,7 +30,7 @@ def check_value_is_mapped_into_xml(key, xpath_location):
     # given
     values_dict = {key: "test_value"}
     # when
-    xml_payload = generate_rp14_request(values_dict)
+    xml_payload = generate_accept_doc_request(values_dict)
     # then
     xml_value = get_value_from_xpath(xpath_location, xml_payload)
     assert_that(xml_value, is_(values_dict[key]))
