@@ -25,13 +25,13 @@
 	<rp14:PayRecordsContact>
 		<rp14:Name>{{ insolvency_practitioner_name }}</rp14:Name>
 		<rp14:Address>
-			<rp14:Line>5th Floor</rp14:Line>
-			<rp14:Line>Duck House</rp14:Line>
-			<rp14:Town>10 Duck Road</rp14:Town>
-			<rp14:County>Duckville</rp14:County>
-			<rp14:Postcode>DU10 1DU</rp14:Postcode>
+			<rp14:Line>{{ address_line_1 }}</rp14:Line>
+			<rp14:Line>{{ address_line_2 }}</rp14:Line>
+			<rp14:Town>{{ town_or_city }}</rp14:Town>
+			<rp14:County></rp14:County>
+			<rp14:Postcode>{{ postcode }}</rp14:Postcode>
 		</rp14:Address>
-		<rp14:EmailAddress>h.duck@egfirst.com</rp14:EmailAddress>
+		<rp14:EmailAddress>{{ email_address }}</rp14:EmailAddress>
 	</rp14:PayRecordsContact>	
    </rp14:RP14>
    </soapenv:Body>
