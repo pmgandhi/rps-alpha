@@ -1,9 +1,8 @@
 import re
-from datetime import datetime, date
 from flask_wtf import Form
-from wtforms import TextField, SelectField, StringField, ValidationError, DateField, RadioField
-from wtforms.fields.html5 import TelField, EmailField, DateField, IntegerField
-from wtforms.validators import DataRequired, Optional, Length, Email, AnyOf, Regexp, NumberRange, InputRequired
+from wtforms import TextField, SelectField, RadioField
+from wtforms.fields.html5 import IntegerField
+from wtforms.validators import DataRequired, AnyOf, Regexp, NumberRange
 
 
 class ClaimantWageDetails(Form):
