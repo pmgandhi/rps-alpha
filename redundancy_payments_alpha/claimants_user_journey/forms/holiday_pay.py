@@ -1,8 +1,8 @@
 from flask_wtf import Form
 from wtforms import TextField, RadioField
-from wtforms.validators import DataRequired, AnyOf, StopValidation
+from wtforms.validators import DataRequired, AnyOf
 from employment_details import FutureDateValidator
-from validators.Validators import RequiredIfFieldHasValue
+from claimants_user_journey.forms.validators import RequiredIfFieldHasValue
 
 
 class HolidayPay(Form):

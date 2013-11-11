@@ -3,7 +3,7 @@ from flask_wtf import Form
 from wtforms import TextField, SelectField, StringField, ValidationError
 from wtforms.fields.html5 import TelField, EmailField
 from wtforms.validators import DataRequired, Length, Email, AnyOf, Regexp
-from validators.Validators import DateOfBirthValidator
+from claimants_user_journey.forms.validators import DateOfBirthValidator
 
 
 class ClaimantContactDetails(Form):

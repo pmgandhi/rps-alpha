@@ -1,7 +1,7 @@
 from flask_wtf import Form
 from wtforms import TextField, SelectField
 from wtforms.validators import DataRequired, Length, AnyOf
-from validators.Validators import FutureDateValidator
+from claimants_user_journey.forms.validators import FutureDateValidator
 
 
 class EmploymentDetails(Form):
