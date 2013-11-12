@@ -1,6 +1,6 @@
 from hamcrest import *
-from ...insolvency_practitioner_forms import routes
-from ...insolvency_practitioner_forms.forms.employee_details_form import EmployeeDetailsForm
+from insolvency_practitioner_forms import routes
+from insolvency_practitioner_forms.forms.employee_details_form import EmployeeDetailsForm
 import form_test
 
 

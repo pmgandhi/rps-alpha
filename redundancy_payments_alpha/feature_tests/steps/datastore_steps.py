@@ -8,6 +8,7 @@ from birmingham_cabinet.api import (
 from birmingham_cabinet.models import Claimant, Employer, Employee
 from birmingham_cabinet.base import make_session
 from datetime import datetime
+import json
 
 @when('we add a dictionary containing sample rp1 details')
 def step(context):
@@ -38,7 +39,9 @@ def step(context):
         assert_that(claimant.title, is_(context.form["title"]))
         assert_that(claimant.nino, is_(context.form["nino"]))
         assert_that(claimant.date_of_birth, is_(date_of_birth))
-        assert_that(claimant.hstore, is_(context.form))
+        decode_hstore = {key: json.loads(value)
+                           for key, value in claimant.hstore.items()}
+        assert_that(decode_hstore, is_(context.form))
     finally:
         session.close()
 
@@ -64,7 +67,10 @@ def step(context):
         assert_that(employer.employer_name, is_(context.form["employer_name"]))
         assert_that(employer.company_number, is_(context.form["company_number"]))
         assert_that(employer.date_of_insolvency, is_(date_of_insolvency))
-        assert_that(employer.hstore, is_(context.form))
+        decode_hstore = {key: json.loads(value)
+                         for key, value in employer.hstore.items()}
+        assert_that(decode_hstore,
+                    is_(context.form))
     finally:
         session.close()
 
@@ -88,6 +94,8 @@ def step(context):
     try:
         employee = session.query(Employee).all() [0]
         assert_that(employee.ip_number, is_(context.form["ip_number"]))
-        assert_that(employee.hstore, is_(context.form))
+        decode_hstore = {key: json.loads(value)
+                         for key, value in employee.hstore.items()}
+        assert_that(decode_hstore, is_(context.form))
     finally:
         session.close()

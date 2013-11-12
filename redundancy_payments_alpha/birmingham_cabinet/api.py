@@ -1,8 +1,8 @@
 import contextlib
 import json
 
-from birmingham_cabinet.models import Claimant, Employer, Employee
-from birmingham_cabinet.base import make_session
+from models import Claimant, Employer, Employee
+from base import make_session
 
 
 def add_rp1_form(dictionary):
@@ -26,7 +26,7 @@ def add_rp14_form(dictionary):
         employer.employer_name = dictionary["employer_name"]
         employer.company_number = dictionary["company_number"]
         employer.date_of_insolvency = dictionary["date_of_insolvency"]
-        claimant.hstore = {key: json.dumps(value)
+        employer.hstore = {key: json.dumps(value)
                            for key, value in dictionary.items()}
         session.add(employer)
         session.commit()
@@ -42,7 +42,7 @@ def add_rp14a_form(dictionary):
         employee.surname = dictionary["surname"]
         employee.ip_number = dictionary["ip_number"]
         employee.employer_name = dictionary["employer_name"]
-        claimant.hstore = {key: json.dumps(value)
+        employee.hstore = {key: json.dumps(value)
                            for key, value in dictionary.items()}
         session.add(employee)
         session.commit()

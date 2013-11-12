@@ -1,8 +1,8 @@
 from datetime import datetime
 import unittest
 from hamcrest import *
-from ...claimants_user_journey.forms.claimant_contact_details import ClaimantContactDetails
-from ...claimants_user_journey.routes import app
+from claimants_user_journey.forms.claimant_contact_details import ClaimantContactDetails
+from claimants_user_journey.routes import app
 
 test_client = app.test_client()
 

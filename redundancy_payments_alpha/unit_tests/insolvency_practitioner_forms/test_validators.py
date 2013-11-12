@@ -1,5 +1,5 @@
 import unittest
-from ...insolvency_practitioner_forms.forms.validators import validators
+from insolvency_practitioner_forms.forms.validators import validators
 from wtforms import Form
 from wtforms.validators import ValidationError
 
