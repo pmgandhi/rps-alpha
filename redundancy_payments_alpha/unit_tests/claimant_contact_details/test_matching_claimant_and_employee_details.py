@@ -18,3 +18,18 @@ class TestMatchingClaimantAndEmployeeDetails(unittest.TestCase):
         page = BeautifulSoup(response.data)
         assert_that(page.find('h1').text, contains_string('Your Employee Record'))
         assert_that(page.find('pre').text, contains_string('John'))
+
+    def test_nino_is_not_case_sensitive(self):
+        test_app = routes.app.test_client()
+        response = test_app.get('/claim-redundancy-payment/employee-records/?nino=ab111111c')
+        assert_that(response.status_code, is_(200))
+        page = BeautifulSoup(response.data)
+        assert_that(page.find('h1').text, contains_string('Your Employee Record'))
+        assert_that(page.find('pre').text, contains_string('John'))
+
+    def test_shows_nino_not_found_page_if_nino_not_provided(self):
+        test_app = routes.app.test_client()
+        response = test_app.get('/claim-redundancy-payment/employee-records/')
+        assert_that(response.status_code, is_(200))
+        page = BeautifulSoup(response.data)
+        assert_that(page.find('h1').text, contains_string('No Employee Record Found'))

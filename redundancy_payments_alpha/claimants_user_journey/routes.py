@@ -59,7 +59,7 @@ def personal_details():
 
 def _find_employee_record(nino):
     employee_record = None
-    if request.args.get('nino') == 'AB111111C':
+    if nino and nino.upper() == 'AB111111C':
         employee_record = json.dumps({'Forenames': 'John'})
     return employee_record
 
