@@ -1,5 +1,5 @@
 import unittest
-from redundancy_payments_alpha.claimants_user_journey import routes
+from claimants_user_journey import routes
 from hamcrest import *
 from BeautifulSoup import BeautifulSoup
 
