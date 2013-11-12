@@ -57,11 +57,17 @@ def personal_details():
     return render_template('user_details.html', form=form, nav_links=nav_links())
 
 
+def _find_employee_record(nino):
+    employee_record = None
+    if request.args.get('nino') == 'AB111111C':
+        employee_record = json.dumps({'Forenames': 'John'})
+    return employee_record
+
+
 @app.route('/claim-redundancy-payment/employee-records/', methods=['GET'])
 def employee_records():
-    if request.args.get('nino') == 'AB111111C':
-        return 'Employee record found'
-    return 'Employee record not found'
+    employee_record = _find_employee_record(request.args.get('nino'))
+    return render_template('employee_record.html', employee_record=employee_record)
 
 
 @app.route('/claim-redundancy-payment/employment-details/', methods=['GET', 'POST'])

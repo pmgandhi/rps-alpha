@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Employee Record{% endblock %}
+{% block content %}
+        <h1>
+            {% if employee_record %}
+                Employee Record Found
+            {% else %}
+                Employee Record Not Found
+            {% endif %}
+        </h1>
+        <pre>
+            {{ employee_record }}
+        </pre>
+{% endblock %}
