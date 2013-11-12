@@ -17,7 +17,7 @@ class TestAddingEmployeeDetails(form_test.FormTest):
             'employee_surname': 'Smith',
             'employee_national_insurance_class': 'z',
             'employee_national_insurance_number': 'ab123456',
-            'employee_date_of_birth': '01/01/1940',
+            'employee_date_of_birth': '20/06/1980',
             'employee_start_date': '01/01/1980',
             'employee_date_of_notice': '01/01/1990',
             'employee_end_date': '05/01/1990',
