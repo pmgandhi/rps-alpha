@@ -41,3 +41,8 @@ def step(context, url):
 def step(context):
     page = BeautifulSoup(context.response_from_posting_data.data)
     assert_that(page.find('h1').text, is_('Your Employee Record'))
+
+@then('they are shown a message telling them to contact their IP')
+def step(context):
+    page = BeautifulSoup(context.response_from_posting_data.data)
+    assert_that(page.find('h1').text, is_('No Employee Record Found'))
