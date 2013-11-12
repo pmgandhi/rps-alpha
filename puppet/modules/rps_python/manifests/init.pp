@@ -6,4 +6,5 @@ class rps_python {
     pip        => true,
     virtualenv => true,
   }
+
 }

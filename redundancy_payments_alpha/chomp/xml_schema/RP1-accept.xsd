@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.northgate-is.com/rps" xmlns:ns1="http://www.northgate-is.com/rps" xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.northgate-is.com/rps">
+	<xs:complexType name="DocumentType">
+		<xs:sequence>
+			<xs:element name="Source" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						Source of the document - scanned, from doc
+						prod.. ?
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DocReference">
+				<xs:annotation>
+					<xs:documentation>
+						The unique reference of the document within ICM
+						- IS THIS AN INTEGER??
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FilePlanLocation">
+				<xs:annotation>
+					<xs:documentation>
+						Identifes the folder in which the document is
+						located
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="250"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="WebDavURL">
+				<xs:annotation>
+					<xs:documentation>
+						The URL to access the document contents.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="250"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element minOccurs="0" name="MetaDataItems">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" name="MetaDataItem">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="Name">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="20"/>
+												<xs:enumeration value="Title"/>
+												<xs:enumeration value="From"/>
+												<xs:enumeration value="To"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="Value">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="200"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,958 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="www.inss.gsi.gov.uk/RP1_Application" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns="www.inss.gsi.gov.uk/RP1_Application" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns1="www.inss.gsi.gov.uk/DiversityData">
+	<xsd:import namespace="www.inss.gsi.gov.uk/DiversityData" schemaLocation="DiversityData.xsd"/>
+	<xsd:element name="RP1_Claim_application">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Header" minOccurs="0">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="CaseReference" type="xsd:string" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>Case Reference to which this document relates.</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="DMSDocumentID" type="xsd:string" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>The DMS document ID to which this document relates.</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="ClaimReference" type="xsd:string" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>Claim Reference to which this document relates.</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="CHAMPDocumentID" type="xsd:string" minOccurs="0"/>
+							<xsd:element name="Source" type="xsd:string" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>Source of this document</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="ExternalReference" type="xsd:string" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>Third party identifying reference</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="Claimant">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="Name">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="Surname" type="xsd:string"/>
+										<xsd:element name="Forename" type="xsd:string" minOccurs="0"/>
+										<xsd:element name="Othernames" type="xsd:string" minOccurs="0"/>
+										<xsd:element name="Title" type="xsd:string" minOccurs="0"/>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="NINO" type="xsd:string" minOccurs="0"/>
+							<xsd:element name="Gender" type="xsd:string" minOccurs="0"/>
+							<xsd:element name="DateOfBirth" type="xsd:date" minOccurs="0"/>
+							<xsd:element name="Address" type="AddressType" minOccurs="0"/>
+							<xsd:element name="EmailAddress" type="xsd:string" minOccurs="0"/>
+							<xsd:element name="PhoneNumber" type="xsd:string" minOccurs="0"/>
+							<xsd:element name="BankDetails" minOccurs="0">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="BankName" type="xsd:string" minOccurs="0"/>
+										<xsd:element name="Branch" type="xsd:string" minOccurs="0"/>
+										<xsd:element name="SortCode" type="xsd:string" minOccurs="0"/>
+										<xsd:element name="AccountNumber" type="xsd:string" minOccurs="0"/>
+										<xsd:element name="RollNumber" type="xsd:string" minOccurs="0"/>
+										<xsd:element name="AccountName" type="xsd:string" minOccurs="0"/>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="Employer" minOccurs="0">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="EmployerName" type="xsd:string"/>
+							<xsd:element name="Address" type="AddressType" minOccurs="0"/>
+							<xsd:element name="PhoneNumber" type="xsd:string" minOccurs="0"/>
+							<xsd:element name="WorkAddress" type="AddressType" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>Address where you worked. If different to Employer Address.</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="TradingStatus" minOccurs="0">
+								<xsd:simpleType>
+									<xsd:restriction base="xsd:string">
+										<xsd:enumeration value="Trading"/>
+										<xsd:enumeration value="Dead"/>
+										<xsd:enumeration value="Insolvent"/>
+									</xsd:restriction>
+								</xsd:simpleType>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="InsolvencyPractitioner" minOccurs="0">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="Name">
+								<xsd:simpleType>
+									<xsd:restriction base="xsd:string">
+										<xsd:maxLength value="60"/>
+									</xsd:restriction>
+								</xsd:simpleType>
+							</xsd:element>
+							<xsd:element name="PhoneNumber" type="xsd:string" minOccurs="0"/>
+							<xsd:element name="Address" type="AddressType" minOccurs="0"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="EmploymentDetails" minOccurs="0">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="JobTitle" type="xsd:string" minOccurs="0"/>
+							<xsd:element name="RP3DirectorDetails" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>Details if you were a Director.</xsd:documentation>
+								</xsd:annotation>
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="DocumentsProvided">
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="EmploymentContract" type="DocumentType"/>
+													<xsd:element name="TermAndConditions" type="DocumentType"/>
+													<xsd:element name="AppointmentLetter" type="DocumentType"/>
+													<xsd:element name="DirectorsContract" type="DocumentType"/>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+										<xsd:element name="AssociatedPriorToLTD">
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="Associated" type="YesNoType"/>
+													<xsd:element name="Notes" type="xsd:string" minOccurs="0"/>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+										<xsd:element name="HoursWorked">
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="NoOfHoursWorkedPerWeek" type="xsd:decimal"/>
+													<xsd:element name="FixedNoOfHours" type="YesNoType"/>
+													<xsd:element name="RegularHours" type="YesNoType"/>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+										<xsd:element name="PayDetails">
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="PaidReguarly" type="YesNoType"/>
+													<xsd:element name="TaxAndNITakenFromPay" type="YesNoType"/>
+													<xsd:element name="LastDayPaid" type="xsd:date"/>
+													<xsd:element name="PaymentsDescription">
+														<xsd:simpleType>
+															<xsd:restriction base="xsd:string">
+																<xsd:enumeration value="Salary"/>
+																<xsd:enumeration value="Directors Fees"/>
+															</xsd:restriction>
+														</xsd:simpleType>
+													</xsd:element>
+													<xsd:element name="BonusesAndDividends">
+														<xsd:complexType>
+															<xsd:sequence>
+																<xsd:element name="Paid" type="YesNoType"/>
+																<xsd:element name="Details" type="xsd:string" minOccurs="0"/>
+															</xsd:sequence>
+														</xsd:complexType>
+													</xsd:element>
+													<xsd:element name="ReducedSalaryPeriods" minOccurs="0">
+														<xsd:complexType>
+															<xsd:sequence>
+																<xsd:element name="ReducedSalaryPeriod" minOccurs="0">
+																	<xsd:complexType>
+																		<xsd:sequence>
+																			<xsd:element name="PeriodDetails" maxOccurs="unbounded">
+																				<xsd:complexType>
+																					<xsd:sequence>
+																						<xsd:element name="Period" type="PeriodType"/>
+																						<xsd:element name="SalaryPerWeek" type="xsd:decimal"/>
+																					</xsd:sequence>
+																				</xsd:complexType>
+																			</xsd:element>
+																		</xsd:sequence>
+																	</xsd:complexType>
+																</xsd:element>
+																<xsd:element name="AgreeToArrangement" type="YesNoType"/>
+																<xsd:element name="ReasonForArrangment" type="xsd:string"/>
+															</xsd:sequence>
+														</xsd:complexType>
+													</xsd:element>
+													<xsd:element name="NoSalaryPeriods" minOccurs="0">
+														<xsd:complexType>
+															<xsd:sequence>
+																<xsd:element name="NoSalaryPeriod" type="PeriodType" maxOccurs="unbounded"/>
+																<xsd:element name="AgreeToArrangement" type="YesNoType"/>
+																<xsd:element name="ReasonForArrangement" type="xsd:string"/>
+															</xsd:sequence>
+														</xsd:complexType>
+													</xsd:element>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+										<xsd:element name="Holiday">
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="EntitledToHoliday" type="YesNoType"/>
+													<xsd:element name="Entitlement" type="xsd:decimal" minOccurs="0"/>
+													<xsd:element name="HolidayPeriods" minOccurs="0">
+														<xsd:complexType>
+															<xsd:sequence>
+																<xsd:element name="HolidayPeriod" type="PeriodType" maxOccurs="unbounded"/>
+															</xsd:sequence>
+														</xsd:complexType>
+													</xsd:element>
+													<xsd:element name="HolidaysTakenlast2Years" type="xsd:string" minOccurs="0"/>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+										<xsd:element name="SickPayArrangements" type="xsd:string" minOccurs="0"/>
+										<xsd:element name="PensionArrangements" type="xsd:string" minOccurs="0"/>
+										<xsd:element name="Duties">
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="DutiesAndResponsibilities" type="xsd:string"/>
+													<xsd:element name="WeeklyDuties" type="xsd:string"/>
+													<xsd:element name="FrequencyAtPremises" type="xsd:string"/>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+										<xsd:element name="Supervision">
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="Supervised" type="YesNoType">
+														<xsd:annotation>
+															<xsd:documentation>Did anyone supervise or guide you?</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="SupervisionDetails" type="xsd:string" minOccurs="0">
+														<xsd:annotation>
+															<xsd:documentation>What kind of supervision or guidance did you receive and from whom?</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+										<xsd:element name="DismissalTerms" type="xsd:string">
+											<xsd:annotation>
+												<xsd:documentation>What, if any were the terms of your dismissal?</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element name="Shareholding">
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="Shares" type="YesNoType">
+														<xsd:annotation>
+															<xsd:documentation>Did you hold any shares in the company?</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="ShareholdingPercentage" type="xsd:decimal" minOccurs="0"/>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+										<xsd:element name="Investment" type="xsd:string" minOccurs="0">
+											<xsd:annotation>
+												<xsd:documentation>Details of any investment  of your own funds or provision of guarantees for the company</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element name="OtherBusinessActivities" minOccurs="0">
+											<xsd:annotation>
+												<xsd:documentation>Were there any other business activities</xsd:documentation>
+											</xsd:annotation>
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="TypeOfActivities" type="xsd:string"/>
+													<xsd:element name="HoursPerWeek" type="xsd:decimal" minOccurs="0">
+														<xsd:annotation>
+															<xsd:documentation>How much time was spent on those activities each week?</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="EmployeeNumber" type="xsd:string" minOccurs="0"/>
+							<xsd:element name="EmploymentCategory" minOccurs="0">
+								<xsd:simpleType>
+									<xsd:restriction base="xsd:string">
+										<xsd:enumeration value="Employed"/>
+										<xsd:enumeration value="Director"/>
+										<xsd:enumeration value="Labour-only subcontractor"/>
+										<xsd:enumeration value="Freelance Worker"/>
+										<xsd:enumeration value="Agency Worker"/>
+										<xsd:enumeration value="Casual Worker"/>
+										<xsd:enumeration value="Fixed Term Contract Worker"/>
+										<xsd:enumeration value="Home Worker"/>
+									</xsd:restriction>
+								</xsd:simpleType>
+							</xsd:element>
+							<xsd:element name="StartDate" type="xsd:date" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>When did you start working for this employer?</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="RP4SubcontractDetails" minOccurs="0">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="StartDate" type="xsd:date">
+											<xsd:annotation>
+												<xsd:documentation>When did you start working for the company?</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element name="WorkProvidedMandatory" type="YesNoType">
+											<xsd:annotation>
+												<xsd:documentation>Did the company have to provide you with work?</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element name="AcceptWorkMandatory" type="YesNoType">
+											<xsd:annotation>
+												<xsd:documentation>Did you have to accept the work?</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element name="WorkSubstitute">
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="SubstituteAllowed" type="YesNoType">
+														<xsd:annotation>
+															<xsd:documentation>Could you send a substitute to do the work?</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="SubstituteArrangement" type="xsd:string" minOccurs="0">
+														<xsd:annotation>
+															<xsd:documentation>What were the arrangements with the company for the supply of a substitute worker?</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="Subcontract">
+														<xsd:complexType>
+															<xsd:sequence>
+																<xsd:element name="EmployHelp" type="YesNoType">
+																	<xsd:annotation>
+																		<xsd:documentation>Could you employ someone to help you carry out your work?</xsd:documentation>
+																	</xsd:annotation>
+																</xsd:element>
+																<xsd:element name="WhoPaidWages" minOccurs="0">
+																	<xsd:annotation>
+																		<xsd:documentation>If you employed someone, who paid that persons wages?</xsd:documentation>
+																	</xsd:annotation>
+																	<xsd:simpleType>
+																		<xsd:restriction base="xsd:string">
+																			<xsd:enumeration value="Me"/>
+																			<xsd:enumeration value="Company"/>
+																		</xsd:restriction>
+																	</xsd:simpleType>
+																</xsd:element>
+															</xsd:sequence>
+														</xsd:complexType>
+													</xsd:element>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+										<xsd:element name="DocumentsSent">
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="EmploymentContract" type="DocumentType"/>
+													<xsd:element name="TermsAndConditions" type="DocumentType"/>
+													<xsd:element name="AppointmentLetter" type="DocumentType"/>
+													<xsd:element name="EmploymentPeriodLetter" type="DocumentType"/>
+													<xsd:element name="ReasonNotSent" type="xsd:string" minOccurs="0">
+														<xsd:annotation>
+															<xsd:documentation>The reason as to why any of the documents could not be sent.</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+										<xsd:element name="HoursWorked">
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="NoOfHoursWorkedPerWeek" type="xsd:decimal"/>
+													<xsd:element name="RegularHours" type="YesNoType">
+														<xsd:annotation>
+															<xsd:documentation>Did you work regular hours?</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="WhoDecidedHours">
+														<xsd:annotation>
+															<xsd:documentation>Did you or the employer decide when you worked</xsd:documentation>
+														</xsd:annotation>
+														<xsd:simpleType>
+															<xsd:restriction base="xsd:string">
+																<xsd:enumeration value="Employee"/>
+																<xsd:enumeration value="Employer"/>
+															</xsd:restriction>
+														</xsd:simpleType>
+													</xsd:element>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+										<xsd:element name="PayDetails" minOccurs="0">
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="PaidReguarly" type="YesNoType">
+														<xsd:annotation>
+															<xsd:documentation>Were you paid regularly?</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="WhoDecidedPay">
+														<xsd:annotation>
+															<xsd:documentation>Did you or the company decide how much you get paid</xsd:documentation>
+														</xsd:annotation>
+														<xsd:simpleType>
+															<xsd:restriction base="xsd:string">
+																<xsd:enumeration value="Employee"/>
+																<xsd:enumeration value="Employer"/>
+															</xsd:restriction>
+														</xsd:simpleType>
+													</xsd:element>
+													<xsd:element name="EmploymentAgency" minOccurs="0">
+														<xsd:complexType>
+															<xsd:sequence>
+																<xsd:element name="WhoDecidedPay" minOccurs="0">
+																	<xsd:annotation>
+																		<xsd:documentation>If you worked through an employment agency, who set your rate of pay?</xsd:documentation>
+																	</xsd:annotation>
+																	<xsd:simpleType>
+																		<xsd:restriction base="xsd:string">
+																			<xsd:enumeration value="Employee"/>
+																			<xsd:enumeration value="AgencyClient"/>
+																			<xsd:enumeration value="Agency"/>
+																		</xsd:restriction>
+																	</xsd:simpleType>
+																</xsd:element>
+															</xsd:sequence>
+														</xsd:complexType>
+													</xsd:element>
+													<xsd:element name="ReduceOrWithholdPay" type="YesNoType">
+														<xsd:annotation>
+															<xsd:documentation>Could the company reduce or withhold payment if dissatisfied with the work?</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="QuotePriceForJob" type="YesNoType">
+														<xsd:annotation>
+															<xsd:documentation>Did you quote a price for each job?</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="Invoices" type="YesNoType">
+														<xsd:annotation>
+															<xsd:documentation>Did you provide invoices for work performed? </xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="Payslips" type="YesNoType">
+														<xsd:annotation>
+															<xsd:documentation>Did you receive payslips? </xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="PaymentsMadeToWhom" type="xsd:string">
+														<xsd:annotation>
+															<xsd:documentation>To whom was the money made out to when payments were made?</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="VATCharged" type="YesNoType">
+														<xsd:annotation>
+															<xsd:documentation>Did you charge VAT for the work that you carried out?</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="ConstructionIndustryScheme" type="YesNoType">
+														<xsd:annotation>
+															<xsd:documentation>Did you register with her majestys revenue and customs under the construction industry scheme?</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="PAYEScheme" type="YesNoType">
+														<xsd:annotation>
+															<xsd:documentation>Did you pay tax and national insurance contributions as an employee under the PAYE scheme?</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="EntitledToBenefits" type="YesNoType">
+														<xsd:annotation>
+															<xsd:documentation>Were you entitled to receive benefits such as paid holidays, sick pay, notice pay and pension arrangements?</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="DetailsofBenefits" type="xsd:string" minOccurs="0">
+														<xsd:annotation>
+															<xsd:documentation>Specify details of benefits</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+										<xsd:element name="RequestTimeOff" type="YesNoType">
+											<xsd:annotation>
+												<xsd:documentation>Did you have to ask for permission for time off?</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element name="GrievancePolicy" type="YesNoType">
+											<xsd:annotation>
+												<xsd:documentation>Did you have to follow the company grievance and disciplinary procedures?</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element name="ProtectiveClothing" type="YesNoType" minOccurs="0">
+											<xsd:annotation>
+												<xsd:documentation>If necessary did you provide your own protective clothing?</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element name="EquipmentProvided" type="xsd:string" minOccurs="0">
+											<xsd:annotation>
+												<xsd:documentation>Specify any equipment that you provided in order to carry out your work.</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element name="DayToDayControl" type="xsd:string">
+											<xsd:annotation>
+												<xsd:documentation>Who controlled your day to day activities?</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element name="OtherWork">
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="WorkedElsewhere" type="YesNoType">
+														<xsd:annotation>
+															<xsd:documentation>Since you started working for this employer, have you ever worked for anyone else?</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="DetailsOfOtherWorks" minOccurs="0">
+														<xsd:complexType>
+															<xsd:sequence>
+																<xsd:element name="DetailsOfOtherWork" maxOccurs="unbounded">
+																	<xsd:annotation>
+																		<xsd:documentation>Name of other employers and dates worked since starting work for current employer</xsd:documentation>
+																	</xsd:annotation>
+																	<xsd:complexType>
+																		<xsd:sequence>
+																			<xsd:element name="Periods" type="PeriodType"/>
+																			<xsd:element name="WorkFor" type="xsd:string"/>
+																		</xsd:sequence>
+																	</xsd:complexType>
+																</xsd:element>
+															</xsd:sequence>
+														</xsd:complexType>
+													</xsd:element>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="LastDayWorked" type="xsd:date" minOccurs="0"/>
+							<xsd:element name="EndDate" type="xsd:date" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>Date employment ended if different to last day worked.</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="NoticeGivenByEmployer" type="YesNoType" minOccurs="0"/>
+							<xsd:element name="DateNoticeGivenByEmployer" type="xsd:date" minOccurs="0"/>
+							<xsd:element name="GrossBasicPay" minOccurs="0">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="Amount" type="xsd:decimal" minOccurs="0"/>
+										<xsd:element name="Period" minOccurs="0">
+											<xsd:simpleType>
+												<xsd:restriction base="xsd:string">
+													<xsd:enumeration value="hour"/>
+													<xsd:enumeration value="day"/>
+													<xsd:enumeration value="week"/>
+													<xsd:enumeration value="fortnight"/>
+													<xsd:enumeration value="month"/>
+													<xsd:enumeration value="year"/>
+												</xsd:restriction>
+											</xsd:simpleType>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="BonusORCommission" type="YesNoType" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>Did Pay include any commission or bonuses paid.</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="BonusORCommissionText" type="xsd:string" minOccurs="0"/>
+							<xsd:element name="NoOfDaysWorkedPerWeek" type="xsd:decimal" minOccurs="0"/>
+							<xsd:element name="NoOfHoursWorkedPerWeek" type="xsd:decimal" minOccurs="0"/>
+							<xsd:element name="DaysWorked" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>Days worked each week if not Monday to Friday. Shift work should show average working week</xsd:documentation>
+								</xsd:annotation>
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="Day" maxOccurs="7">
+											<xsd:simpleType>
+												<xsd:restriction base="xsd:string">
+													<xsd:enumeration value="Sunday"/>
+													<xsd:enumeration value="Monday"/>
+													<xsd:enumeration value="Tuesday"/>
+													<xsd:enumeration value="Wednesday"/>
+													<xsd:enumeration value="Thursday"/>
+													<xsd:enumeration value="Friday"/>
+													<xsd:enumeration value="Saturday"/>
+												</xsd:restriction>
+											</xsd:simpleType>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="WeeklyPayDay" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>Pay day, if paid weekly. </xsd:documentation>
+								</xsd:annotation>
+								<xsd:simpleType>
+									<xsd:restriction base="xsd:string">
+										<xsd:enumeration value="Sunday"/>
+										<xsd:enumeration value="Monday"/>
+										<xsd:enumeration value="Tuesday"/>
+										<xsd:enumeration value="Wednesday"/>
+										<xsd:enumeration value="Thursday"/>
+										<xsd:enumeration value="Friday"/>
+										<xsd:enumeration value="Saturday"/>
+									</xsd:restriction>
+								</xsd:simpleType>
+							</xsd:element>
+							<xsd:element name="ContractualOvertime" type="YesNoType" minOccurs="0"/>
+							<xsd:element name="OvertimeWorked" minOccurs="0">
+								<xsd:complexType>
+									<xsd:attribute name="Hours" type="xsd:decimal" use="required"/>
+									<xsd:attribute name="Per" use="required">
+										<xsd:simpleType>
+											<xsd:restriction base="xsd:string">
+												<xsd:enumeration value="hour"/>
+												<xsd:enumeration value="day"/>
+												<xsd:enumeration value="week"/>
+												<xsd:enumeration value="fortnight"/>
+												<xsd:enumeration value="month"/>
+												<xsd:enumeration value="year"/>
+											</xsd:restriction>
+										</xsd:simpleType>
+									</xsd:attribute>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="BreaksInEmployment" minOccurs="0">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="EmploymentBreak" maxOccurs="unbounded">
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="Period" type="PeriodType"/>
+													<xsd:element name="Reason" type="xsd:string" minOccurs="0"/>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="StrikeDetails" minOccurs="0">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="StrikePeriod" maxOccurs="unbounded">
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="Period" type="PeriodType"/>
+													<xsd:element name="Reason" type="xsd:string" minOccurs="0"/>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="WorkedAbroad" minOccurs="0">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="Period" type="PeriodType" maxOccurs="unbounded"/>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="NewJob" type="YesNoType" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>Have you had a new job job since redundancy?</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="NewJobDetails" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>Details of new job started since being made redundant</xsd:documentation>
+								</xsd:annotation>
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="StartDate" type="xsd:date" minOccurs="0"/>
+										<xsd:element name="SelfEmployed" type="YesNoType" minOccurs="0"/>
+										<xsd:element name="Employer" minOccurs="0">
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="EmployerName" type="xsd:string"/>
+													<xsd:element name="EmployerPhone" type="xsd:string" minOccurs="0"/>
+													<xsd:element name="NewJobOfferDate" type="xsd:date" minOccurs="0"/>
+													<xsd:element name="DiffEmployerNewJobsame" type="YesNoType" minOccurs="0"/>
+													<xsd:element name="DealingSameCustomer" type="YesNoType" minOccurs="0"/>
+													<xsd:element name="TermsandConditionsChanged" type="YesNoType" minOccurs="0"/>
+													<xsd:element name="OldNewEmpLink" type="YesNoType" minOccurs="0">
+														<xsd:annotation>
+															<xsd:documentation>Are you aware of a link between your old and new employer?</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="OldNewEmpLinkDetails" type="xsd:string" minOccurs="0"/>
+													<xsd:element name="Address" minOccurs="0">
+														<xsd:complexType>
+															<xsd:sequence>
+																<xsd:element name="Line" maxOccurs="4">
+																	<xsd:simpleType>
+																		<xsd:restriction base="xsd:string">
+																			<xsd:maxLength value="35"/>
+																		</xsd:restriction>
+																	</xsd:simpleType>
+																</xsd:element>
+																<xsd:element name="Town" minOccurs="0">
+																	<xsd:simpleType>
+																		<xsd:restriction base="xsd:string">
+																			<xsd:maxLength value="35"/>
+																		</xsd:restriction>
+																	</xsd:simpleType>
+																</xsd:element>
+																<xsd:element name="County" minOccurs="0">
+																	<xsd:simpleType>
+																		<xsd:restriction base="xsd:string">
+																			<xsd:maxLength value="35"/>
+																		</xsd:restriction>
+																	</xsd:simpleType>
+																</xsd:element>
+																<xsd:element name="Postcode" minOccurs="0">
+																	<xsd:simpleType>
+																		<xsd:restriction base="xsd:string">
+																			<xsd:maxLength value="10"/>
+																			<xsd:pattern value=""/>
+																		</xsd:restriction>
+																	</xsd:simpleType>
+																</xsd:element>
+																<xsd:element name="Country" minOccurs="0">
+																	<xsd:simpleType>
+																		<xsd:restriction base="xsd:string">
+																			<xsd:maxLength value="10"/>
+																		</xsd:restriction>
+																	</xsd:simpleType>
+																</xsd:element>
+															</xsd:sequence>
+														</xsd:complexType>
+													</xsd:element>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="Claims">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="RedundancyPayment">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="ClaimingRedundancy" type="YesNoType" minOccurs="0"/>
+										<xsd:element name="AmountAlreadyReceived" type="xsd:decimal" minOccurs="0">
+											<xsd:annotation>
+												<xsd:documentation>Amount paid by employer </xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element name="DateOfComplaintLetter" type="xsd:date" minOccurs="0">
+											<xsd:annotation>
+												<xsd:documentation>If you are completing this form more than 6 months after you were made redundant please give the date that you wrote to your employer or complained to an Employment tribunal in relation to the Redundancy pay owed to you</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="OtherPayments" minOccurs="0">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="Holiday" minOccurs="0">
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="OwedPay" type="YesNoType" minOccurs="0"/>
+													<xsd:element name="YearStartDate" type="xsd:date" minOccurs="0">
+														<xsd:annotation>
+															<xsd:documentation>Start Date of holiday year</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="Entitlement" type="xsd:decimal" minOccurs="0">
+														<xsd:annotation>
+															<xsd:documentation>Yearly entitlement including bank holidays</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="DaysCarriedForward" type="xsd:decimal" minOccurs="0">
+														<xsd:annotation>
+															<xsd:documentation>Number of untaken days carried forward to this year</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="DaysTaken" type="xsd:decimal" minOccurs="0"/>
+													<xsd:element name="PeriodsNotPaid" minOccurs="0">
+														<xsd:complexType>
+															<xsd:sequence>
+																<xsd:element name="PeriodNotPaid" maxOccurs="unbounded">
+																	<xsd:complexType>
+																		<xsd:sequence>
+																			<xsd:element name="Period" type="PeriodType"/>
+																			<xsd:element name="NumberDaysNotPaid" type="xsd:decimal" minOccurs="0"/>
+																		</xsd:sequence>
+																	</xsd:complexType>
+																</xsd:element>
+															</xsd:sequence>
+														</xsd:complexType>
+													</xsd:element>
+													<xsd:element name="DaysOwed" type="xsd:decimal" minOccurs="0"/>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+										<xsd:element name="Wages" minOccurs="0">
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="Owed" type="YesNoType" minOccurs="0">
+														<xsd:annotation>
+															<xsd:documentation>Are you owed any wages?</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="PeriodsOwed" minOccurs="0">
+														<xsd:complexType>
+															<xsd:sequence>
+																<xsd:element name="PeriodOwed" minOccurs="0" maxOccurs="unbounded">
+																	<xsd:complexType>
+																		<xsd:sequence>
+																			<xsd:element name="Period" type="PeriodType"/>
+																			<xsd:element name="NoOfDays" type="xsd:decimal" minOccurs="0"/>
+																			<xsd:element name="GrossAmount" type="xsd:decimal" minOccurs="0"/>
+																		</xsd:sequence>
+																	</xsd:complexType>
+																</xsd:element>
+															</xsd:sequence>
+														</xsd:complexType>
+													</xsd:element>
+													<xsd:element name="UnpaidChequeDetails" minOccurs="0">
+														<xsd:annotation>
+															<xsd:documentation>Details of any cheques you received in respect of wages owed that were not paid by the employers bank.</xsd:documentation>
+														</xsd:annotation>
+														<xsd:complexType>
+															<xsd:sequence>
+																<xsd:element name="UnpaidCheque" maxOccurs="unbounded">
+																	<xsd:complexType>
+																		<xsd:sequence>
+																			<xsd:element name="Period" type="PeriodType"/>
+																			<xsd:element name="Amount" type="xsd:decimal" minOccurs="0"/>
+																		</xsd:sequence>
+																	</xsd:complexType>
+																</xsd:element>
+															</xsd:sequence>
+														</xsd:complexType>
+													</xsd:element>
+													<xsd:element name="AttachmentOfEarnings" type="YesNoType" minOccurs="0">
+														<xsd:annotation>
+															<xsd:documentation>Were your wages subject to an attachment of earnings?</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+										<xsd:element name="LossOfNotice" minOccurs="0">
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="StatutoryNoticeGiven" type="YesNoType" minOccurs="0"/>
+													<xsd:element name="ClaimingCompensation" type="YesNoType" minOccurs="0"/>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+										<xsd:element name="EmploymentTribunalPayments" type="YesNoType" minOccurs="0">
+											<xsd:annotation>
+												<xsd:documentation>Have you been awarded any payments in relation to your job ending by an Employment tribunal?</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="MoneyOwedByClaimant" minOccurs="0">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="MoneyOwedToEmployer" type="YesNoType" minOccurs="0"/>
+										<xsd:element name="DetailsOfMoneyOwed" minOccurs="0">
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="Amount" type="xsd:decimal"/>
+													<xsd:element name="Reason" type="xsd:string" minOccurs="0"/>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="DiversityData" type="ns1:DiversityData" minOccurs="0"/>
+				<xsd:element name="FurtherInformation" type="xsd:string" minOccurs="0"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:simpleType name="YesNoType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="yes"/>
+			<xsd:enumeration value="no"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="PeriodType">
+		<xsd:sequence>
+			<xsd:element name="StartDate" type="xsd:date"/>
+			<xsd:element name="EndDate" type="xsd:date"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="DocumentType">
+		<xsd:sequence>
+			<xsd:element name="DocumentSent" type="YesNoType"/>
+			<xsd:element name="Notes" type="xsd:string" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="AddressType">
+		<xsd:sequence>
+			<xsd:element name="Line" maxOccurs="4">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="35"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Town" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="35"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="County" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="35"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Postcode" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="10"/>
+						<xsd:pattern value=""/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Country" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="10"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

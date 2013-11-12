@@ -5,7 +5,7 @@
       <rps:DocReceivedRequest>
          <rps:Document>
             <rps:Source>DMS</rps:Source>
-            <rps:DocReference>{{ dmsid }}</rps:DocReference>
+            <rps:DocReference>{{ dms_id }}</rps:DocReference>
             <rps:FilePlanLocation>UNALLOCATED</rps:FilePlanLocation>
             <rps:WebDavURL>http://placekitten.com/g/1200/1000</rps:WebDavURL>
          </rps:Document>

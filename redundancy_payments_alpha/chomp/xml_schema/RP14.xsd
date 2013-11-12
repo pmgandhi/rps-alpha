@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="www.inss.gsi.gov.uk/RP14_Application" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="www.inss.gsi.gov.uk/RP14_Application">
+	<xsd:element name="RP14">
+		<xsd:annotation>
+			<xsd:documentation>Comment describing your root element</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Header" minOccurs="0">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="CaseReference" type="xsd:string" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>Case Reference to which this document relates.</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="DMSDocumentID" type="xsd:string" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>The DMS document ID to which this document relates.</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="ClaimReference" type="xsd:string" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>Claim Reference to which this document relates.</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="CHAMPDocumentID" type="xsd:string" minOccurs="0"/>
+							<xsd:element name="Source" type="xsd:string" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>Source of this document</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="ExternalReference" type="xsd:string" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>Third party identifying reference</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="NameOfBusiness">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:string">
+							<xsd:maxLength value="60"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:element>
+				<xsd:element name="CompanyNumber" minOccurs="0">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:string">
+							<xsd:maxLength value="12"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:element>
+				<xsd:element name="Address" type="AddressType" minOccurs="0"/>
+				<xsd:element name="IncorporationDate" type="xsd:date" minOccurs="0"/>
+				<xsd:element name="NatureOfBusiness" type="xsd:string" minOccurs="0"/>
+				<xsd:element name="PAYE" type="PayeType" minOccurs="0">
+					<xsd:annotation>
+						<xsd:documentation>TODO What is the format of this?</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="SICCode" minOccurs="0">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:string">
+							<xsd:maxLength value="255"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:element>
+				<xsd:element name="Directors">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="Director" minOccurs="0" maxOccurs="unbounded">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="Name" type="NameType"/>
+										<xsd:element name="NINO" type="NinoType" minOccurs="0"/>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="ClaimingRPAsEmployee" type="YesNoType" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>Are any of the directors claiming redundancy payments as employees of the company?</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="Shareholders" minOccurs="0">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="Shareholder" maxOccurs="unbounded">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="Name" type="NameType"/>
+										<xsd:element name="NoOfSharesHeld" type="xsd:integer" minOccurs="0"/>
+						<!--  Added Restriction to allow only 2 decimal digits 02-11-2011 11:47  -->				
+										<xsd:element name="Percentage" minOccurs="0">
+											<xsd:simpleType>
+												<xsd:restriction base="xsd:decimal">
+													<xsd:fractionDigits value="2"/>
+												</xsd:restriction>
+											</xsd:simpleType>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="AssociatedCompanies" minOccurs="0">
+					<xsd:annotation>
+						<xsd:documentation>Are there any legally associated companies of the insolvent company?</xsd:documentation>
+					</xsd:annotation>
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="LegallyAssociatedCompanies" type="YesNoType" minOccurs="0"/>
+							<xsd:element name="AssociatedCompany" minOccurs="0" maxOccurs="unbounded"> 
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="CompanyName">
+											<xsd:simpleType>
+												<xsd:restriction base="xsd:string">
+													<xsd:maxLength value="60"/>
+												</xsd:restriction>
+											</xsd:simpleType>
+										</xsd:element>
+										<xsd:element name="CompanyNumber" type="xsd:string" minOccurs="0"/>
+										<xsd:element name="Address" type="AddressType" minOccurs="0"/>
+										<xsd:element name="OfferToEmployEmployees" minOccurs="0">
+											<xsd:annotation>
+												<xsd:documentation>Did the associated company offer to employ any of the insolvent company’s employees?</xsd:documentation>
+											</xsd:annotation>
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="OfferMade" type="YesNoType"/>
+													<xsd:element name="DetailsOfOffer" minOccurs="0">
+														<xsd:complexType>
+															<xsd:sequence>
+																<xsd:element name="Employee" maxOccurs="unbounded">
+																	<xsd:complexType>
+																		<xsd:sequence>
+																			<xsd:element name="DateAndTimeOfOffer" type="xsd:dateTime"/>
+																			<xsd:element name="Name" type="NameType"/>
+																			<xsd:element name="OfferFormat">
+																				<xsd:simpleType>
+																					<xsd:restriction base="xsd:string">
+																						<xsd:enumeration value="oral"/>
+																						<xsd:enumeration value="written"/>
+																					</xsd:restriction>
+																				</xsd:simpleType>
+																			</xsd:element>
+																			<xsd:element name="OfferMadeBy">
+																				<xsd:complexType>
+																					<xsd:sequence>
+																						<xsd:element name="Name" type="NameType"/>
+																						<xsd:element name="PositionInCompany" type="xsd:string"/>
+																					</xsd:sequence>
+																				</xsd:complexType>
+																			</xsd:element>
+																		</xsd:sequence>
+																	</xsd:complexType>
+																</xsd:element>
+															</xsd:sequence>
+														</xsd:complexType>
+													</xsd:element>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+										<xsd:element name="ReasonForAssociation" minOccurs="0">
+											<xsd:annotation>
+												<xsd:documentation>Legal Reason for this company to be associated with the main one on the claim</xsd:documentation>
+											</xsd:annotation>
+											<xsd:simpleType>
+												<xsd:restriction base="xsd:string">
+													<xsd:maxLength value="255"/>
+												</xsd:restriction>
+											</xsd:simpleType>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="Employees">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="NoOfEmployees" type="xsd:integer" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>How many people were employed by the business on the date it became insolvent?</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="EmployeesClaimingContinuity" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>Employees claiming continuity of employment prior to the date of incorporation</xsd:documentation>
+								</xsd:annotation>
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="ClaimingContinuity" type="YesNoType" minOccurs="0"/>
+										<xsd:element name="EmployerName">
+											<xsd:simpleType>
+												<xsd:restriction base="xsd:string">
+													<xsd:maxLength value="60"/>
+												</xsd:restriction>
+											</xsd:simpleType>
+										</xsd:element>
+										<xsd:element name="Address" type="AddressType" minOccurs="0"/>
+										<xsd:element name="TradingDate" type="xsd:date" minOccurs="0">
+											<xsd:annotation>
+												<xsd:documentation>Date this employer started trading</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element name="ShouldClaimsBeAccepted" type="YesNoType" minOccurs="0">
+											<xsd:annotation>
+												<xsd:documentation>Should claims for continuity of employment be accepted?</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="Strikes" type="YesNoType" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>Have there ever been any official or unofficial strikes?</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="CarryOverHolidayEntitlement" type="YesNoType" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>Were employees entitled to ‘carry over’ holiday from the previous years entitlement?</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="InsolvencyDetails">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="InsolvencyDate" type="xsd:date" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>On what date did the business formally become insolvent within the meaning of section 183(3) of the Employment Rights Act 1996?</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="InsolvencyType" type="xsd:string" minOccurs="0"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="TransferDetails" minOccurs="0">
+					<xsd:annotation>
+						<xsd:documentation>Has there been, or do you anticipate that there is likely to be, a transfer</xsd:documentation>
+					</xsd:annotation>
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="TransferType" minOccurs="0">
+								<xsd:simpleType>
+									<xsd:restriction base="xsd:string">
+										<xsd:enumeration value="asset only"/>
+										<xsd:enumeration value="whole business"/>
+										<xsd:enumeration value="part of business"/>
+										<xsd:enumeration value="other"/>
+										<xsd:enumeration value="none"/>
+									</xsd:restriction>
+								</xsd:simpleType>
+							</xsd:element>
+							<xsd:element name="TransferTo" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>To whom was the transfer made or do you anticipate the transfer will be made?</xsd:documentation>
+								</xsd:annotation>
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="Name">
+											<xsd:annotation>
+												<xsd:documentation>Name of person or company.</xsd:documentation>
+											</xsd:annotation>
+											<xsd:simpleType>
+												<xsd:restriction base="xsd:string">
+													<xsd:maxLength value="60"/>
+												</xsd:restriction>
+											</xsd:simpleType>
+										</xsd:element>
+										<xsd:element name="Address" type="AddressType" minOccurs="0"/>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="TransferDate" type="xsd:date" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>Date that the transfer was made or likely to occur</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="NegotiationDate" type="xsd:date" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>Date negotiations began</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="PayRecordsContact">
+					<xsd:annotation>
+						<xsd:documentation>Whom can be contacted to answer queries about the former employees entitlements?</xsd:documentation>
+					</xsd:annotation>
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="Name">
+								<xsd:simpleType>
+									<xsd:restriction base="xsd:string">
+										<xsd:maxLength value="60"/>
+									</xsd:restriction>
+								</xsd:simpleType>
+							</xsd:element>
+							<xsd:element name="Address" type="AddressType" minOccurs="0"/>
+							<xsd:element name="PhoneNumber" minOccurs="0">
+								<xsd:simpleType>
+									<xsd:restriction base="xsd:string">
+										<xsd:maxLength value="40"/>
+									</xsd:restriction>
+								</xsd:simpleType>
+							</xsd:element>
+							<xsd:element name="EmailAddress" type="xsd:string" minOccurs="0"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="InsolvencyPractitioner" minOccurs="0">
+					<xsd:complexType>
+						<xsd:complexContent>
+							<xsd:extension base="InsolvencyPractitionerType">
+								<xsd:sequence>
+									<xsd:element name="DeclarationAgreement" type="xsd:boolean"/>
+								</xsd:sequence>
+							</xsd:extension>
+						</xsd:complexContent>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:simpleType name="NinoType">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[A-CEGHJ-PR-TW-Z]{1}[A-CEGHJ-NPR-TW-Z]{1}[0-9]{6}[A-DFM]{0,1}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="YesNoType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="yes"/>
+			<xsd:enumeration value="no"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="NameType">
+		<xsd:sequence>
+			<xsd:element name="Surname" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="Forenames" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="Title" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="FullName" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="Initials" type="xsd:string" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="AddressType">
+		<xsd:sequence>
+			<xsd:element name="Line" maxOccurs="4">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="35"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Town" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="35"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="County" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="35"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Postcode" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="10"/>
+						<xsd:pattern value=""/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Country" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="10"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="PayeType">
+		<xsd:sequence>
+			<xsd:element name="District" type="xsd:string"/>
+			<xsd:element name="Reference" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="InsolvencyPractitionerType">
+		<xsd:sequence>
+			<xsd:element name="RegistrationNumber" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="FirmName" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>The Insolvency Pratitioners Firm/Company name</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="255"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Name" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>The Insolvency Pratitioners name</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Address" type="AddressType" minOccurs="0"/>
+			<xsd:element name="TelephoneNumber" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="EmailAddress" type="xsd:string" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>
