@@ -53,7 +53,7 @@ def personal_details():
 
     if form.validate_on_submit():
         session['user_details'] = form.data
-        return redirect(url_for('employment_details'))
+        return redirect(url_for('employee_records', nino=form.nino.data))
     return render_template('user_details.html', form=form, nav_links=nav_links())
 
 
