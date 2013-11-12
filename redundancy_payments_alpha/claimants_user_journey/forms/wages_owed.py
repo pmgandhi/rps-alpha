@@ -1,7 +1,7 @@
 import re
 from flask_wtf import Form
-from wtforms import TextField, SelectField, DecimalField, IntegerField, RadioField, BooleanField
-from wtforms.validators import DataRequired, Length, AnyOf, Regexp
+from wtforms import TextField, RadioField
+from wtforms.validators import Regexp
 from validators import RequiredIfFieldHasValue
 
 
