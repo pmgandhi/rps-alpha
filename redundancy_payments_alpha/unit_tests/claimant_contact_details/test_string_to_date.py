@@ -3,7 +3,6 @@ from datetime import date
 from hamcrest import assert_that, is_
 from claimants_user_journey.forms.validators import convert_string_to_date
 
-
 class TestStringToDate(unittest.TestCase):
     def test_string_in_dd_mm_yyyy_gets_converted_to_date(self):
         # given

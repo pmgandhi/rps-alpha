@@ -1,5 +1,5 @@
 import json
-from flask import Flask, render_template, url_for, session
+from flask import Flask, render_template, url_for, session, request
 from werkzeug.utils import redirect
 from forms.claimant_contact_details import ClaimantContactDetails
 from forms.employment_details import EmploymentDetails
@@ -53,9 +53,22 @@ def personal_details():
 
     if form.validate_on_submit():
         session['user_details'] = form.data
-        return redirect(url_for('employment_details'))
+        return redirect(url_for('employee_records', nino=form.nino.data))
     return render_template('user_details.html', form=form, nav_links=nav_links())
-    
+
+
+def _find_employee_record(nino):
+    employee_record = None
+    if nino and nino.upper() == 'AB111111C':
+        employee_record = json.dumps({'Forenames': 'John'})
+    return employee_record
+
+
+@app.route('/claim-redundancy-payment/employee-records/', methods=['GET'])
+def employee_records():
+    employee_record = _find_employee_record(request.args.get('nino'))
+    return render_template('employee_record.html', employee_record=employee_record)
+
 
 @app.route('/claim-redundancy-payment/employment-details/', methods=['GET', 'POST'])
 def employment_details():

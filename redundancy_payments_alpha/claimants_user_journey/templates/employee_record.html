@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Employee Record{% endblock %}
+{% block header %}
+        <h1>
+            {% if employee_record %}
+                Your Employee Record
+            {% else %}
+                No Employee Record Found
+            {% endif %}
+        </h1>
+        <h2 class="subtitle">The record provided by the Insolvency Practitioner handling your case</h2>
+{% endblock %}
+{% block content %}
+        {% if employee_record %}
+        <div>
+            <h3>Information from your Insolvency Practitioner</h3>
+            <p>
+                This information has been provided by the Insolvency Practitioner
+                handling your case. It has been taken from the records of
+                your employer and will be used to inform your claim.
+            </p>
+        </div>
+        <pre>
+            {{ employee_record }}
+        </pre>
+        {% else %}
+        <div class="panels">
+            <div class="info-panel">
+            <h3>What to do if you are waiting to make a claim</h3>
+            <p>
+                It is possible that we are still waiting for the Insolvency Practitioner
+                handling your case to provide us with your employee records.
+            </p>
+            <p>
+                You can contact your Insolvency Practitioner on <span>00000 000 000.</span>
+            </p>
+            </div>
+        </div>
+        {% endif %}
+{% endblock %}
