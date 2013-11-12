@@ -29,6 +29,14 @@ Feature: wages owed
           And enters the unpaid wages details
          Then the claimant should be redirected
 
+    Scenario: submit valid information with no wages owed
+        Given a claimant with the unpaid wage details
+            | DETAILS             | VALUE      |
+            | owed                | No         |
+         When the claimant goes to /claim-redundancy-payment/wages-owed-details/
+          And enters the unpaid wages details
+         Then the claimant should be redirected
+
     Scenario: mandatory fields check
         Given a claimant with the unpaid wage details
             | DETAILS             | VALUE      |
