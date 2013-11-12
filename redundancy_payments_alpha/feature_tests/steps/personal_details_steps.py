@@ -25,7 +25,8 @@ def step(context):
 def step(context):
     context.response_from_posting_data = test_client.post(
         '/claim-redundancy-payment/personal-details/',
-        data=context.form_data
+        data=context.form_data,
+        follow_redirects=True
     )
 
 
@@ -36,3 +37,12 @@ def step(context, url):
     redirect_path = headers['Location']
     assert_that(redirect_path, contains_string(url))
 
+@then('they are shown their employee record')
+def step(context):
+    page = BeautifulSoup(context.response_from_posting_data.data)
+    assert_that(page.find('h1').text, is_('Your Employee Record'))
+
+@then('they are shown a message telling them to contact their IP')
+def step(context):
+    page = BeautifulSoup(context.response_from_posting_data.data)
+    assert_that(page.find('h1').text, is_('No Employee Record Found'))

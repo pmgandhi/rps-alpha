@@ -19,26 +19,6 @@ Feature: claimants contact details
           And the page should have an input field called "nino" labeled "National Insurance Number"
           And the page should have an input field called "date_of_birth" labeled "Date Of Birth"
 
-    Scenario: filling in the contact details form
-        Given a claimant with the personal details
-            | DETAILS           | VALUE             |
-            | forenames         | Donald            |
-            | surname           | Duck              |
-            | title             | Mr                |
-            | building_number   | 1                 |
-            | street            | street name       |
-            | district          | some district     |
-            | town_or_city      | Duckburg          |
-            | county            | foobar            |
-            | postcode          | a1 4lp            |
-            | email             | duck@burg.com     |
-            | telephone_number  | 00000 123456      |
-            | nino              | AA112233B         |
-            | date_of_birth     | 01/01/1900        |
-         When the claimant goes to /claim-redundancy-payment/personal-details/
-          And enters their details
-         Then the claimant should be redirected
-
     Scenario: filling in the contact details form with a missing information
         Given a claimant with the personal details
             | DETAILS           | VALUE             |
