@@ -1,7 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 4 U (http://www.xmlspy.com) by Brendan Nellis (Sx3 Ltd) -->
-<!-- edited with XMLSpy v2005 rel. 3 U (http://www.altova.com) by Phil Webb (SX3 PUBLIC SECTOR) -->
-<!-- Schema Version $Workfile:   RP1_Claim_Application.xsd  $ $Revision: 1.2 $ $Date: 2010/10/26 12:54:03 $ $Modtime:   Oct 19 2010 16:27:34  $ $Author: amitesh.pandya $ (Northgate Information Solutions) -->
 <xsd:schema targetNamespace="www.inss.gsi.gov.uk/RP1_Application" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns="www.inss.gsi.gov.uk/RP1_Application" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns1="www.inss.gsi.gov.uk/DiversityData">
 	<xsd:import namespace="www.inss.gsi.gov.uk/DiversityData" schemaLocation="DiversityData.xsd"/>
 	<xsd:element name="RP1_Claim_application">
