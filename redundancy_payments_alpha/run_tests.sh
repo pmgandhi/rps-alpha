@@ -9,6 +9,6 @@ cd $PROJECT_ROOT
 
 nosetests --exe
 
-./ensure_clean_tables
+# ./ensure_clean_tables
 
 behave -q --tags=-wip --stop feature_tests/

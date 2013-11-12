@@ -39,14 +39,19 @@ def add_rp14_form(dictionary):
 def add_rp14a_form(dictionary):
     with contextlib.closing(make_session()) as session:
         employee = Employee()
-        employee.nino = dictionary["nino"]
-        employee.date_of_birth = dictionary["date_of_birth"]
-        employee.title = dictionary["title"]
-        employee.forenames = dictionary["forenames"]
-        employee.surname = dictionary["surname"]
-        employee.ip_number = dictionary["ip_number"]
+        employee.nino = dictionary["employee_national_insurance_number"]
+        employee.date_of_birth = dictionary["employee_date_of_birth"]
+        employee.title = dictionary["employee_title"]
+        employee.forenames = dictionary["employee_forenames"]
+        employee.surname =  dictionary["employee_surname"]
+        employee.ip_number = "12345" #TODO: should we collect this on the form?
         employee.employer_name = dictionary["employer_name"]
+        #TODO: Remove hack around decimals in JSON
+        for decimal_key in ["employee_owed_wages_in_arrears", "employee_holiday_owed", "employee_basic_weekly_pay"]:
+            if decimal_key in dictionary:
+                dictionary[decimal_key] = str(dictionary[decimal_key])
         employee.hstore = {key: json.dumps(value)
                            for key, value in dictionary.items()}
         session.add(employee)
-        session.commit()
+        print session.commit()
+        print "yep"
