@@ -59,6 +59,8 @@ def personal_details():
 
 @app.route('/claim-redundancy-payment/employee-records/', methods=['GET'])
 def employee_records():
+    if request.args.get('nino') == 'AB111111C':
+        return 'Employee record found'
     return 'Employee record not found'
 
 
