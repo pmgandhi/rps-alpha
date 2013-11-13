@@ -1,7 +1,20 @@
-from birmingham_cabinet.api import employee_via_nino
+from datetime import date
+
+from birmingham_cabinet.api import employee_via_nino, add_rp14a_form
 from insolvency_practitioner_forms import routes
 
 ip_test_client = routes.app.test_client()
+
+@given('an employee with the nino {nino}')
+def step(context, nino):
+    add_rp14a_form({
+        "employee_national_insurance_number": nino,
+        "employee_date_of_birth": date(2013, 1, 1),
+        "employee_title": "Mr",
+        "employee_forenames": "Donald",
+        "employee_surname": "Duck",
+        "employer_name": "Duck Enterprises",
+    })
 
 @given('an IP entering the employee details')
 def step(context):

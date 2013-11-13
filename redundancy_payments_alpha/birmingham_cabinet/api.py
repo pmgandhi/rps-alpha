@@ -2,6 +2,8 @@ import contextlib
 import simplejson as json
 from datetime import date, datetime
 
+from sqlalchemy.orm.exc import NoResultFound
+
 from models import Claimant, Employer, Employee
 from base import make_session, Base, local_unix_socket_engine
 from customized_json import encode_special_types, decode_special_types
@@ -15,9 +17,12 @@ def truncate_all_tables():
 
 def employee_via_nino(nino):
     with contextlib.closing(make_session()) as session:
-        employee = session.query(Employee).filter(Employee.nino == nino).one()
-        return {key: json.loads(value, object_hook=decode_special_types)
-                for key, value in employee.hstore.items()}
+        try:
+            employee = session.query(Employee).filter(Employee.nino == nino).one()
+            return {key: json.loads(value, object_hook=decode_special_types)
+                    for key, value in employee.hstore.items()}
+        except NoResultFound:
+            pass
 
 def get_rp1_form():
     with contextlib.closing(make_session()) as session:
