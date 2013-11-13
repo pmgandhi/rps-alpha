@@ -1,11 +1,13 @@
 from hamcrest import *
+from mock import patch
 
 from insolvency_practitioner_forms import routes
 import form_test
 
 
 class TestAddingEmployeeDetails(form_test.FormTest):
-    def setUp(self):
+    @patch('insolvency_practitioner_forms.routes.get_storage_service')
+    def setUp(self, mock_storage_service):
         self.app = routes.app.test_client()
 
     def employee_data(self, **kwargs):
