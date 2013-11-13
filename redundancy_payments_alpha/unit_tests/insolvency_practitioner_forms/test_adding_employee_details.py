@@ -4,10 +4,12 @@ from mock import patch
 from insolvency_practitioner_forms import routes
 import form_test
 
+def return_object():
+    return object()
 
 class TestAddingEmployeeDetails(form_test.FormTest):
-    @patch('insolvency_practitioner_forms.routes.get_storage_service')
-    def setUp(self, mock_storage_service):
+
+    def setUp(self):
         self.app = routes.app.test_client()
 
     def employee_data(self, **kwargs):
@@ -37,7 +39,8 @@ class TestAddingEmployeeDetails(form_test.FormTest):
         employee_data.update(kwargs)
         return employee_data
 
-    def test_posting_complete_employee_details_redirects_to_employee_added_page(self):
+    @patch('insolvency_practitioner_forms.routes.get_storage_service')
+    def test_posting_complete_employee_details_redirects_to_employee_added_page(self, mocked_storage_factory):
         response = self.submit_form(
             self.app,
             '/create-employee-record/employee-details/',
