@@ -67,4 +67,4 @@ def add_rp14a_form(dictionary):
         employee.hstore = {key: json.dumps(value)
                            for key, value in dictionary.items()}
         session.add(employee)
-        print session.commit()
+        session.commit()
