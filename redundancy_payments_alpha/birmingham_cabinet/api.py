@@ -68,4 +68,3 @@ def add_rp14a_form(dictionary):
                            for key, value in dictionary.items()}
         session.add(employee)
         print session.commit()
-        print "yep"
