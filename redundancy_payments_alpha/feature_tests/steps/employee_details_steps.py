@@ -1,3 +1,4 @@
+from birmingham_cabinet.api import employee_via_nino
 from insolvency_practitioner_forms import routes
 
 ip_test_client = routes.app.test_client()
@@ -30,9 +31,6 @@ def step(context, url):
 
 @then("the data base should contain an employee")
 def step(context):
-    session = make_session()
-    try:
-        employee = session.query(Employee).all() [0]
-        assert_that(employee.nino, is_(context.form_data["employee_national_insurance_number"]))
-    finally:
-        session.close()
+    nino = context.form_data["employee_national_insurance_number"]
+    employee = employee_via_nino(nino)
+    assert_that(employee, is_(not_none()))
