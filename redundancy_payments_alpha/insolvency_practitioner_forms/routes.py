@@ -1,6 +1,4 @@
 from flask import Flask, url_for, request, render_template, session, g
-from flask_injector import init_app, post_init_app
-from injector import Injector, inject
 from werkzeug.utils import redirect
 from forms.employer_details_form import EmployerDetailsForm
 from forms.employee_details_form import EmployeeDetailsForm
