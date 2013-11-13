@@ -3,7 +3,20 @@ import json
 from datetime import date, datetime
 
 from models import Claimant, Employer, Employee
-from base import make_session
+from base import make_session, Base, local_unix_socket_engine
+
+def truncate_all_tables():
+    with contextlib.closing(local_unix_socket_engine.connect()) as conn:
+        trans = conn.begin()
+        for table in reversed(Base.metadata.sorted_tables):
+            conn.execute("truncate table {table_name}".format(table_name=table.name))
+        trans.commit()
+
+def employee_via_nino(nino):
+    with contextlib.closing(make_session()) as session:
+        employee = session.query(Employee).filter(Employee.nino == nino).one()
+        return {key: json.loads(value)
+                for key, value in employee.hstore.items()}
 
 def get_rp1_form():
     with contextlib.closing(make_session()) as session:
